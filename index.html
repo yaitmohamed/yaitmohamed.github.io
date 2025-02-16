@@ -4,45 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yassine Ait Mohamed</title>
-    <style>
-        body {
-            max-width: 1000px;
-            margin: 40px auto;
-            font-family: Arial, sans-serif;
-            line-height: 1.8;
-            font-size: 16px;
-            color: #333;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: 250px 1fr 200px;
-            gap: 20px;
-            align-items: start;
-        }
-        .nav-section {
-            grid-column: 1 / 2;
-        }
-        .nav-section h1 {
-            margin-bottom: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #003366;
-        }
-        .nav-section p {
-            margin: 0;
-            color: #555;
-        }
-        .nav-section a {
-            display: block;
-            margin: 10px 0;
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .nav-section a:hover {
-            text-decoration: underline;
-        }
-        .content-section {
-            grid-column: 2 / 3;
-        }
-        .content-section 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Section -->
+        <div class="nav-section">
+            <h1>Yassine Ait Mohamed</h1>
+            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
+            <a href="research.html">Research</a>
+            <a href="talks.html">Talks</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="mathlinks.html">Math Links</a>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <h2>Introduction</h2>
+            <p>
+                I am a PhD student in Mathematics at the University of Sherbrooke.
+                Before that, I was a PhD student at the University of Sidi Mohamed Ben Abdellah.
+            </p>
+
+            <h2>Email</h2>
+            <p>
+                <a href="mailto:y.aitmohamed@yahoo.com">y.aitmohamed@yahoo.com</a>
+            </p>
+        </div>
+
+        <!-- Photo Section -->
+        <div class="photo-section">
+            <img src="photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
+        </div>
+    </div>
+</body>
+</html>
