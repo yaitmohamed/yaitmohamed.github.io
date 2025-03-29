@@ -3,99 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Links</title>
+    <title>Math Links - Yassine Ait Mohamed</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <style>
+        /* MMN Color Scheme */
+        :root {
+            --primary-color: #2c3e50;    /* Dark blue */
+            --secondary-color: #e74c3c;  /* Red accent */
+            --tertiary-color: #3498db;   /* Light blue */
+            --background-color: #ecf0f1; /* Light gray background */
+            --text-color: #2c3e50;       /* Dark text */
+            --light-text: #fff;          /* White text */
+        }
+        
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Courier New', Courier, monospace;
-            margin: 20px;
-            line-height: 1.8;
-            font-size: 20px;
-            color: #003366;
-            background-color: #f0f8ff; /* Fond bleu très clair */
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--background-color);
         }
-        h1 {
+        
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header header"
+                "nav content"
+                "nav content"
+                "footer footer";
+        }
+        
+        /* Math formula */
+        .math-formula {
+            grid-area: header;
             text-align: center;
-            color: #00bcd4; /* Cyan principal */
-            font-size: 36px;
-            margin-bottom: 30px;
+            background-color: #f9f9f9;
+            padding: 0.3rem;
+            font-style: italic;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
         }
+        
+        /* Navigation Styles */
+        .nav-section {
+            grid-area: nav;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .nav-section h1 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+            color: var(--light-text);
+            font-size: 1.2rem;
+        }
+        
+        .nav-section p {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .nav-section a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .nav-section a:hover, .nav-section a.active {
+            background-color: var(--tertiary-color);
+        }
+        
+        .site-links {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+        }
+        
+        .site-links a {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        /* Content Styles */
+        .content-section {
+            grid-area: content;
+            padding: 2rem;
+            background-color: white;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .category {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 30px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
         ul {
             list-style: none;
             padding: 0;
+            margin-left: 20px;
         }
+        
         li {
             margin: 15px 0;
+            position: relative;
+            padding-left: 20px;
+            transition: transform 0.2s ease;
         }
-        a {
+        
+        li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--tertiary-color);
+            border-radius: 50%;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+        }
+        
+        .content-section a {
             text-decoration: none;
-            color: #ff9800; /* Orange doux */
-            font-size: 20px;
+            color: var(--tertiary-color);
+            font-size: 18px;
+            transition: color 0.2s ease;
         }
-        a:hover {
+        
+        .content-section a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
-            color: #ff5722; /* Orange vif */
         }
-        .category {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 30px;
-            color: #00bcd4; /* Cyan principal */
+        
+        /* Category containers */
+        .category-container {
+            background-color: #fafafa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .category-container:hover {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer Styles */
+        .footer-section {
+            grid-area: footer;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 2px solid var(--secondary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #f5f5f5;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "content"
+                    "footer";
+            }
+            
+            .nav-section {
+                height: auto;
+                position: relative;
+            }
         }
     </style>
+    <script>
+        // Function to highlight the active navigation item
+        function setActiveNavItem() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-section a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || 
+                    (currentPage === '' && linkHref === 'index.html') ||
+                    (currentPage === 'mathlinks.html' && link.textContent === 'Math Links')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Run when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavItem();
+        });
+    </script>
 </head>
 <body>
-    <h1>Math Links</h1>
-    <div>
-        <p class="category">Algebraic Geometry</p>
-        <ul>
-            <li><a href="https://stacks.math.columbia.edu/" target="_blank">The Stacks Project</a></li>
-            <li><a href="https://arxiv.org/" target="_blank">arXiv Algebraic Geometry</a></li>
-            <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow AG</a></li>
-        </ul>
+    <div class="container">
+        <div class="math-formula">
+            $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$
+        </div>
+        
+        <!-- Navigation Section -->
+        <div class="nav-section">
+            <h1>Yassine Ait Mohamed</h1>
+            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
+            
+            <!-- Main Navigation -->
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="talks.html">Talks</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="mathlinks.html" class="active">Math Links</a>
+            
+            <!-- Site Links -->
+            <div class="site-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
+            </div>
+        </div>
+        
+        <!-- Content Section -->
+        <div class="content-section">
+            <h1>Math Links</h1>
+            
+            <div class="category-container">
+                <p class="category">Algebraic Geometry</p>
+                <ul>
+                    <li><a href="https://stacks.math.columbia.edu/" target="_blank">The Stacks Project</a></li>
+                    <li><a href="https://arxiv.org/" target="_blank">arXiv Algebraic Geometry</a></li>
+                    <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow AG</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Symplectic Geometry</p>
-        <ul>
-            <li><a href="https://arxiv.org/" target="_blank">arXiv Symplectic Geometry</a></li>
-            <li><a href="https://mathoverflow.net/" target="_blank">Symplectic Field Theorist</a></li>
-            <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow SG</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Symplectic Geometry</p>
+                <ul>
+                    <li><a href="https://arxiv.org/" target="_blank">arXiv Symplectic Geometry</a></li>
+                    <li><a href="https://mathoverflow.net/" target="_blank">Symplectic Field Theorist</a></li>
+                    <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow SG</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Research Institutes</p>
-        <ul>
-            <li><a href="https://www.ihes.fr/" target="_blank">IHÉS</a></li>
-            <li><a href="https://www.mis.mpg.de/" target="_blank">Max Planck Institute</a></li>
-            <li><a href="https://www.msri.org/" target="_blank">MSRI</a></li>
-            <li><a href="https://www.newton.ac.uk/" target="_blank">Isaac Newton Institute</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Research Institutes</p>
+                <ul>
+                    <li><a href="https://www.ihes.fr/" target="_blank">IHÉS</a></li>
+                    <li><a href="https://www.mis.mpg.de/" target="_blank">Max Planck Institute</a></li>
+                    <li><a href="https://www.msri.org/" target="_blank">MSRI</a></li>
+                    <li><a href="https://www.newton.ac.uk/" target="_blank">Isaac Newton Institute</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Major Journals</p>
-        <ul>
-            <li><a href="https://link.springer.com/journal/222" target="_blank">Inventiones Mathematicae</a></li>
-            <li><a href="https://annals.math.princeton.edu/" target="_blank">Annals of Mathematics</a></li>
-            <li><a href="https://www.algebraicgeometry.nl/" target="_blank">Algebraic Geometry</a></li>
-            <li><a href="https://www.maths.ed.ac.uk/gt/" target="_blank">Geometry & Topology</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Major Journals</p>
+                <ul>
+                    <li><a href="https://link.springer.com/journal/222" target="_blank">Inventiones Mathematicae</a></li>
+                    <li><a href="https://annals.math.princeton.edu/" target="_blank">Annals of Mathematics</a></li>
+                    <li><a href="https://www.algebraicgeometry.nl/" target="_blank">Algebraic Geometry</a></li>
+                    <li><a href="https://www.maths.ed.ac.uk/gt/" target="_blank">Geometry & Topology</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Online Resources</p>
-        <ul>
-            <li><a href="https://mathscinet.ams.org/" target="_blank">MathSciNet</a></li>
-            <li><a href="https://zbmath.org/" target="_blank">zbMATH</a></li>
-            <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Online Resources</p>
+                <ul>
+                    <li><a href="https://mathscinet.ams.org/" target="_blank">MathSciNet</a></li>
+                    <li><a href="https://zbmath.org/" target="_blank">zbMATH</a></li>
+                    <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Learning Resources</p>
-        <ul>
-            <li><a href="https://ncatlab.org/nlab/show/HomePage" target="_blank">nLab</a></li>
-            <li><a href="https://mathscinet.ams.org/msnhtml/msc2020.pdf" target="_blank">Mathematics Subject Classification</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Learning Resources</p>
+                <ul>
+                    <li><a href="https://ncatlab.org/nlab/show/HomePage" target="_blank">nLab</a></li>
+                    <li><a href="https://mathscinet.ams.org/msnhtml/msc2020.pdf" target="_blank">Mathematics Subject Classification</a></li>
+                </ul>
+            </div>
 
-        <p class="category">Algebraic Topology</p>
-        <ul>
-            <li><a href="https://mathworld.wolfram.com/AnalysisSitus.html" target="_blank">Analysis Situs</a></li>
-            <li><a href="https://ocw.mit.edu/" target="_blank">Algebraic Topology of Manifolds</a></li>
-            <li><a href="https://www.paris-saclay.fr/" target="_blank">Algebraic Topology Course - Paris-Saclay University</a></li>
-            <li><a href="https://www.univ-paris13.fr/" target="_blank">Algebraic Topology - MAT 557 - Sorbonne Paris North University</a></li>
-        </ul>
+            <div class="category-container">
+                <p class="category">Algebraic Topology</p>
+                <ul>
+                    <li><a href="https://mathworld.wolfram.com/AnalysisSitus.html" target="_blank">Analysis Situs</a></li>
+                    <li><a href="https://ocw.mit.edu/" target="_blank">Algebraic Topology of Manifolds</a></li>
+                    <li><a href="https://www.paris-saclay.fr/" target="_blank">Algebraic Topology Course - Paris-Saclay University</a></li>
+                    <li><a href="https://www.univ-paris13.fr/" target="_blank">Algebraic Topology - MAT 557 - Sorbonne Paris North University</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p>© 2025 Yassine Ait Mohamed</p>
+            <div class="footer-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
