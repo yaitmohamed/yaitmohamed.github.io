@@ -4,34 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yassine Ait Mohamed</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* MMN Color Scheme from Certificate */
+        :root {
+            --primary-color: #00753a;    /* Green */
+            --secondary-color: #c1272d;  /* Red */
+            --background-color: #ffffff; /* White */
+            --text-color: #333333;       /* Dark text */
+            --light-text: #fff;          /* White text */
+            --border-color: #00753a;     /* Green border */
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header"
+                "nav"
+                "content"
+                "footer";
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        /* Header with photo */
+        .header-section {
+            grid-area: header;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: var(--background-color);
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .header-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-title h1 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .header-links {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .header-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .header-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .math-formula {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 0.5rem;
+            font-style: italic;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+        }
+        
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 5px;
+            border: 3px solid var(--primary-color);
+            object-fit: cover;
+        }
+        
+        /* Navigation Styles */
+        .nav-section {
+            grid-area: nav;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-section h1 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .nav-section p {
+            margin-bottom: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        .nav-section a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .nav-section a:hover {
+            background-color: var(--tertiary-color);
+        }
+        
+        /* Content Styles */
+        .content-section {
+            grid-area: content;
+            padding: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .content-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .content-section a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        /* Footer Styles */
+        .footer-section {
+            grid-area: footer;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--secondary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #f5f5f5;
+            text-decoration: underline;
+        }
+        
+        .nav-section {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .nav-section a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-section {
+                flex-direction: column;
+                padding: 1rem;
+                margin-top: 2.5rem;
+            }
+            
+            .header-title {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-links {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .header-links a {
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .nav-section {
+                position: relative;
+            }
+            
+            .math-formula {
+                font-size: 0.9rem;
+                padding: 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <!-- Navigation Section -->
         <div class="nav-section">
             <h1>Yassine Ait Mohamed</h1>
-            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
-            <a href="research.html">Research</a>
-            <a href="talks.html">Talks</a>
-            <a href="cv.html">CV</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="mathlinks.html">Math Links</a>
+            <p>PhD Student | Department of Mathematics | University of Sherbrooke</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="research.html">Research</a>
+                <a href="talks.html">Talks</a>
+                <a href="cv.html">CV</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="mathlinks.html">Math Links</a>
+            </div>
         </div>
-
         <!-- Content Section -->
         <div class="content-section">
             <h2>Introduction</h2>
             <p>
                 I am a Ph.D. student in Mathematics at the University of Sherbrooke. My research lies at the intersection of algebraic geometry, Lie theory, and mathematical physics.
-                 Before that, I was a Ph.D. student at Sidi Mohamed Ben Abdellah University, where I focused on rings with  derivations.
+                Before that, I was a Ph.D. student at Sidi Mohamed Ben Abdellah University, where I focused on rings with derivations.
+            </p>
             <h2>Email</h2>
             <p>
                 <a href="mailto:y.aitmohamed@yahoo.com">y.aitmohamed@yahoo.com</a>
                 <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>           
             </p>
         </div>
-
+        
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p>© 2025 Yassine Ait Mohamed</p>
+            <div class="footer-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
+            </div>
+        </div>
         <!-- Photo Section -->
         <div class="photo-section">
             <img src="photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
