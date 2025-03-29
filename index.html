@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yassine Ait Mohamed</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <style>
-        /* MMN Color Scheme from Certificate */
+        /* MMN Color Scheme */
         :root {
-            --primary-color: #00753a;    /* Green */
-            --secondary-color: #c1272d;  /* Red */
-            --background-color: #ffffff; /* White */
-            --text-color: #333333;       /* Dark text */
+            --primary-color: #2c3e50;    /* Dark blue */
+            --secondary-color: #e74c3c;  /* Red accent */
+            --tertiary-color: #3498db;   /* Light blue */
+            --background-color: #ecf0f1; /* Light gray background */
+            --text-color: #2c3e50;       /* Dark text */
             --light-text: #fff;          /* White text */
-            --border-color: #00753a;     /* Green border */
         }
         
         body {
@@ -25,88 +26,43 @@
         
         .container {
             display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto;
             grid-template-areas: 
-                "header"
-                "nav"
-                "content"
-                "footer";
-            width: 100%;
-            margin: 0;
+                "nav content"
+                "nav photo";
+            max-width: 1200px;
+            margin: 0 auto;
             min-height: 100vh;
         }
         
         /* Header with photo */
         .header-section {
-            grid-area: header;
             display: flex;
             justify-content: space-between;
-            padding: 1rem 2rem;
-            background-color: var(--background-color);
-            border-bottom: 2px solid var(--primary-color);
-            position: relative;
-        }
-        
-        .header-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .header-title {
-            display: flex;
             align-items: center;
-            gap: 1rem;
-            white-space: nowrap;
-        }
-        
-        .header-title h1 {
-            color: var(--secondary-color);
-            margin: 0;
-            font-size: 2rem;
-            white-space: nowrap;
-        }
-        
-        .header-title p {
-            margin: 0;
-            color: var(--text-color);
-        }
-        
-        .header-links {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .header-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin-right: 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .header-links a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .math-formula {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            background-color: #f5f5f5;
-            padding: 0.5rem;
-            font-style: italic;
-            border-bottom: 1px solid #ddd;
-            font-size: 1.1rem;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
         }
         
         .profile-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 5px;
-            border: 3px solid var(--primary-color);
+            border: 2px solid var(--light-text);
             object-fit: cover;
+        }
+        
+        /* Math formula */
+        .math-formula {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 0.3rem;
+            font-style: italic;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
         
         /* Navigation Styles */
@@ -114,41 +70,49 @@
             grid-area: nav;
             background-color: var(--primary-color);
             color: var(--light-text);
-            padding: 0.8rem 2rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
             position: sticky;
             top: 0;
-            z-index: 100;
+            height: 100vh;
         }
         
         .nav-section h1 {
             margin-top: 0;
             border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
+            color: var(--light-text);
         }
         
         .nav-section p {
-            margin-bottom: 1rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1rem;
+            margin-bottom: 2rem;
         }
         
         .nav-section a {
-            color: #3498db;
+            color: var(--light-text);
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
             border-radius: 5px;
             transition: background-color 0.3s ease;
             font-weight: bold;
-            background-color: var(--light-text);
+            display: block;
         }
         
         .nav-section a:hover {
             background-color: var(--tertiary-color);
+        }
+        
+        .site-links {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+        }
+        
+        .site-links a {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
         }
         
         /* Content Styles */
@@ -165,7 +129,7 @@
         }
         
         .content-section a {
-            color: var(--primary-color);
+            color: var(--tertiary-color);
             text-decoration: none;
             margin-right: 1rem;
             transition: color 0.3s ease;
@@ -176,113 +140,60 @@
             text-decoration: underline;
         }
         
-        /* Footer Styles */
-        .footer-section {
-            grid-area: footer;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem 2rem;
-            text-align: center;
-            border-top: 2px solid var(--secondary-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #f5f5f5;
-            text-decoration: underline;
-        }
-        
-        .nav-section {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-        
-        .nav-section a {
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-        
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .header-section {
-                flex-direction: column;
-                padding: 1rem;
-                margin-top: 2.5rem;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .header-title {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-            
-            .header-links {
-                text-align: center;
-                margin-top: 1rem;
-            }
-            
-            .header-links a {
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                gap: 5px;
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "nav"
+                    "content"
+                    "photo";
             }
             
             .nav-section {
+                height: auto;
                 position: relative;
             }
             
-            .math-formula {
-                font-size: 0.9rem;
-                padding: 0.3rem;
+            .header-section {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
+    <div class="math-formula">
+        $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$
+    </div>
+    
+    <div class="header-section">
+        <h1>Yassine Ait Mohamed</h1>
+        <img src="photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
+    </div>
+    
     <div class="container">
         <!-- Navigation Section -->
         <div class="nav-section">
             <h1>Yassine Ait Mohamed</h1>
-            <p>PhD Student | Department of Mathematics | University of Sherbrooke</p>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="research.html">Research</a>
-                <a href="talks.html">Talks</a>
-                <a href="cv.html">CV</a>
-                <a href="teaching.html">Teaching</a>
-                <a href="mathlinks.html">Math Links</a>
+            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
+            
+            <!-- Main Navigation -->
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="talks.html">Talks</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="mathlinks.html">Math Links</a>
+            
+            <!-- Site Links -->
+            <div class="site-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
             </div>
         </div>
+        
         <!-- Content Section -->
         <div class="content-section">
             <h2>Introduction</h2>
@@ -295,21 +206,6 @@
                 <a href="mailto:y.aitmohamed@yahoo.com">y.aitmohamed@yahoo.com</a>
                 <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>           
             </p>
-        </div>
-        
-        <!-- Footer Section -->
-        <div class="footer-section">
-            <p>© 2025 Yassine Ait Mohamed</p>
-            <div class="footer-links">
-                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
-                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
-                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
-                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
-            </div>
-        </div>
-        <!-- Photo Section -->
-        <div class="photo-section">
-            <img src="photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
         </div>
     </div>
 </body>
