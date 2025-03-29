@@ -4,32 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching - Yassine Ait Mohamed</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <style>
+        /* MMN Color Scheme */
+        :root {
+            --primary-color: #2c3e50;    /* Dark blue */
+            --secondary-color: #e74c3c;  /* Red accent */
+            --tertiary-color: #3498db;   /* Light blue */
+            --background-color: #ecf0f1; /* Light gray background */
+            --text-color: #2c3e50;       /* Dark text */
+            --light-text: #fff;          /* White text */
+        }
+        
         body {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0;
+            padding: 0;
             font-family: 'Courier New', Courier, monospace;
-            color: #333;
-            line-height: 1.8;
-            font-size: 18px;
-            background-color: #f0f8ff; /* Fond bleu très clair */
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--background-color);
         }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header header"
+                "nav content"
+                "nav content"
+                "footer footer";
+        }
+        
+        /* Math formula */
+        .math-formula {
+            grid-area: header;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 0.3rem;
+            font-style: italic;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation Styles */
+        .nav-section {
+            grid-area: nav;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .nav-section h1 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+            color: var(--light-text);
+            font-size: 1.2rem;
+        }
+        
+        .nav-section p {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .nav-section a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .nav-section a:hover, .nav-section a.active {
+            background-color: var(--tertiary-color);
+        }
+        
+        .site-links {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+        }
+        
+        .site-links a {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        /* Content Styles */
+        .content-section {
+            grid-area: content;
+            padding: 2rem;
+            background-color: white;
+            min-height: 100vh;
+        }
+        
         h1 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: #00bcd4; /* Cyan principal */
-        }
-        h2 {
             font-size: 28px;
-            margin-bottom: 20px;
-            color: #008c9e; /* Cyan foncé */
+            margin-bottom: 30px;
+            color: var(--secondary-color);
         }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
         .entry {
             position: relative;
             padding-left: 30px;
             margin-bottom: 30px;
         }
+        
         .entry::before {
             content: ''; 
             position: absolute;
@@ -37,36 +137,43 @@
             top: 10px;
             width: 14px;
             height: 14px;
-            background-color: #00bcd4; /* Cyan principal */
+            background-color: var(--tertiary-color);
             border-radius: 50%; 
         }
+        
         .date {
             font-weight: 600;
-            color: #ff9800; /* Orange doux */
+            color: var(--secondary-color);
             font-size: 18px;
         }
+        
         .institution {
             font-style: italic;
-            color: #673ab7; /* Violet doux */
-            font-size: 18px;
+            color: var(--primary-color);
+            font-size: 16px;
         }
+        
         .position {
             font-weight: 500;
-            font-size: 18px;
+            font-size: 16px;
             margin-top: 5px;
         }
+        
         .pdf-section {
             margin-top: 40px;
             padding: 20px;
-            background-color: #e3f2fd; /* Fond cyan très clair */
+            background-color: #f5f9fc;
             border-radius: 6px;
+            border-left: 4px solid var(--tertiary-color);
         }
+        
         .pdf-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
+        
         .pdf-cell {
             display: flex;
             align-items: center;
@@ -74,155 +181,267 @@
             background: white;
             border-radius: 6px;
             border: 1px solid #e1e4e8;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
         }
+        
         .pdf-cell:hover {
             background-color: #f1f8ff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
         }
+        
         .triangle {
             width: 0;
             height: 0;
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid #00bcd4; /* Cyan principal */
+            border-top: 6px solid var(--secondary-color);
             margin-right: 10px;
+            transition: transform 0.2s ease;
         }
-        .pdf-link {
-            color: #ff9800; /* Orange doux */
+        
+        .pdf-cell:hover .triangle {
+            transform: rotate(90deg);
+        }
+        
+        /* Footer Styles */
+        .footer-section {
+            grid-area: footer;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 2px solid var(--secondary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
             text-decoration: none;
-            display: inline-block;
+            transition: color 0.3s ease;
         }
-        .pdf-link:hover {
+        
+        .footer-links a:hover {
+            color: #f5f5f5;
             text-decoration: underline;
-            color: #ff5722; /* Orange vif */
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "content"
+                    "footer";
+            }
+            
+            .nav-section {
+                height: auto;
+                position: relative;
+            }
+            
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
+    <script>
+        // Function to highlight the active navigation item
+        function setActiveNavItem() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-section a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || 
+                    (currentPage === '' && linkHref === 'index.html') ||
+                    (currentPage === 'teaching.html' && link.textContent === 'Teaching')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Run when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavItem();
+        });
+    </script>
 </head>
 <body>
-    <h1>Teaching</h1>
-
-    <!-- First Section: Teaching Information -->
-<div class="entry university">
-        <p>
-            <span class="date">Junary  2025 - Present</span><br>
-            <span class="position">Teaching Assistant</span><br>
-            <span class="institution">Linear Algebra (MAT253), University of Sherbrooke</span>
-        </p>
-    </div>
-    <div class="entry university">
-        <p>
-            <span class="date">September 2024 - December 2024</span><br>
-            <span class="position">Teaching Assistant</span><br>
-            <span class="institution">Differential and Integral Calculus I (MAT194), University of Sherbrooke</span>
-        </p>
-    </div>
-    <div class="entry university">
-        <p>
-            <span class="date">September 2024 - December 2024</span><br>
-            <span class="position">Mathematics Tutor</span><br>
-            <span class="institution">Center for Mathematics Help, University of Sherbrooke</span>
-        </p>
-    </div>
-    <div class="entry online">
-        <p>
-            <span class="date">September 2020 - December 2023</span><br>
-            <span class="position">Mathematics Tutor</span><br>
-            <span class="institution">Algebra, Real and Complex Analysis, Topology</span>
-        </p>
-    </div>
-    <div class="entry school">
-        <p>
-            <span class="date">September 2022 - November 2023</span><br>
-            <span class="position">Mathematics Tutor</span><br>
-            <span class="institution">Mini School Center, Fez-Morocco</span><br>
-            Lessons for high school students
-        </p>
-    </div>
-    <div class="entry school">
-        <p>
-            <span class="date">September 2018 - March 2019</span><br>
-            <span class="position">Mathematics Tutor</span><br>
-            <span class="institution">Olympia Centre Zarhounia, Meknes - Morocco</span><br>
-            Lessons for secondary school students
-        </p>
-    </div>
-    <div class="entry school">
-        <p>
-            <span class="date">September 2017 - March 2018</span><br>
-            <span class="position">Mathematics Tutor</span><br>
-            <span class="institution">Maxcence Centre, Meknes - Morocco</span><br>
-            Lessons for secondary school students
-        </p>
-    </div>
-
-    <!-- PDF Section -->
-    <div class="pdf-section">
-        <h2>Notes</h2>
-        <div class="pdf-grid">
-
-         <div class="pdf-cell" onclick="window.open('MATH253_S9.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Exercices_S9 </span>
-            </div>   
+    <div class="container">
+        <div class="math-formula">
+            $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$
+        </div>
+        
+        <!-- Navigation Section -->
+        <div class="nav-section">
+            <h1>Yassine Ait Mohamed</h1>
+            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
             
-         <div class="pdf-cell" onclick="window.open('exomath253.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Exercices (MATH253)</span>
-            </div>            
-            <div class="pdf-cell" onclick="window.open('TD_Algebre_1.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>TD Algèbre 1</span>
+            <!-- Main Navigation -->
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="talks.html">Talks</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html" class="active">Teaching</a>
+            <a href="mathlinks.html">Math Links</a>
+            
+            <!-- Site Links -->
+            <div class="site-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
             </div>
-            <div class="pdf-cell" onclick="window.open('Logique_11.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Résumé 1: Ensembles et applications</span>
+        </div>
+        
+        <!-- Content Section -->
+        <div class="content-section">
+            <h1>Teaching</h1>
+
+            <!-- Teaching Experience -->
+            <div class="entry university">
+                <p>
+                    <span class="date">January 2025 - Present</span><br>
+                    <span class="position">Teaching Assistant</span><br>
+                    <span class="institution">Linear Algebra (MAT253), University of Sherbrooke</span>
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('groupes.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Groupes</span>
+            <div class="entry university">
+                <p>
+                    <span class="date">September 2024 - December 2024</span><br>
+                    <span class="position">Teaching Assistant</span><br>
+                    <span class="institution">Differential and Integral Calculus I (MAT194), University of Sherbrooke</span>
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('Exercices__Analyse_II.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Exercices: Analyse II</span>
+            <div class="entry university">
+                <p>
+                    <span class="date">September 2024 - December 2024</span><br>
+                    <span class="position">Mathematics Tutor</span><br>
+                    <span class="institution">Center for Mathematics Help, University of Sherbrooke</span>
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('redu.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Note (1): Réduction des endomorphismes</span>
+            <div class="entry online">
+                <p>
+                    <span class="date">September 2020 - December 2023</span><br>
+                    <span class="position">Mathematics Tutor</span><br>
+                    <span class="institution">Algebra, Real and Complex Analysis, Topology</span>
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('topologie.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Série (1): Topologie</span>
+            <div class="entry school">
+                <p>
+                    <span class="date">September 2022 - November 2023</span><br>
+                    <span class="position">Mathematics Tutor</span><br>
+                    <span class="institution">Mini School Center, Fez-Morocco</span><br>
+                    Lessons for high school students
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('Test_1.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Test (1)</span>
+            <div class="entry school">
+                <p>
+                    <span class="date">September 2018 - March 2019</span><br>
+                    <span class="position">Mathematics Tutor</span><br>
+                    <span class="institution">Olympia Centre Zarhounia, Meknes - Morocco</span><br>
+                    Lessons for secondary school students
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('Devoir_1 (1).pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Test (2)</span>
+            <div class="entry school">
+                <p>
+                    <span class="date">September 2017 - March 2018</span><br>
+                    <span class="position">Mathematics Tutor</span><br>
+                    <span class="institution">Maxcence Centre, Meknes - Morocco</span><br>
+                    Lessons for secondary school students
+                </p>
             </div>
-            <div class="pdf-cell" onclick="window.open('Devoir3.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Devoir 3</span>
+
+            <!-- PDF Section -->
+            <div class="pdf-section">
+                <h2>Notes</h2>
+                <div class="pdf-grid">
+                    <div class="pdf-cell" onclick="window.open('MATH253_S9.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Exercices_S9</span>
+                    </div>   
+                    
+                    <div class="pdf-cell" onclick="window.open('exomath253.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Exercices (MATH253)</span>
+                    </div>            
+                    <div class="pdf-cell" onclick="window.open('TD_Algebre_1.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>TD Algèbre 1</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Logique_11.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Résumé 1: Ensembles et applications</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('groupes.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Groupes</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Exercices__Analyse_II.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Exercices: Analyse II</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('redu.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Note (1): Réduction des endomorphismes</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('topologie.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Série (1): Topologie</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Test_1.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Test (1)</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Devoir_1 (1).pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Test (2)</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Devoir3.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Devoir 3</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Test4.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Test (4)</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Série_1_Nombres_réels.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Série 1: Nombres réels</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Suites_réelles.pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Série 1: Suites réelles</span>
+                    </div>
+                    <div class="pdf-cell" onclick="window.open('Devoir_1__Suites_réelles (1).pdf', '_blank')">
+                        <div class="triangle"></div>
+                        <span>Devoir 1: Suites réelles</span>
+                    </div>
+                </div>
             </div>
-            <div class="pdf-cell" onclick="window.open('Test4.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Test (4)</span>
-            </div>
-            <div class="pdf-cell" onclick="window.open('Série_1_Nombres_réels.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Série 1: Nombres réels</span>
-            </div>
-            <div class="pdf-cell" onclick="window.open('Suites_réelles.pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Série 1: Suites réelles</span>
-            </div>
-            <div class="pdf-cell" onclick="window.open('Devoir_1__Suites_réelles (1).pdf', '_blank')">
-                <div class="triangle"></div>
-                <span>Devoir 1: Suites réelles</span>
+        </div>
+        
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p>© 2025 Yassine Ait Mohamed</p>
+            <div class="footer-links">
+                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
+                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
+                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
             </div>
         </div>
     </div>
