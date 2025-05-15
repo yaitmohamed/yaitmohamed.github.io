@@ -1,397 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research - Yassine Ait Mohamed</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <style>
-        /* MMN Color Scheme */
-        :root {
-            --primary-color: #2c3e50;    /* Dark blue */
-            --secondary-color: #e74c3c;  /* Red accent */
-            --tertiary-color: #3498db;   /* Light blue */
-            --background-color: #ecf0f1; /* Light gray background */
-            --text-color: #2c3e50;       /* Dark text */
-            --light-text: #fff;          /* White text */
-        }
-        
-        body {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 16px;
-            background-color: var(--background-color);
-        }
-        
-        .container {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            grid-template-rows: auto auto 1fr auto;
-            grid-template-areas: 
-                "header header"
-                "nav content"
-                "nav content"
-                "footer footer";
-        }
-        
-        /* Math formula */
-        .math-formula {
-            grid-area: header;
-            text-align: center;
-            background-color: #f9f9f9;
-            padding: 0.3rem;
-            font-style: italic;
-            border-bottom: 1px solid #ddd;
-            font-size: 0.9rem;
-        }
-        
-        /* Navigation Styles */
-        .nav-section {
-            grid-area: nav;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .nav-section h1 {
-            margin-top: 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 1rem;
-            color: var(--light-text);
-            font-size: 1.2rem;
-        }
-        
-        .nav-section p {
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        
-        .nav-section a {
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            display: block;
-        }
-        
-        .nav-section a:hover, .nav-section a.active {
-            background-color: var(--tertiary-color);
-        }
-        
-        .site-links {
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 1rem;
-        }
-        
-        .site-links a {
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-        
-        /* Content Styles */
-        .content-section {
-            grid-area: content;
-            padding: 2rem;
-            background-color: white;
-            min-height: 100vh;
-        }
-        
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-        
-        h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .content-section a {
-            color: var(--tertiary-color);
-            text-decoration: none;
-            margin-right: 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .content-section a:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
-        
-        /* Paper Styles */
-        .paper {
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .paper::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 14px;
-            height: 14px;
-            background-color: var(--tertiary-color);
-            border-radius: 50%;
-        }
-        
-        .paper-title {
-            font-size: 18px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            color: var(--text-color);
-        }
-        
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 6px solid var(--secondary-color);
-            margin-right: 10px;
-            transition: transform 0.2s ease;
-        }
-        
-        .triangle.open {
-            transform: rotate(90deg);
-        }
-        
-        .journal {
-            font-style: italic;
-            color: #555;
-            margin-left: 10px;
-        }
-        
-        .abstract-toggle {
-            cursor: pointer;
-            font-size: 14px;
-            color: var(--tertiary-color);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .abstract {
-            display: none;
-            margin-top: 5px;
-            font-size: 14px;
-            color: #444;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-left: 3px solid var(--tertiary-color);
-        }
-        
-        .highlight {
-            color: var(--tertiary-color);
-            font-weight: bold;
-        }
-        
-        /* Footer Styles */
-        .footer-section {
-            grid-area: footer;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem;
-            text-align: center;
-            border-top: 2px solid var(--secondary-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #f5f5f5;
-            text-decoration: underline;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas: 
-                    "header"
-                    "nav"
-                    "content"
-                    "footer";
-            }
-            
-            .nav-section {
-                height: auto;
-                position: relative;
-            }
-        }
-    </style>
-    <script>
-        function togglePaperContent(id, triangleId) {
-            const content = document.getElementById(id);
-            const triangle = document.getElementById(triangleId);
-            if (content.style.display === "none") {
-                content.style.display = "block";
-                if (triangle) triangle.classList.add("open");
-            } else {
-                content.style.display = "none";
-                if (triangle) triangle.classList.remove("open");
-            }
-        }
-        
-        // Function to highlight the active navigation item
-        function setActiveNavItem() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-section a');
-            
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage || 
-                    (currentPage === '' && linkHref === 'index.html') ||
-                    (currentPage === 'research.html' && link.textContent === 'Research')) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        
-        // Run when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            setActiveNavItem();
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.3">
+  <title>Research - Yassine Ait Mohamed</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <style>
+    body {
+      max-width: 1000px;
+      margin: 40px auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .nav-section {
+      grid-column: 1 / 2;
+    }
+    .nav-section h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .nav-section p {
+      margin: 0;
+      color: #555;
+    }
+    .nav-section a {
+      display: block;
+      margin: 10px 0;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+    }
+    .nav-section a:hover {
+      color: #e74c3c;
+    }
+    .content-section {
+      grid-column: 2 / 3;
+    }
+    .content-section h2 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      margin-top: 25px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    .content-section p {
+      margin: 0 0 15px 0;
+      color: #444;
+      line-height: 1.7;
+    }
+    .content-section a {
+      color: #3498db;
+      text-decoration: none;
+    }
+    .content-section a:hover {
+      color: #e74c3c;
+    }
+    
+    .paper {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    
+    .paper-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    
+    .journal {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .abstract {
+      padding: 15px;
+      background-color: #f1f1f1;
+      border-left: 3px solid #3498db;
+      margin: 10px 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #444;
+    }
+    
+    .abstract-toggle {
+      cursor: pointer;
+      color: #3498db;
+      font-size: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .nav-section, .content-section {
+        grid-column: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="math-formula">
-            $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$
-        </div>
-        
-        <!-- Navigation Section -->
-        <div class="nav-section">
-            <h1>Yassine Ait Mohamed</h1>
-            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
-            
-            <!-- Main Navigation -->
-            <a href="index.html">Home</a>
-            <a href="research.html" class="active">Research</a>
-            <a href="talks.html">Talks</a>
-            <a href="cv.html">CV</a>
-            <a href="teaching.html">Teaching</a>
-            
-            <!-- Site Links -->
-        
-        <!-- Content Section -->
-        <div class="content-section">
-            <h1>Research</h1>
-            
-            <ul>
-                <li><a href="https://scholar.google.com/citations?user=tZgtDqYAAAAJ" target="_blank">Google Scholar</a></li> 
-            </ul>
-            
-            <h2>Papers</h2>
-
-            <div class="paper">
-                <div class="paper-title" onclick="togglePaperContent('paper1-content', 'triangle1')">
-                    <div id="triangle1" class="triangle"></div>
-                    1. On graded rings with homogeneous derivations
-                </div>
-                <div id="paper1-content" style="display: none;">
-                    <p class="journal">Revista de la Unión Matemática Argentina</p>
-                    <div class="links">
-                        <a href="https://doi.org/10.33044/revuma.4934" target="_blank">DOI</a>
-                    </div>
-                    <a href="#abstract1" class="abstract-toggle" onclick="togglePaperContent('abstract1', '')">&#8250; abstract</a>
-                    <div id="abstract1" class="abstract">
-                       The concept of homogeneous derivations was introduced by Kanunnikov (2018). In this paper, we establish interesting results related to homogeneous derivations. First, we prove the existence of a non-trivial family of derivations that are not homogeneous on graded rings. Furthermore, based on homogeneous derivations, we extend certain existing significant results in the context of prime (resp. semiprime) rings to gr-prime (resp. gr-semiprime) rings, such as Posner's and Herstein's theorems.
-                    </div>
-                </div>
-            </div>
-
-            <div class="paper">
-                <div class="paper-title" onclick="togglePaperContent('paper2-content', 'triangle2')">
-                    <div id="triangle2" class="triangle"></div>
-                    2. Generalized homogeneous derivations of graded rings
-                </div>
-                <div id="paper2-content" style="display: none;">
-                    <div class="links">
-                        <a href="https://arxiv.org/abs/2412.17187" target="_blank">[arxiv]</a>
-                    </div>
-                    <a href="#abstract2" class="abstract-toggle" onclick="togglePaperContent('abstract2', '')">&#8250; abstract</a>
-                    <div id="abstract2" class="abstract">
-                       In this manuscript, we establish a comprehensive theory of generalized homogeneous derivations on graded rings, presenting a unifying framework that extends Kanunnikov's homogeneous derivations. For nontrivially graded rings, we demonstrate through explicit counterexamples that homogeneous derivations constitute a proper subclass of generalized homogeneous derivations. Our investigation employs categorical methods to elucidate the underlying algebraic structures. This approach yields functorial relationships between graded rings and their derivation sets, producing isomorphism invariants and structural decomposition theorems. This functorial perspective allows for a systematic examination of their behavior under various algebraic operations, including direct products, polynomial extensions, and tensor products. As applications, we establish conditions for the commutativity of gr-prime rings using generalized homogeneous derivations, characterize when gr-semiprime rings contain non-trivial central graded ideals, and extend key results from prime and semiprime ring theory to graded settings. Furthermore, we extend the theory to graded modules and define functorial categories capturing their derivation structures.
-                    </div>
-                </div>
-            </div>
-
-            <div class="paper">
-                <div class="paper-title" onclick="togglePaperContent('paper3-content', 'triangle3')">
-                    <div id="triangle3" class="triangle"></div>
-                    3. Differential Structures in Graded Rings and Modules
-                </div>
-                <div id="paper3-content" style="display: none;">
-                    <a href="#abstract3" class="abstract-toggle" onclick="togglePaperContent('abstract3', '')">&#8250; abstract</a>
-                    <div id="abstract3" class="abstract">
-                    In this paper, we establish a comprehensive theory of degree-preserving derivations (dp-derivations) that naturally extend classical derivations to graded setting. We elucidate the essential structural properties of dp-derivations, with particular emphasis on their action on graded ideals and the integrality characteristics of their inverse images. For commutative graded rings equipped with a dp-derivation, we demonstrate that the inverse image of any gr-prime differential ideal is integrally closed. Our investigation of differential simplicity yields that for $\delta$-gr-simple rings of prime characteristic, the gr-nilradical necessarily constitutes the unique gr-prime ideal. We further establish that the dp-skew polynomial ring over a gr-Noetherian ring preserves the gr-Noetherian property, thus extending the Hilbert basis theorem to differential graded contexts. Finally, we generalize our framework to graded modules, developing a comprehensive categorical theory of dp-modules through an extension of dp-derivations to the context of graded modules.
-                    </div>
-                </div>
-            </div>
-
-            <h2>Master's Thesis</h2>
-            <div class="paper">
-                <div class="paper-title" onclick="togglePaperContent('thesis-content', 'triangle6')">
-                    <div id="triangle6" class="triangle"></div>
-                    Divisors in Algebraic Geometry, Central Simple Algebras and Severi-Brauer Varieties
-                </div>
-                <div id="thesis-content" style="display: none;">
-                    <div class="links">
-                        <a href="master_thesis.pdf" target="_blank">[PDF]</a>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Other Notes</h2>
-            <div class="paper">
-                <div class="paper-title" onclick="togglePaperContent('notes-content', 'triangle7')">
-                    <div id="triangle7" class="triangle"></div>
-                    Notes
-                </div>
-                <div id="notes-content" style="display: none;">
-                    <p>Note on Sheaf Theory [<a href="sheaf.pdf" target="_blank">PDF</a>]</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer Section -->
-        <div class="footer-section">
-            <p>© 2025 Yassine Ait Mohamed</p>
-        </div>
+  <div class="container">
+    <div class="nav-section">
+      <h1>Yassine Ait Mohamed</h1>
+      <p>PhD Student<br>
+         Department of Mathematics<br>
+         University of Sherbrooke</p>
+      <div style="margin-top: 20px;">
+        <a href="index.html">Home</a>
+        <a href="research.html" style="color: #e74c3c;">Research</a>
+        <a href="talks.html">Talks</a>
+        <a href="cv.html">CV</a>
+        <a href="teaching.html">Teaching</a>
+      </div>
     </div>
+    
+    <div class="content-section">
+      <h2>Research</h2>
+      
+      <ul>
+        <li><a href="https://scholar.google.com/citations?user=tZgtDqYAAAAJ" target="_blank">Google Scholar</a></li>         
+      </ul>
+      
+      <h2>Papers</h2>
+
+      <div class="paper">
+        <div class="paper-title" onclick="toggleAbstract('paper1')">
+          1. On graded rings with homogeneous derivations
+        </div>
+        <div class="journal">Revista de la Unión Matemática Argentina</div>
+        <div>
+          <a href="https://doi.org/10.33044/revuma.4934" target="_blank">DOI</a>
+        </div>
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper1'); return false;">&#8250; abstract</a>
+        <div id="paper1" class="abstract hidden">
+          The concept of homogeneous derivations was introduced by Kanunnikov (2018). In this paper, we establish interesting results related to homogeneous derivations. First, we prove the existence of a non-trivial family of derivations that are not homogeneous on graded rings. Furthermore, based on homogeneous derivations, we extend certain existing significant results in the context of prime (resp. semiprime) rings to gr-prime (resp. gr-semiprime) rings, such as Posner's and Herstein's theorems.
+        </div>
+      </div>
+
+      <div class="paper">
+        <div class="paper-title" onclick="toggleAbstract('paper2')">
+          2. Generalized homogeneous derivations of graded rings
+        </div>
+        <div>
+          <a href="https://arxiv.org/abs/2412.17187" target="_blank">[arxiv]</a>
+        </div>
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper2'); return false;">&#8250; abstract</a>
+        <div id="paper2" class="abstract hidden">
+         In this manuscript, we establish a comprehensive theory of generalized homogeneous derivations on graded rings, presenting a unifying framework that extends Kanunnikov's homogeneous derivations. For nontrivially graded rings, we demonstrate through explicit counterexamples that homogeneous derivations constitute a proper subclass of generalized homogeneous derivations. Our investigation employs categorical methods to elucidate the underlying algebraic structures. This approach yields functorial relationships between graded rings and their derivation sets, producing isomorphism invariants and structural decomposition theorems. This functorial perspective allows for a systematic examination of their behavior under various algebraic operations, including direct products, polynomial extensions, and tensor products. As applications, we establish conditions for the commutativity of gr-prime rings using generalized homogeneous derivations, characterize when gr-semiprime rings contain non-trivial central graded ideals, and extend key results from prime and semiprime ring theory to graded settings. Furthermore, we extend the theory to graded modules and define functorial categories capturing their derivation structures.
+        </div>
+      </div>
+
+      <div class="paper">
+        <div class="paper-title" onclick="toggleAbstract('paper3')">
+          3. Differential Structures in Graded Rings and Modules    
+        </div>
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper3'); return false;">&#8250; abstract</a>
+        <div id="paper3" class="abstract hidden">
+          In this paper, we establish a comprehensive theory of degree-preserving derivations (dp-derivations) that naturally extend classical derivations to graded setting. We elucidate the essential structural properties of dp-derivations, with particular emphasis on their action on graded ideals and the integrality characteristics of their inverse images. For commutative graded rings equipped with a dp-derivation, we demonstrate that the inverse image of any gr-prime differential ideal is integrally closed. Our investigation of differential simplicity yields that for $\delta$-gr-simple rings of prime characteristic, the gr-nilradical necessarily constitutes the unique gr-prime ideal. We further establish that the dp-skew polynomial ring over a gr-Noetherian ring preserves the gr-Noetherian property, thus extending the Hilbert basis theorem to differential graded contexts. Finally, we generalize our framework to graded modules, developing a comprehensive categorical theory of dp-modules through an extension of dp-derivations to the context of graded modules.
+        </div>
+      </div>
+
+      <h2>Master's Thesis</h2>
+      <div class="paper">
+        <div class="paper-title">
+          Divisors in Algebraic Geometry, Central Simple Algebras and Severi-Brauer Varieties
+        </div>
+        <div>
+          <a href="master_thesis.pdf" target="_blank">[PDF]</a>
+        </div>
+      </div>
+
+      <h2>Other Notes</h2>
+      <div class="paper">
+        <p>Note on Sheaf Theory [<a href="sheaf.pdf" target="_blank">PDF</a>]</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAbstract(id) {
+      const element = document.getElementById(id);
+      if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+      } else {
+        element.classList.add('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
