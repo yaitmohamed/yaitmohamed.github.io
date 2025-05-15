@@ -6,6 +6,49 @@
     <link rel="stylesheet" href="stylesheets/styles.css?v=3">
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="PhD Student, University of Sherbrooke, Department of Mathematics">
+    <style>
+      /* Ces styles sont ajoutés pour s'assurer que la mise en page correspond exactement à celle de Maxence */
+      .wrapper {
+        display: flex;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      
+      header {
+        width: 270px;
+        padding-right: 20px;
+        position: fixed;
+      }
+      
+      section {
+        width: calc(100% - 270px);
+        margin-left: 270px;
+        padding: 20px;
+      }
+      
+      img {
+        float: right;
+        margin-left: 15px;
+        margin-bottom: 10px;
+      }
+      
+      @media (max-width: 768px) {
+        .wrapper {
+          flex-direction: column;
+        }
+        
+        header {
+          width: 100%;
+          position: static;
+          padding-right: 0;
+        }
+        
+        section {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -23,7 +66,7 @@
         <h3><a href="./mathlinks.html">Math Links</a></h3>
       </header>
       <section>
-        <img src="./yassine26.jpg" width=175 style="display: block; margin-left: auto; margin-right: auto; margin-top: 10px;">
+        <img src="./yassine26.jpg" width=175 style="float: right; margin-left: 15px; margin-bottom: 10px; margin-top: 10px;">
         
         <h4>Introduction</h4>
         <p style="margin-top:10px">I am a Ph.D. student in Mathematics at the University of Sherbrooke. My research lies at the intersection of algebraic geometry, Lie theory, and mathematical physics. Before that, I was a Ph.D. student at Sidi Mohamed Ben Abdellah University, where I focused on rings with derivations.</p>
@@ -42,7 +85,6 @@
           <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
         </p>
       </section>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
     <script>
