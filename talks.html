@@ -1,304 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talks - Yassine Ait Mohamed</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <style>
-        /* MMN Color Scheme */
-        :root {
-            --primary-color: #2c3e50;    /* Dark blue */
-            --secondary-color: #e74c3c;  /* Red accent */
-            --tertiary-color: #3498db;   /* Light blue */
-            --background-color: #ecf0f1; /* Light gray background */
-            --text-color: #2c3e50;       /* Dark text */
-            --light-text: #fff;          /* White text */
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 16px;
-            background-color: var(--background-color);
-        }
-        
-        .container {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            grid-template-rows: auto auto 1fr auto;
-            grid-template-areas: 
-                "header header"
-                "nav content"
-                "nav content"
-                "footer footer";
-        }
-        
-        /* Math formula */
-        .math-formula {
-            grid-area: header;
-            text-align: center;
-            background-color: #f9f9f9;
-            padding: 0.3rem;
-            font-style: italic;
-            border-bottom: 1px solid #ddd;
-            font-size: 0.9rem;
-        }
-        
-        /* Navigation Styles */
-        .nav-section {
-            grid-area: nav;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .nav-section h1 {
-            margin-top: 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 1rem;
-            color: var(--light-text);
-            font-size: 1.2rem;
-        }
-        
-        .nav-section p {
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        
-        .nav-section a {
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            display: block;
-        }
-        
-        .nav-section a:hover, .nav-section a.active {
-            background-color: var(--tertiary-color);
-        }
-        
-        .site-links {
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 1rem;
-        }
-        
-        .site-links a {
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-        }
-        
-        /* Content Styles */
-        .content-section {
-            grid-area: content;
-            padding: 2rem;
-            background-color: white;
-            min-height: 100vh;
-        }
-        
-        h1 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
-        }
-        
-        .talk {
-            position: relative;
-            margin-bottom: 30px;
-            padding-left: 30px;
-            transition: all 0.2s ease;
-            border-radius: 5px;
-            padding: 15px 15px 15px 45px;
-        }
-        
-        .talk:hover {
-            background-color: #f8f9fa;
-            transform: translateX(5px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .talk::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 22px;
-            width: 14px;
-            height: 14px;
-            background-color: var(--secondary-color);
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-        
-        .talk:hover::before {
-            transform: scale(1.3);
-        }
-        
-        .date {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 18px;
-        }
-        
-        .pdf-link {
-            color: var(--tertiary-color);
-            text-decoration: none;
-            margin-left: 10px;
-            font-size: 16px;
-            transition: color 0.2s ease;
-        }
-        
-        .pdf-link:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
-        
-        /* Footer Styles */
-        .footer-section {
-            grid-area: footer;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem;
-            text-align: center;
-            border-top: 2px solid var(--secondary-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #f5f5f5;
-            text-decoration: underline;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas: 
-                    "header"
-                    "nav"
-                    "content"
-                    "footer";
-            }
-            
-            .nav-section {
-                height: auto;
-                position: relative;
-            }
-            
-            .talk {
-                padding-left: 30px;
-            }
-            
-            .talk::before {
-                left: 5px;
-            }
-        }
-    </style>
-    <script>
-        // Function to highlight the active navigation item
-        function setActiveNavItem() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-section a');
-            
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage || 
-                    (currentPage === '' && linkHref === 'index.html') ||
-                    (currentPage === 'talks.html' && link.textContent === 'Talks')) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        
-        // Run when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            setActiveNavItem();
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talks - Yassine Ait Mohamed</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #555;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      font-weight: 300;
+    }
+    
+    .left-column {
+      width: 30%;
+      padding-right: 40px;
+    }
+    
+    .right-column {
+      width: 65%;
+    }
+    
+    h1 {
+      font-size: 36px;
+      margin-bottom: 5px;
+      color: #444;
+      font-weight: 500;
+    }
+    
+    h2 {
+      font-size: 24px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 500;
+      color: #444;
+    }
+    
+    h4 {
+      font-size: 20px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: #444;
+    }
+    
+    p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .nav-link {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #444;
+    }
+    
+    .talk {
+      position: relative;
+      margin-bottom: 25px;
+      padding-left: 20px;
+      border-left: 3px solid #60a5fa;
+      padding-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+    
+    .talk:hover {
+      background-color: #f9f9f9;
+      border-left-color: #3b82f6;
+    }
+    
+    .date {
+      font-weight: 500;
+      color: #444;
+      font-size: 17px;
+    }
+    
+    .pdf-link {
+      margin-left: 8px;
+      font-size: 15px;
+    }
+    
+    @media (max-width: 768px) {
+      .left-column, .right-column {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="math-formula">
-            $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$
-        </div>
-        
-        <!-- Navigation Section -->
-        <div class="nav-section">
-            <h1>Yassine Ait Mohamed</h1>
-            <p>PhD Student<br>Department of Mathematics<br>University of Sherbrooke</p>
-            
-            <!-- Main Navigation -->
-            <a href="index.html">Home</a>
-            <a href="research.html">Research</a>
-            <a href="talks.html" class="active">Talks</a>
-            <a href="cv.html">CV</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="mathlinks.html">Math Links</a>
-            
-            <!-- Site Links -->
-            <div class="site-links">
-                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
-                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
-                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
-                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
-            </div>
-        </div>
-        
-        <!-- Content Section -->
-        <div class="content-section">
-            <h1>Talks</h1>
-            <div class="talk">
-                <p><span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke [<a href="quivers.pdf" class="pdf-link">PDF</a>]</p>
-            </div>
-            <div class="talk">
-                <p><span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez [<a href="graded_rings.pdf" class="pdf-link">PDF</a>]</p>
-            </div>
-            <div class="talk">
-                <p><span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz</p>
-            </div>
-            <div class="talk">
-                <p><span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz [<a href="roch.pdf" class="pdf-link">PDF</a>]</p>
-            </div>
-            <div class="talk">
-                <p><span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz</p>
-            </div>
-        </div>
-        
-        <!-- Footer Section -->
-        <div class="footer-section">
-            <p>© 2025 Yassine Ait Mohamed</p>
-            <div class="footer-links">
-                <a href="https://mmn2025.github.io/mmn-network/" target="_blank">MMN Network</a>
-                <a href="https://www.linkedin.com/in/yassine-ait-mohamed-166b18334/" target="_blank">LinkedIn</a>
-                <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
-                <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
-            </div>
-        </div>
+  <div class="left-column">
+    <h1>Yassine Ait Mohamed</h1>
+    <p>
+      PhD Student<br>
+      Department of Mathematics<br>
+      University of Sherbrooke
+    </p>
+    
+    <div class="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="research.html" class="nav-link">Research</a>
+      <a href="talks.html" class="nav-link" style="color: #60a5fa;">Talks</a>
+      <a href="cv.html" class="nav-link">CV</a>
+      <a href="teaching.html" class="nav-link">Teaching</a>
     </div>
+    
+    <div style="margin-top: 30px;">
+      <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a><br>
+      <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
+    </div>
+  </div>
+  
+  <div class="right-column">
+    <h4>Talks</h4>
+    
+    <div class="talk">
+      <p>
+        <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
+        [<a href="quivers.pdf" class="pdf-link">PDF</a>]
+      </p>
+    </div>
+    
+    <div class="talk">
+      <p>
+        <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
+        [<a href="graded_rings.pdf" class="pdf-link">PDF</a>]
+      </p>
+    </div>
+    
+    <div class="talk">
+      <p>
+        <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
+      </p>
+    </div>
+    
+    <div class="talk">
+      <p>
+        <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
+        [<a href="roch.pdf" class="pdf-link">PDF</a>]
+      </p>
+    </div>
+    
+    <div class="talk">
+      <p>
+        <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
+      </p>
+    </div>
+  </div>
 </body>
 </html>
