@@ -2,80 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.3">
   <title>CV - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
+      max-width: 1000px;
+      margin: 40px auto;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
-      color: #555;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      font-weight: 300;
+      font-size: 16px;
+      color: #333;
       background-color: #f5f5f5;
     }
-    
-    .left-column {
-      width: 30%;
-      padding-right: 40px;
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      align-items: start;
     }
-    
-    .right-column {
-      width: 65%;
+    .nav-section {
+      grid-column: 1 / 2;
     }
-    
-    h1 {
+    .nav-section h1 {
+      margin-bottom: 10px;
       font-size: 28px;
-      margin-bottom: 5px;
-      color: #2c3e50;
       font-weight: 600;
-    }
-    
-    h2 {
-      font-size: 24px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
       color: #2c3e50;
     }
-    
-    h4 {
+    .nav-section p {
+      margin: 0;
+      color: #555;
+    }
+    .nav-section a {
+      display: block;
+      margin: 10px 0;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+    }
+    .nav-section a:hover {
+      color: #e74c3c;
+    }
+    .content-section {
+      grid-column: 2 / 3;
+    }
+    .content-section h2 {
       font-size: 22px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
       color: #2c3e50;
+      margin-bottom: 15px;
+      margin-top: 25px;
       padding-bottom: 8px;
       border-bottom: 1px solid #ddd;
     }
-    
-    p {
-      margin-bottom: 15px;
-      font-size: 16px;
+    .content-section p {
+      margin: 0 0 15px 0;
       color: #444;
       line-height: 1.7;
     }
-    
-    a {
+    .content-section a {
       color: #3498db;
       text-decoration: none;
     }
-    
-    a:hover {
+    .content-section a:hover {
       color: #e74c3c;
-      text-decoration: underline;
-    }
-    
-    .nav-link {
-      display: block;
-      margin-bottom: 15px;
-      font-size: 17px;
-      font-weight: 500;
-      color: #2c3e50;
     }
     
     .summary {
@@ -141,9 +132,11 @@
     }
     
     @media (max-width: 768px) {
-      .left-column, .right-column {
-        width: 100%;
-        padding-right: 0;
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .nav-section, .content-section {
+        grid-column: 1;
       }
       
       .summary-item {
@@ -158,57 +151,67 @@
   </style>
 </head>
 <body>
-  <div class="left-column">
-    <h1>Yassine Ait Mohamed</h1>
-    <p>
-      PhD Student<br>
-      Department of Mathematics<br>
-      University of Sherbrooke
-    </p>
-    
-    <div class="navigation">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="research.html" class="nav-link">Research</a>
-      <a href="talks.html" class="nav-link">Talks</a>
-      <a href="cv.html" class="nav-link" style="color: #e74c3c;">CV</a>
-      <a href="teaching.html" class="nav-link">Teaching</a>
-    </div>
-   
-  
-  <div class="right-column">
-    <h4>Curriculum Vitae</h4>
-    
-    <h2>Summary</h2>
-    <div class="summary">
-      <div class="summary-item">
-        <span class="institution">University of Sherbrooke</span>
-        <span class="position">PhD Student in Mathematics</span>
-        <span class="dates">2024—2028</span>
-      </div>
-      
-      <div class="summary-item">
-        <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
-        <span class="position">PhD Student in Mathematics</span>
-        <span class="dates">2022—2023</span>
-      </div>
-      
-      <div class="summary-item">
-        <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
-        <span class="position">Master's degree in Mathematics</span>
-        <span class="dates">2020—2022</span>
-      </div>
-      
-      <div class="summary-item">
-        <span class="institution">University of Mouly Ismail</span>
-        <span class="position">Bachelor's degree in Mathematics</span>
-        <span class="dates">2016—2020</span>
+  <div class="container">
+    <div class="nav-section">
+      <h1>Yassine Ait Mohamed</h1>
+      <p>PhD Student<br>
+         Department of Mathematics<br>
+         University of Sherbrooke</p>
+      <div style="margin-top: 20px;">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="talks.html">Talks</a>
+        <a href="cv.html" style="color: #e74c3c;">CV</a>
+        <a href="teaching.html">Teaching</a>
       </div>
     </div>
     
-    <h2>Full CV</h2>
-    <p>
-      <a href="cv.pdf" target="_blank" class="download-button">Download PDF</a>
-    </p>
+    <div class="content-section">
+      <h2>Curriculum Vitae</h2>
+      
+      <h2>Summary</h2>
+      <div class="summary">
+        <div class="summary-item">
+          <span class="institution">University of Sherbrooke</span>
+          <span class="position">PhD Student in Mathematics</span>
+          <span class="dates">2024—2028</span>
+        </div>
+        
+        <div class="summary-item">
+          <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
+          <span class="position">PhD Student in Mathematics</span>
+          <span class="dates">2022—2023</span>
+        </div>
+        
+        <div class="summary-item">
+          <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
+          <span class="position">Master's degree in Mathematics</span>
+          <span class="dates">2020—2022</span>
+        </div>
+        
+        <div class="summary-item">
+          <span class="institution">University of Mouly Ismail</span>
+          <span class="position">Bachelor's degree in Mathematics</span>
+          <span class="dates">2016—2020</span>
+        </div>
+      </div>
+      
+      <h2>Full CV</h2>
+      <p>
+        <a href="cv.pdf" target="_blank" class="download-button">Download PDF</a>
+      </p>
+    </div>
   </div>
+
+  <script>
+    function toggleAbstract(id) {
+      const element = document.getElementById(id);
+      if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+      } else {
+        element.classList.add('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
