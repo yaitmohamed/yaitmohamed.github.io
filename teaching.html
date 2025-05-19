@@ -2,80 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.3">
   <title>Teaching - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
+      max-width: 1000px;
+      margin: 40px auto;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
-      color: #555;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      font-weight: 300;
+      font-size: 16px;
+      color: #333;
       background-color: #f5f5f5;
     }
-    
-    .left-column {
-      width: 30%;
-      padding-right: 40px;
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      align-items: start;
     }
-    
-    .right-column {
-      width: 65%;
+    .nav-section {
+      grid-column: 1 / 2;
     }
-    
-    h1 {
+    .nav-section h1 {
+      margin-bottom: 10px;
       font-size: 28px;
-      margin-bottom: 5px;
-      color: #2c3e50;
       font-weight: 600;
-    }
-    
-    h2 {
-      font-size: 24px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
       color: #2c3e50;
     }
-    
-    h4 {
+    .nav-section p {
+      margin: 0;
+      color: #555;
+    }
+    .nav-section a {
+      display: block;
+      margin: 10px 0;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+    }
+    .nav-section a:hover {
+      color: #e74c3c;
+    }
+    .content-section {
+      grid-column: 2 / 3;
+    }
+    .content-section h2 {
       font-size: 22px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
       color: #2c3e50;
+      margin-bottom: 15px;
+      margin-top: 25px;
       padding-bottom: 8px;
       border-bottom: 1px solid #ddd;
     }
-    
-    p {
-      margin-bottom: 15px;
-      font-size: 16px;
+    .content-section p {
+      margin: 0 0 15px 0;
       color: #444;
       line-height: 1.7;
     }
-    
-    a {
+    .content-section a {
       color: #3498db;
       text-decoration: none;
     }
-    
-    a:hover {
+    .content-section a:hover {
       color: #e74c3c;
-      text-decoration: underline;
-    }
-    
-    .nav-link {
-      display: block;
-      margin-bottom: 15px;
-      font-size: 17px;
-      font-weight: 500;
-      color: #2c3e50;
     }
     
     .entry {
@@ -150,180 +141,187 @@
     }
     
     @media (max-width: 768px) {
-      .left-column, .right-column {
-        width: 100%;
-        padding-right: 0;
-      }
-      
-      .pdf-grid {
+      .container {
         grid-template-columns: 1fr;
+      }
+      .nav-section, .content-section {
+        grid-column: 1;
       }
     }
   </style>
 </head>
 <body>
-  <div class="left-column">
-    <h1>Yassine Ait Mohamed</h1>
-    <p>
-      PhD Student<br>
-      Department of Mathematics<br>
-      University of Sherbrooke
-    </p>
-    
-    <div class="navigation">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="research.html" class="nav-link">Research</a>
-      <a href="talks.html" class="nav-link">Talks</a>
-      <a href="cv.html" class="nav-link">CV</a>
-      <a href="teaching.html" class="nav-link">Teaching</a>     
+  <div class="container">
+    <div class="nav-section">
+      <h1>Yassine Ait Mohamed</h1>
+      <p>PhD Student<br>
+         Department of Mathematics<br>
+         University of Sherbrooke</p>
+      <div style="margin-top: 20px;">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="talks.html">Talks</a>
+        <a href="cv.html">CV</a>
+        <a href="teaching.html" style="color: #e74c3c;">Teaching</a>
+      </div>
     </div>
     
-   
-  
-  <div class="right-column">
-    <h4>Teaching Experience</h4>
+    <div class="content-section">
+      <h2>Teaching Experience</h2>
 
-    <div class="entry">
-      <p>
-        <span class="date">January 2025 - Present</span><br>
-        <span class="position">Teaching Assistant</span><br>
-        <span class="institution">Linear Algebra (MAT253), University of Sherbrooke</span>
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2024 - December 2024</span><br>
-        <span class="position">Teaching Assistant</span><br>
-        <span class="institution">Differential and Integral Calculus I (MAT194), University of Sherbrooke</span>
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2024 - December 2024</span><br>
-        <span class="position">Mathematics Tutor</span><br>
-        <span class="institution">Center for Mathematics Help, University of Sherbrooke</span>
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2020 - December 2023</span><br>
-        <span class="position">Mathematics Tutor</span><br>
-        <span class="institution">Algebra, Real and Complex Analysis, Topology</span>
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2022 - November 2023</span><br>
-        <span class="position">Mathematics Tutor</span><br>
-        <span class="institution">Mini School Center, Fez-Morocco</span><br>
-        Lessons for high school students
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2018 - March 2019</span><br>
-        <span class="position">Mathematics Tutor</span><br>
-        <span class="institution">Olympia Centre Zarhounia, Meknes - Morocco</span><br>
-        Lessons for secondary school students
-      </p>
-    </div>
-    
-    <div class="entry">
-      <p>
-        <span class="date">September 2017 - March 2018</span><br>
-        <span class="position">Mathematics Tutor</span><br>
-        <span class="institution">Maxcence Centre, Meknes - Morocco</span><br>
-        Lessons for secondary school students
-      </p>
-    </div>
+      <div class="entry">
+        <p>
+          <span class="date">January 2025 - Present</span><br>
+          <span class="position">Teaching Assistant</span><br>
+          <span class="institution">Linear Algebra (MAT253), University of Sherbrooke</span>
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2024 - December 2024</span><br>
+          <span class="position">Teaching Assistant</span><br>
+          <span class="institution">Differential and Integral Calculus I (MAT194), University of Sherbrooke</span>
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2024 - December 2024</span><br>
+          <span class="position">Mathematics Tutor</span><br>
+          <span class="institution">Center for Mathematics Help, University of Sherbrooke</span>
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2020 - December 2023</span><br>
+          <span class="position">Mathematics Tutor</span><br>
+          <span class="institution">Algebra, Real and Complex Analysis, Topology</span>
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2022 - November 2023</span><br>
+          <span class="position">Mathematics Tutor</span><br>
+          <span class="institution">Mini School Center, Fez-Morocco</span><br>
+          Lessons for high school students
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2018 - March 2019</span><br>
+          <span class="position">Mathematics Tutor</span><br>
+          <span class="institution">Olympia Centre Zarhounia, Meknes - Morocco</span><br>
+          Lessons for secondary school students
+        </p>
+      </div>
+      
+      <div class="entry">
+        <p>
+          <span class="date">September 2017 - March 2018</span><br>
+          <span class="position">Mathematics Tutor</span><br>
+          <span class="institution">Maxcence Centre, Meknes - Morocco</span><br>
+          Lessons for secondary school students
+        </p>
+      </div>
 
-    <h4>Online Courses</h4>
-    <p>You can find my online teaching profile and courses at: 
-      <a href="https://www.voscours.fr/professeur/yassine-ait-mohamed.htm" target="_blank">VosCours.fr Profile</a>
-    </p>
-    
-    <h4>Teaching Resources</h4>
-    <div class="pdf-grid">
-      <div class="pdf-cell" onclick="window.open('MATH253_S9.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Exercices_S9</span>
-      </div>   
+      <h2>Online Courses</h2>
+      <p>You can find my online teaching profile and courses at: 
+        <a href="https://www.voscours.fr/professeur/yassine-ait-mohamed.htm" target="_blank">VosCours.fr Profile</a>
+      </p>
       
-      <div class="pdf-cell" onclick="window.open('exomath253.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Exercices (MATH253)</span>
-      </div>            
-      
-      <div class="pdf-cell" onclick="window.open('TD_Algebre_1.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>TD Algèbre 1</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Logique_11.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Résumé 1: Ensembles et applications</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('groupes.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Groupes</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Exercices__Analyse_II.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Exercices: Analyse II</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('redu.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Note (1): Réduction des endomorphismes</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('topologie.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Série (1): Topologie</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Test_1.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Test (1)</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Devoir_1 (1).pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Test (2)</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Devoir3.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Devoir 3</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Test4.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Test (4)</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Série_1_Nombres_réels.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Série 1: Nombres réels</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Suites_réelles.pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Série 1: Suites réelles</span>
-      </div>
-      
-      <div class="pdf-cell" onclick="window.open('Devoir_1__Suites_réelles (1).pdf', '_blank')">
-        <div class="triangle"></div>
-        <span>Devoir 1: Suites réelles</span>
+      <h2>Teaching Resources</h2>
+      <div class="pdf-grid">
+        <div class="pdf-cell" onclick="window.open('MATH253_S9.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Exercices_S9</span>
+        </div>   
+        
+        <div class="pdf-cell" onclick="window.open('exomath253.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Exercices (MATH253)</span>
+        </div>            
+        
+        <div class="pdf-cell" onclick="window.open('TD_Algebre_1.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>TD Algèbre 1</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Logique_11.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Résumé 1: Ensembles et applications</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('groupes.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Groupes</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Exercices__Analyse_II.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Exercices: Analyse II</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('redu.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Note (1): Réduction des endomorphismes</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('topologie.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Série (1): Topologie</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Test_1.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Test (1)</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Devoir_1 (1).pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Test (2)</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Devoir3.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Devoir 3</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Test4.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Test (4)</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Série_1_Nombres_réels.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Série 1: Nombres réels</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Suites_réelles.pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Série 1: Suites réelles</span>
+        </div>
+        
+        <div class="pdf-cell" onclick="window.open('Devoir_1__Suites_réelles (1).pdf', '_blank')">
+          <div class="triangle"></div>
+          <span>Devoir 1: Suites réelles</span>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleAbstract(id) {
+      const element = document.getElementById(id);
+      if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+      } else {
+        element.classList.add('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
