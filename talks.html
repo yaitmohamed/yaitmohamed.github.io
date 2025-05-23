@@ -6,24 +6,31 @@
   <title>Talks - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
-   body {
-  max-width: 1200px;
-  margin: 60px auto;
-  font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-  line-height: 1.8;
-  font-size: 18px;
-  color: #2c3e50;
-  background-color: #fdfdfd;
-  padding: 0 30px;
-}
+    body {
+      max-width: 1200px;
+      margin: 60px auto;
+      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
+      line-height: 1.8;
+      font-size: 18px;
+      color: #2c3e50;
+      background-color: #fdfdfd;
+      padding: 0 30px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
     
     .left-column {
       width: 30%;
-      padding-right: 40px;
+      flex-shrink: 0;
     }
     
     .right-column {
-      width: 65%;
+      width: 70%;
+      flex-grow: 1;
     }
     
     h1 {
@@ -76,6 +83,10 @@
       color: #2c3e50;
     }
     
+    .navigation {
+      margin-bottom: 20px;
+    }
+    
     .talk {
       position: relative;
       margin-bottom: 25px;
@@ -99,73 +110,94 @@
       margin-left: 5px;
     }
     
+    .university-links {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .university-links a {
+      display: block;
+      margin-bottom: 8px;
+    }
+    
     @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
       .left-column, .right-column {
         width: 100%;
-        padding-right: 0;
+      }
+      
+      body {
+        padding: 0 20px;
+        margin: 30px auto;
       }
     }
   </style>
 </head>
 <body>
-  <div class="left-column">
-    <h1>Yassine Ait Mohamed</h1>
-    <p>
-      PhD Student<br>
-      Department of Mathematics<br>
-      University of Sherbrooke
-    </p>
-    
-    <div class="navigation">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="research.html" class="nav-link">Research</a>
-      <a href="talks.html" class="nav-link" style="color: #e74c3c;">Talks</a>
-      <a href="cv.html" class="nav-link">CV</a>
-      <a href="teaching.html" class="nav-link">Teaching</a>
-     <a href="reftools.html">Reference Collection Tools</a>
+  <div class="container">
+    <div class="left-column">
+      <h1>Yassine Ait Mohamed</h1>
+      <p>
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
+      </p>
       
+      <div class="navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="research.html" class="nav-link">Research</a>
+        <a href="talks.html" class="nav-link" style="color: #e74c3c;">Talks</a>
+        <a href="cv.html" class="nav-link">CV</a>
+        <a href="teaching.html" class="nav-link">Teaching</a>
+        <a href="reftools.html" class="nav-link">Reference Collection Tools</a>
+      </div>
+      
+      <div class="university-links">
+        <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
+        <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
+      </div>
     </div>
     
-    <div style="margin-top: 30px;">
-      <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a><br>
-      <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
-    </div>
-  </div>
-  
-  <div class="right-column">
-    <h4>Talks</h4>
-    
-    <div class="talk">
-      <p>
-        <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
-        [<a href="quivers.pdf" class="pdf-link">PDF</a>]
-      </p>
-    </div>
-    
-    <div class="talk">
-      <p>
-        <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
-        [<a href="graded_rings.pdf" class="pdf-link">PDF</a>]
-      </p>
-    </div>
-    
-    <div class="talk">
-      <p>
-        <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
-      </p>
-    </div>
-    
-    <div class="talk">
-      <p>
-        <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
-        [<a href="roch.pdf" class="pdf-link">PDF</a>]
-      </p>
-    </div>
-    
-    <div class="talk">
-      <p>
-        <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
-      </p>
+    <div class="right-column">
+      <h4>Talks</h4>
+      
+      <div class="talk">
+        <p>
+          <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
+          [<a href="quivers.pdf" class="pdf-link">PDF</a>]
+        </p>
+      </div>
+      
+      <div class="talk">
+        <p>
+          <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
+          [<a href="graded_rings.pdf" class="pdf-link">PDF</a>]
+        </p>
+      </div>
+      
+      <div class="talk">
+        <p>
+          <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
+        </p>
+      </div>
+      
+      <div class="talk">
+        <p>
+          <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
+          [<a href="roch.pdf" class="pdf-link">PDF</a>]
+        </p>
+      </div>
+      
+      <div class="talk">
+        <p>
+          <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
+        </p>
+      </div>
     </div>
   </div>
 </body>
