@@ -7,34 +7,50 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
-  max-width: 1200px;
-  margin: 60px auto;
-  font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-  line-height: 1.8;
-  font-size: 18px;
-  color: #2c3e50;
-  background-color: #fdfdfd;
-  padding: 0 30px;
-}
+      max-width: 1200px;
+      margin: 60px auto;
+      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
+      line-height: 1.8;
+      font-size: 18px;
+      color: #2c3e50;
+      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
+      padding: 0 30px;
+      overflow-x: hidden;
+    }
+
     .container {
       display: grid;
-      grid-template-columns: 250px 1fr;
+      grid-template-columns: 250px 1fr 200px;
       gap: 20px;
       align-items: start;
+      animation: fadeInUp 0.8s ease-out;
     }
+
     .nav-section {
       grid-column: 1 / 2;
+      position: sticky;
+      top: 20px;
     }
+
     .nav-section h1 {
       margin-bottom: 10px;
       font-size: 28px;
       font-weight: 600;
       color: #2c3e50;
+      transition: color 0.3s ease;
+      cursor: pointer;
     }
+
+    .nav-section h1:hover {
+      color: #3498db;
+    }
+
     .nav-section p {
       margin: 0;
       color: #555;
+      font-style: italic;
     }
+
     .nav-section a {
       display: block;
       margin: 10px 0;
@@ -42,116 +58,445 @@
       text-decoration: none;
       font-weight: 500;
       font-size: 17px;
+      padding: 8px 0;
+      border-left: 3px solid transparent;
+      padding-left: 10px;
+      transition: all 0.3s ease;
     }
-    .nav-section a:hover {
-      color: #e74c3c;
+
+    .nav-section a:hover, .nav-section a[style*="color: #e74c3c"] {
+      color: #e74c3c !important;
+      border-left-color: #e74c3c;
+      transform: translateX(5px);
+      text-decoration: none;
     }
+
     .content-section {
       grid-column: 2 / 3;
     }
+
     .content-section h2 {
       font-size: 22px;
       color: #2c3e50;
       margin-bottom: 15px;
       margin-top: 25px;
       padding-bottom: 8px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 2px solid #3498db;
+      position: relative;
+      overflow: hidden;
     }
+
+    .content-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #e74c3c, #f39c12);
+      animation: slideIn 2s ease-in-out infinite;
+    }
+
     .content-section p {
       margin: 0 0 15px 0;
       color: #444;
       line-height: 1.7;
+      text-align: justify;
     }
+
     .content-section a {
       color: #3498db;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
+
     .content-section a:hover {
       color: #e74c3c;
     }
-    
+
+    .cv-stats {
+      grid-column: 3 / 4;
+      position: sticky;
+      top: 20px;
+    }
+
+    .stats-widget {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .stats-widget:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .stats-widget h4 {
+      margin: 0 0 15px 0;
+      color: #2c3e50;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .stat-item {
+      margin: 15px 0;
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-number {
+      font-size: 20px;
+      font-weight: bold;
+      color: #3498db;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-widget {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .timeline-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-year {
+      font-weight: bold;
+      color: #3498db;
+    }
+
     .summary {
       margin: 20px 0;
     }
-    
+
     .summary-item {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 20px;
-      padding: 10px 15px;
-      border-left: 3px solid #3498db;
-      transition: all 0.2s ease;
-      background-color: white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      padding: 20px;
+      border-left: 4px solid #3498db;
+      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
-    
+
+    .summary-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #3498db, #e74c3c);
+      transition: width 0.3s ease;
+    }
+
+    .summary-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1));
+      transition: width 0.3s ease;
+    }
+
     .summary-item:hover {
       border-left-color: #e74c3c;
-      background-color: #f9f9f9;
-      transform: translateX(5px);
+      background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+      transform: translateX(15px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
     }
-    
+
+    .summary-item:hover::before {
+      width: 8px;
+    }
+
+    .summary-item:hover::after {
+      width: 100%;
+    }
+
     .institution {
       flex: 2;
-      font-weight: 500;
+      font-weight: 600;
       color: #2c3e50;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    
+
+    .institution::before {
+      content: '🎓';
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .summary-item:hover .institution::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+
     .position {
       flex: 2;
       color: #555;
       font-style: italic;
       margin: 0 15px;
+      transition: color 0.3s ease;
     }
-    
+
+    .summary-item:hover .position {
+      color: #3498db;
+      font-weight: 500;
+    }
+
     .dates {
       flex: 1;
       color: #e74c3c;
       font-weight: 600;
       text-align: right;
+      background: rgba(231, 76, 60, 0.1);
+      padding: 5px 10px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
     }
-    
+
+    .summary-item:hover .dates {
+      background: rgba(52, 152, 219, 0.2);
+      color: #3498db;
+      transform: scale(1.1);
+    }
+
     .download-button {
       display: inline-block;
-      padding: 10px 20px;
-      background-color: #3498db;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #3498db, #2980b9);
       color: white;
-      border-radius: 4px;
+      border-radius: 25px;
       text-decoration: none;
-      font-weight: 500;
-      margin-top: 10px;
-      transition: all 0.2s ease;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+      position: relative;
+      overflow: hidden;
     }
-    
+
+    .download-button::before {
+      content: '📄';
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .download-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
     .download-button:hover {
-      background-color: #e74c3c;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
       color: white;
       text-decoration: none;
-      transform: translateY(-2px);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
     }
-    
+
+    .download-button:hover::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .download-button:hover::after {
+      left: 100%;
+    }
+
+    .cv-highlight {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+      padding: 25px;
+      border-radius: 15px;
+      margin: 25px 0;
+      border-left: 5px solid #27ae60;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .cv-highlight::before {
+      content: '💼';
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-size: 24px;
+      background: white;
+      padding: 5px;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .cv-highlight:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* Mathematical animations */
+    .math-animation {
+      position: fixed;
+      pointer-events: none;
+      font-size: 16px;
+      color: rgba(52, 152, 219, 0.2);
+      z-index: -1;
+    }
+
+    /* Floating elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-icon {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.1;
+      animation: floatAround 20s infinite linear;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      0% { left: -100%; }
+      50% { left: 0%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes floatAround {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
+      25% { transform: translateY(75vh) translateX(100px) rotate(90deg); }
+      50% { transform: translateY(50vh) translateX(-50px) rotate(180deg); }
+      75% { transform: translateY(25vh) translateX(75px) rotate(270deg); }
+      100% { transform: translateY(-100px) translateX(0) rotate(360deg); }
+    }
+
+    @keyframes mathFloat {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Experience Progress Bars */
+    .progress-container {
+      margin: 10px 0;
+      background: #ecf0f1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #3498db, #e74c3c);
+      border-radius: 10px;
+      transition: width 2s ease-in-out;
+      width: 0;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    /* Responsive design */
     @media (max-width: 768px) {
       .container {
         grid-template-columns: 1fr;
       }
-      .nav-section, .content-section {
+      .nav-section, .content-section, .cv-stats {
         grid-column: 1;
+      }
+      .nav-section, .cv-stats {
+        position: static;
       }
       
       .summary-item {
         flex-direction: column;
+        text-align: left;
       }
       
       .institution, .position, .dates {
         margin: 5px 0;
         text-align: left;
       }
+      
+      .summary-item:hover {
+        transform: translateX(8px) scale(1.01);
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating-elements">
+    <div class="floating-icon" style="left: 15%; animation-delay: 0s;">🎓</div>
+    <div class="floating-icon" style="left: 35%; animation-delay: 4s;">📚</div>
+    <div class="floating-icon" style="left: 55%; animation-delay: 8s;">🔬</div>
+    <div class="floating-icon" style="left: 75%; animation-delay: 12s;">📊</div>
+    <div class="floating-icon" style="left: 95%; animation-delay: 16s;">🏆</div>
+  </div>
+
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
@@ -168,51 +513,699 @@
     </div>
     
     <div class="content-section">
+      <div class="cv-highlight">
+        <h3 style="margin-top: 0; color: #2c3e50;">🎯 Professional Journey</h3>
+        <p>
+          A dedicated mathematician with expertise spanning <strong>algebraic geometry</strong>, <strong>Lie theory</strong>, and <strong>ring theory</strong>. Currently pursuing advanced research at the intersection of pure mathematics and theoretical applications.
+        </p>
+      </div>
+
       <h2>Curriculum Vitae</h2>
       
       <h2>Summary</h2>
       <div class="summary">
-        <div class="summary-item">
+        <div class="summary-item" onclick="highlightEducation(this)">
           <span class="institution">University of Sherbrooke</span>
           <span class="position">PhD Student in Mathematics</span>
           <span class="dates">2024—2028</span>
         </div>
         
-        <div class="summary-item">
+        <div class="summary-item" onclick="highlightEducation(this)">
           <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
           <span class="position">PhD Student in Mathematics</span>
           <span class="dates">2022—2023</span>
         </div>
         
-        <div class="summary-item">
+        <div class="summary-item" onclick="highlightEducation(this)">
           <span class="institution">University of Sidi Mohamed Ben Abdellah</span>
           <span class="position">Master's degree in Mathematics</span>
           <span class="dates">2020—2022</span>
         </div>
         
-        <div class="summary-item">
+        <div class="summary-item" onclick="highlightEducation(this)">
           <span class="institution">University of Mouly Ismail</span>
           <span class="position">Bachelor's degree in Mathematics</span>
           <span class="dates">2016—2020</span>
         </div>
       </div>
+
+      <div style="margin: 30px 0;">
+        <h3 style="color: #2c3e50; margin-bottom: 15px;">📈 Academic Progress</h3>
+        <div class="progress-label">PhD Progress (Current)</div>
+        <div class="progress-container">
+          <div class="progress-bar" id="phd-progress"></div>
+        </div>
+        
+        <div class="progress-label">Research Experience</div>
+        <div class="progress-container">
+          <div class="progress-bar" id="research-progress"></div>
+        </div>
+        
+        <div class="progress-label">Teaching Experience</div>
+        <div class="progress-container">
+          <div class="progress-bar" id="teaching-progress"></div>
+        </div>
+      </div>
       
       <h2>Full CV</h2>
       <p>
-        <a href="cv.pdf" target="_blank" class="download-button">Download PDF</a>
+        <a href="cv.pdf" target="_blank" class="download-button" onclick="trackDownload()">Download PDF</a>
       </p>
+    </div>
+
+    <div class="cv-stats">
+      <div class="stats-widget">
+        <h4>📊 Academic Stats</h4>
+        
+        <div class="stat-item">
+          <span class="stat-number" id="education-years">8+</span>
+          <div class="stat-label">Years of Study</div>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-number" id="institutions-count">3</span>
+          <div class="stat-label">Institutions</div>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-number" id="degrees-earned">2+</span>
+          <div class="stat-label">Degrees</div>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-number" id="current-year">2025</span>
+          <div class="stat-label">Current Year</div>
+        </div>
+      </div>
+
+      <div class="stats-widget">
+        <h4>🗓️ Timeline</h4>
+        <div class="timeline-widget">
+          <div class="timeline-item">
+            <span class="timeline-year">2024</span> - Started PhD at Sherbrooke
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2022</span> - Master's Completed
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2020</span> - Bachelor's Completed
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2016</span> - Started University
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-widget">
+        <h4>🎯 Quick Actions</h4>
+        <div style="text-align: center; padding: 10px;">
+          <button onclick="printCV()" style="width: 100%; padding: 8px; margin: 5px 0; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">🖨️ Print CV</button>
+          <button onclick="shareCV()" style="width: 100%; padding: 8px; margin: 5px 0; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">📤 Share CV</button>
+          <button onclick="copyEmail()" style="width: 100%; padding: 8px; margin: 5px 0; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease;">📧 Copy Email</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function toggleAbstract(id) {
-      const element = document.getElementById(id);
-      if (element.classList.contains('hidden')) {
-        element.classList.remove('hidden');
+    // Mathematical formulas for CV page
+    const cvFormulas = [
+      '∑', '∫', '∂', '∇', '∞', 'π', 'α', 'β', 'γ', 'θ', 'λ', 'μ',
+      '⊕', '⊗', '≅', '∼', '∈', '⊆', '∪', '∩', 'ℝ', 'ℂ', 'ℕ', 'ℤ'
+    ];
+
+    // Create floating mathematical symbols
+    function createFloatingCVMath() {
+      const formula = cvFormulas[Math.floor(Math.random() * cvFormulas.length)];
+      const element = document.createElement('div');
+      element.className = 'math-animation';
+      element.textContent = formula;
+      element.style.left = Math.random() * window.innerWidth + 'px';
+      element.style.animationDuration = (Math.random() * 15 + 25) + 's';
+      element.style.animation = 'mathFloat ' + (Math.random() * 15 + 25) + 's linear';
+      
+      document.body.appendChild(element);
+      
+      setTimeout(() => {
+        element.remove();
+      }, 40000);
+    }
+
+    // Start mathematical animations
+    setInterval(createFloatingCVMath, 5000);
+
+    // Highlight education function
+    function highlightEducation(element) {
+      // Remove previous highlights
+      document.querySelectorAll('.summary-item').forEach(item => {
+        item.style.background = 'linear-gradient(135deg, white 0%, #f8f9fa 100%)';
+      });
+      
+      // Highlight current item
+      element.style.background = 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)';
+      
+      // Add temporary glow effect
+      element.style.boxShadow = '0 0 25px rgba(255, 193, 7, 0.5)';
+      
+      setTimeout(() => {
+        element.style.boxShadow = '0 4px 15px rgba(0,0,0,0.08)';
+      }, 2000);
+    }
+
+    // Animate statistics
+    function animateStats() {
+      const stats = [
+        { id: 'education-years', target: 8, suffix: '+' },
+        { id: 'institutions-count', target: 3, suffix: '' },
+        { id: 'degrees-earned', target: 2, suffix: '+' }
+      ];
+
+      stats.forEach(stat => {
+        const element = document.getElementById(stat.id);
+        let current = 0;
+        const increment = stat.target / 40;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= stat.target) {
+            element.textContent = stat.target + stat.suffix;
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current) + stat.suffix;
+          }
+        }, 50);
+      });
+    }
+
+    // Animate progress bars
+    function animateProgressBars() {
+      const progressBars = [
+        { id: 'phd-progress', width: 25 }, // 1 year of 4-year PhD
+        { id: 'research-progress', width: 85 }, // Extensive research experience
+        { id: 'teaching-progress', width: 75 }  // Strong teaching background
+      ];
+
+      progressBars.forEach((bar, index) => {
+        setTimeout(() => {
+          const element = document.getElementById(bar.id);
+          element.style.width = bar.width + '%';
+        }, index * 500);
+      });
+    }
+
+    // Track download function
+    function trackDownload() {
+      // Create download feedback
+      const feedback = document.createElement('div');
+      feedback.innerHTML = '✅ CV Download Started!';
+      feedback.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        z-index: 10000;
+        animation: slideInRight 0.5s ease-out;
+      `;
+      
+      // Add animation if not exists
+      if (!document.querySelector('style[data-slideInRight]')) {
+        const style = document.createElement('style');
+        style.setAttribute('data-slideInRight', 'true');
+        style.textContent = `
+          @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      document.body.appendChild(feedback);
+      
+      setTimeout(() => {
+        feedback.remove();
+      }, 3000);
+    }
+
+    // Print CV function
+    function printCV() {
+      window.print();
+      
+      // Show print feedback
+      showNotification('🖨️ Print dialog opened!', '#3498db');
+    }
+
+    // Share CV function
+    function shareCV() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Yassine Ait Mohamed - CV',
+          text: 'Check out my academic CV and research background',
+          url: window.location.href
+        });
       } else {
-        element.classList.add('hidden');
+        // Fallback to copy URL
+        navigator.clipboard.writeText(window.location.href);
+        showNotification('🔗 CV URL copied to clipboard!', '#27ae60');
       }
     }
-  </script>
+
+    // Copy email function
+    function copyEmail() {
+      const email = 'yassine.ait.mohamed@usherbrooke.ca';
+      navigator.clipboard.writeText(email);
+      showNotification('📧 Email copied: ' + email, '#e74c3c');
+    }
+
+    // Show notification helper
+    function showNotification(message, color) {
+      const notification = document.createElement('div');
+      notification.innerHTML = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${color};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideInRight 0.5s ease-out;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Add keyboard shortcuts
+    function setupKeyboardShortcuts() {
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey || e.metaKey) {
+          switch(e.key) {
+            case 'p':
+              e.preventDefault();
+              printCV();
+              break;
+            case 's':
+              e.preventDefault();
+              shareCV();
+              break;
+            case 'c':
+              if (e.shiftKey) {
+                e.preventDefault();
+                copyEmail();
+              }
+              break;
+          }
+        }
+      });
+    }
+
+    // Add hover effects to buttons
+    function enhanceButtons() {
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.05)';
+          this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = 'none';
+        });
+      });
+    }
+
+    // Create typing effect for CV highlight
+    function createTypingEffect() {
+      const highlight = document.querySelector('.cv-highlight p');
+      if (highlight) {
+        const text = highlight.textContent;
+        highlight.textContent = '';
+        let i = 0;
+        
+        function typeText() {
+          if (i < text.length) {
+            highlight.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeText, 30);
+          }
+        }
+        
+        setTimeout(typeText, 1000);
+      }
+    }
+
+    // Initialize timeline animations
+    function initializeTimeline() {
+      const summaryItems = document.querySelectorAll('.summary-item');
+      summaryItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-50px)';
+        
+        setTimeout(() => {
+          item.styleitem.style.transition = 'all 0.6s ease-out';
+         item.style.opacity = '1';
+         item.style.transform = 'translateX(0)';
+       }, index * 200);
+     });
+   }
+
+   // Add scroll-triggered animations
+   function setupScrollAnimations() {
+     const observerOptions = {
+       threshold: 0.1,
+       rootMargin: '0px 0px -50px 0px'
+     };
+     
+     const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting) {
+           entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+         }
+       });
+     }, observerOptions);
+     
+     // Observe sections for scroll animations
+     document.querySelectorAll('.summary-item, .cv-highlight').forEach(element => {
+       observer.observe(element);
+     });
+   }
+
+   // Enhanced download button interaction
+   function enhanceDownloadButton() {
+     const downloadBtn = document.querySelector('.download-button');
+     
+     downloadBtn.addEventListener('click', function(e) {
+       // Create ripple effect
+       const ripple = document.createElement('div');
+       const rect = this.getBoundingClientRect();
+       const size = Math.max(rect.width, rect.height);
+       
+       ripple.style.cssText = `
+         position: absolute;
+         left: ${e.clientX - rect.left - size/2}px;
+         top: ${e.clientY - rect.top - size/2}px;
+         width: ${size}px;
+         height: ${size}px;
+         background: rgba(255, 255, 255, 0.5);
+         border-radius: 50%;
+         transform: scale(0);
+         animation: rippleEffect 0.6s ease-out;
+         pointer-events: none;
+       `;
+       
+       // Add ripple animation if not exists
+       if (!document.querySelector('style[data-ripple-effect]')) {
+         const style = document.createElement('style');
+         style.setAttribute('data-ripple-effect', 'true');
+         style.textContent = `
+           @keyframes rippleEffect {
+             to {
+               transform: scale(2);
+               opacity: 0;
+             }
+           }
+         `;
+         document.head.appendChild(style);
+       }
+       
+       this.appendChild(ripple);
+       
+       setTimeout(() => {
+         ripple.remove();
+       }, 600);
+     });
+   }
+
+   // Create interactive CV sections
+   function createInteractiveSections() {
+     const sections = document.querySelectorAll('h2');
+     
+     sections.forEach(section => {
+       section.addEventListener('mouseenter', function() {
+         this.style.transform = 'translateX(10px)';
+         this.style.color = '#3498db';
+       });
+       
+       section.addEventListener('mouseleave', function() {
+         this.style.transform = 'translateX(0)';
+         this.style.color = '#2c3e50';
+       });
+     });
+   }
+
+   // Add dynamic year updates
+   function updateDynamicContent() {
+     const currentYear = new Date().getFullYear();
+     document.getElementById('current-year').textContent = currentYear;
+     
+     // Update PhD progress based on current date
+     const startYear = 2024;
+     const totalYears = 4;
+     const yearsCompleted = currentYear - startYear;
+     const progressPercent = Math.min((yearsCompleted / totalYears) * 100, 100);
+     
+     setTimeout(() => {
+       document.getElementById('phd-progress').style.width = progressPercent + '%';
+     }, 1000);
+   }
+
+   // Create achievement badges
+   function createAchievementBadges() {
+     const achievements = [
+       { icon: '🎓', text: 'PhD Candidate', color: '#3498db' },
+       { icon: '📚', text: 'Published Researcher', color: '#e74c3c' },
+       { icon: '👨‍🏫', text: 'Experienced Tutor', color: '#27ae60' },
+       { icon: '🔬', text: 'Mathematics Expert', color: '#f39c12' }
+     ];
+     
+     const badgeContainer = document.createElement('div');
+     badgeContainer.style.cssText = `
+       margin: 20px 0;
+       display: flex;
+       flex-wrap: wrap;
+       gap: 10px;
+       justify-content: center;
+     `;
+     
+     achievements.forEach((achievement, index) => {
+       const badge = document.createElement('div');
+       badge.innerHTML = `${achievement.icon} ${achievement.text}`;
+       badge.style.cssText = `
+         padding: 8px 15px;
+         background: ${achievement.color};
+         color: white;
+         border-radius: 20px;
+         font-size: 12px;
+         font-weight: 500;
+         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+         transition: all 0.3s ease;
+         cursor: pointer;
+         opacity: 0;
+         transform: scale(0);
+       `;
+       
+       badge.addEventListener('mouseenter', function() {
+         this.style.transform = 'scale(1.1)';
+         this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)';
+       });
+       
+       badge.addEventListener('mouseleave', function() {
+         this.style.transform = 'scale(1)';
+         this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+       });
+       
+       badgeContainer.appendChild(badge);
+       
+       // Animate badges in sequence
+       setTimeout(() => {
+         badge.style.opacity = '1';
+         badge.style.transform = 'scale(1)';
+       }, index * 200 + 2000);
+     });
+     
+     // Insert badges after CV highlight
+     const cvHighlight = document.querySelector('.cv-highlight');
+     cvHighlight.parentNode.insertBefore(badgeContainer, cvHighlight.nextSibling);
+   }
+
+   // Add mouse trail effect
+   function createMouseTrail() {
+     let mouseTrail = [];
+     
+     document.addEventListener('mousemove', function(e) {
+       const trail = document.createElement('div');
+       trail.style.cssText = `
+         position: fixed;
+         left: ${e.clientX}px;
+         top: ${e.clientY}px;
+         width: 4px;
+         height: 4px;
+         background: #3498db;
+         border-radius: 50%;
+         pointer-events: none;
+         z-index: 9999;
+         animation: trailFade 1s ease-out forwards;
+       `;
+       
+       // Add trail animation if not exists
+       if (!document.querySelector('style[data-trail]')) {
+         const style = document.createElement('style');
+         style.setAttribute('data-trail', 'true');
+         style.textContent = `
+           @keyframes trailFade {
+             0% { opacity: 1; transform: scale(1); }
+             100% { opacity: 0; transform: scale(0); }
+           }
+         `;
+         document.head.appendChild(style);
+       }
+       
+       document.body.appendChild(trail);
+       mouseTrail.push(trail);
+       
+       // Limit trail length
+       if (mouseTrail.length > 5) {
+         const oldTrail = mouseTrail.shift();
+         setTimeout(() => {
+           if (oldTrail.parentNode) {
+             oldTrail.remove();
+           }
+         }, 1000);
+       }
+     });
+   }
+
+   // Create interactive education timeline
+   function createEducationTimeline() {
+     const timelineData = [
+       { year: '2024', event: 'Started PhD at University of Sherbrooke', color: '#3498db' },
+       { year: '2022', event: 'Completed Master\'s at USMBA', color: '#e74c3c' },
+       { year: '2020', event: 'Graduated with Bachelor\'s degree', color: '#27ae60' },
+       { year: '2016', event: 'Began University studies', color: '#f39c12' }
+     ];
+     
+     // This data is already represented in the summary section
+     // We can enhance the existing timeline widget with more interactivity
+     const timelineItems = document.querySelectorAll('.timeline-item');
+     
+     timelineItems.forEach((item, index) => {
+       item.addEventListener('mouseenter', function() {
+         this.style.background = 'rgba(52, 152, 219, 0.1)';
+         this.style.transform = 'translateX(5px)';
+         this.style.borderRadius = '5px';
+       });
+       
+       item.addEventListener('mouseleave', function() {
+         this.style.background = 'transparent';
+         this.style.transform = 'translateX(0)';
+       });
+     });
+   }
+
+   // Initialize all enhancements
+   document.addEventListener('DOMContentLoaded', function() {
+     // Core animations
+     animateStats();
+     animateProgressBars();
+     initializeTimeline();
+     createTypingEffect();
+     
+     // Interactive features
+     setupKeyboardShortcuts();
+     enhanceButtons();
+     enhanceDownloadButton();
+     createInteractiveSections();
+     createEducationTimeline();
+     
+     // Visual enhancements
+     setupScrollAnimations();
+     updateDynamicContent();
+     
+     // Add enhancements with delay
+     setTimeout(() => {
+       createAchievementBadges();
+       createMouseTrail();
+     }, 1500);
+     
+     // Add smooth scrolling to navigation
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+       anchor.addEventListener('click', function (e) {
+         e.preventDefault();
+         const target = document.querySelector(this.getAttribute('href'));
+         if (target) {
+           target.scrollIntoView({
+             behavior: 'smooth',
+             block: 'start'
+           });
+         }
+       });
+     });
+     
+     // Add typing effect to stats
+     setTimeout(() => {
+       const statNumbers = document.querySelectorAll('.stat-number');
+       statNumbers.forEach((stat, index) => {
+         setTimeout(() => {
+           stat.style.animation = 'pulse 0.5s ease-in-out';
+         }, index * 300);
+       });
+     }, 2000);
+   });
+
+   // Enhanced function for the existing toggleAbstract (keeping original functionality)
+   function toggleAbstract(id) {
+     const element = document.getElementById(id);
+     if (element && element.classList.contains('hidden')) {
+       element.classList.remove('hidden');
+     } else if (element) {
+       element.classList.add('hidden');
+     }
+   }
+
+   // Add window resize handler for responsive animations
+   window.addEventListener('resize', function() {
+     // Recalculate animations on resize
+     const isMobile = window.innerWidth <= 768;
+     
+     if (isMobile) {
+       // Adjust animations for mobile
+       document.querySelectorAll('.summary-item').forEach(item => {
+         item.addEventListener('click', function() {
+           highlightEducation(this);
+         });
+       });
+     }
+   });
+
+   // Performance optimization: throttle scroll events
+   let scrollTimeout;
+   window.addEventListener('scroll', function() {
+     if (scrollTimeout) {
+       clearTimeout(scrollTimeout);
+     }
+     
+     scrollTimeout = setTimeout(function() {
+       // Update any scroll-dependent animations here
+       const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+       
+       // Update floating elements based on scroll
+       document.querySelectorAll('.floating-icon').forEach((icon, index) => {
+         const delay = index * 0.1;
+         icon.style.transform = `translateY(${scrollPercent * 50}px) rotate(${scrollPercent * 360}deg)`;
+       });
+     }, 16); // ~60fps
+   });
+ </script>
 </body>
 </html>
