@@ -1,538 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Talks - Yassine Ait Mohamed</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <style>
-    body {
-      max-width: 1200px;
-      margin: 60px auto;
-      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-      line-height: 1.8;
-      font-size: 18px;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
-      padding: 0 30px;
-      overflow-x: hidden;
-    }
-    
-    .container {
-      display: flex;
-      gap: 40px;
-      align-items: flex-start;
-      animation: fadeInUp 0.8s ease-out;
-    }
-    
-    .left-column {
-      width: 30%;
-      flex-shrink: 0;
-      position: sticky;
-      top: 20px;
-    }
-    
-    .right-column {
-      width: 70%;
-      flex-grow: 1;
-    }
-    
-    h1 {
-      font-size: 28px;
-      margin-bottom: 5px;
-      color: #2c3e50;
-      font-weight: 600;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-    
-    h1:hover {
-      color: #3498db;
-    }
-    
-    h2 {
-      font-size: 24px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
-      color: #2c3e50;
-    }
-    
-    h4 {
-      font-size: 22px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 500;
-      color: #2c3e50;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #3498db;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    h4::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #e74c3c, #f39c12);
-      animation: slideIn 2s ease-in-out infinite;
-    }
-    
-    p {
-      margin-bottom: 15px;
-      font-size: 16px;
-      color: #444;
-      line-height: 1.7;
-    }
-    
-    a {
-      color: #3498db;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    a:hover {
-      color: #e74c3c;
-      text-decoration: underline;
-      transform: translateX(2px);
-    }
-    
-    .nav-link {
-      display: block;
-      margin-bottom: 15px;
-      font-size: 17px;
-      font-weight: 500;
-      color: #2c3e50;
-      padding: 8px 0;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .nav-link:hover, .nav-link[style*="color: #e74c3c"] {
-      color: #e74c3c !important;
-      border-left-color: #e74c3c;
-      transform: translateX(5px);
-      text-decoration: none;
-    }
-    
-    .navigation {
-      margin-bottom: 20px;
-    }
-    
-    .talk {
-      position: relative;
-      margin-bottom: 30px;
-      padding: 25px;
-      padding-left: 35px;
-      border-left: 4px solid #3498db;
-      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
-      border-radius: 0 10px 10px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    
-    .talk::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #3498db, #e74c3c);
-      transition: width 0.3s ease;
-    }
-    
-    .talk::after {
-      content: '🎤';
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 20px;
-      opacity: 0.3;
-      transition: all 0.3s ease;
-    }
-    
-    .talk:hover {
-      transform: translateX(15px) translateY(-8px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
-      border-left-color: #e74c3c;
-      background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-    }
-    
-    .talk:hover::before {
-      width: 8px;
-    }
-    
-    .talk:hover::after {
-      opacity: 1;
-      transform: scale(1.2) rotate(15deg);
-    }
-    
-    .date {
-      font-weight: 600;
-      color: #2c3e50;
-      background: rgba(52, 152, 219, 0.1);
-      padding: 5px 12px;
-      border-radius: 15px;
-      display: inline-block;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
-    }
-    
-    .talk:hover .date {
-      background: rgba(231, 76, 60, 0.1);
-      transform: scale(1.05);
-    }
-    
-    .pdf-link {
-      margin-left: 10px;
-      padding: 4px 12px;
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
-      color: white !important;
-      border-radius: 15px;
-      font-size: 12px;
-      font-weight: 500;
-      text-decoration: none !important;
-      transition: all 0.3s ease;
-      display: inline-block;
-      box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
-    }
-    
-    .pdf-link:hover {
-      transform: translateY(-2px) scale(1.1);
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-      background: linear-gradient(135deg, #3498db, #2980b9);
-    }
-    
-    .university-links {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 2px solid #ecf0f1;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
-    
-    .university-links:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    }
-    
-    .university-links a {
-      display: block;
-      margin-bottom: 12px;
-      padding: 8px 15px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    
-    .university-links a:hover {
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white !important;
-      transform: translateX(8px) scale(1.02);
-      text-decoration: none;
-    }
-    
-    .presentation-tips {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
-      padding: 25px;
-      border-radius: 15px;
-      margin-bottom: 30px;
-      border-left: 5px solid #27ae60;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .presentation-tips::before {
-      content: '💡';
-      position: absolute;
-      top: -10px;
-      right: 20px;
-      font-size: 24px;
-      background: white;
-      padding: 5px;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    
-    .presentation-tips:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-    
-    .tip-item {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    
-    .tip-item:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-    
-    .tip-icon {
-      font-size: 24px;
-      margin-bottom: 8px;
-      display: block;
-    }
-    
-    .tip-text {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.4;
-    }
-    
-    .talks-stats {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 28px;
-      font-weight: bold;
-      color: #3498db;
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    .stat-label {
-      font-size: 12px;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    /* Mathematical animations */
-    .math-animation {
-      position: fixed;
-      pointer-events: none;
-      font-size: 16px;
-      color: rgba(52, 152, 219, 0.2);
-      z-index: -1;
-    }
-    
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes slideIn {
-      0% { left: -100%; }
-      50% { left: 0%; }
-      100% { left: 100%; }
-    }
-    
-    @keyframes mathFloat {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    .floating-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    .floating-icon {
-      position: absolute;
-      font-size: 20px;
-      opacity: 0.1;
-      animation: floatAround 15s infinite linear;
-    }
-    
-    @keyframes floatAround {
-      0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
-      25% { transform: translateY(75vh) translateX(100px) rotate(90deg); }
-      50% { transform: translateY(50vh) translateX(-50px) rotate(180deg); }
-      75% { transform: translateY(25vh) translateX(75px) rotate(270deg); }
-      100% { transform: translateY(-100px) translateX(0) rotate(360deg); }
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .left-column, .right-column {
-        width: 100%;
-      }
-      
-      .left-column {
-        position: static;
-      }
-      
-      body {
-        padding: 0 20px;
-        margin: 30px auto;
-      }
-      
-      .tips-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .talk {
-        padding: 20px;
-        padding-left: 25px;
-      }
-      
-      .talk:hover {
-        transform: translateX(8px) translateY(-5px) scale(1.01);
-      }
-    }
-  </style>
+  <!-- Le head reste identique -->
 </head>
 <body>
-  <div class="floating-elements">
-    <div class="floating-icon" style="left: 10%; animation-delay: 0s;">🎤</div>
-    <div class="floating-icon" style="left: 30%; animation-delay: 3s;">📊</div>
-    <div class="floating-icon" style="left: 50%; animation-delay: 6s;">🎯</div>
-    <div class="floating-icon" style="left: 70%; animation-delay: 9s;">💡</div>
-    <div class="floating-icon" style="left: 90%; animation-delay: 12s;">📚</div>
-  </div>
-
-  <div class="container">
-    <div class="left-column">
-      <h1>Yassine Ait Mohamed</h1>
-      <p>
-        PhD Student<br>
-        Department of Mathematics<br>
-        University of Sherbrooke
-      </p>
-      
-      <div class="talks-stats">
-        <span class="stat-number" id="talks-count">5</span>
-        <div class="stat-label">Total Talks</div>
-      </div>
-      
-      <div class="navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="research.html" class="nav-link">Research</a>
-        <a href="talks.html" class="nav-link" style="color: #e74c3c;">Talks</a>
-        <a href="cv.html" class="nav-link">CV</a>
-        <a href="teaching.html" class="nav-link">Teaching</a>
-        <a href="reftools.html" class="nav-link">Reference Collection Tools</a>
-      </div>
-      
-      <div class="university-links">
-        <a href="https://www.usherbrooke.ca/" target="_blank">University of Sherbrooke</a>
-        <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>
-      </div>
-    </div>
-    
-    <div class="right-column">
-      <div class="presentation-tips">
-        <h3 style="margin-top: 0; color: #2c3e50;">🎯 Presentation Excellence Tips</h3>
-        <div class="tips-grid">
-          <div class="tip-item">
-            <span class="tip-icon">📋</span>
-            <div class="tip-text"><strong>Structure:</strong> Clear intro, body, conclusion</div>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">👥</span>
-            <div class="tip-text"><strong>Audience:</strong> Know your listeners</div>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">🎨</span>
-            <div class="tip-text"><strong>Visuals:</strong> Clean, readable slides</div>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">⏱️</span>
-            <div class="tip-text"><strong>Timing:</strong> Practice time management</div>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">🗣️</span>
-            <div class="tip-text"><strong>Delivery:</strong> Clear, confident speech</div>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">❓</span>
-            <div class="tip-text"><strong>Q&A:</strong> Prepare for questions</div>
-          </div>
-        </div>
-      </div>
-
-      <h4>Talks</h4>
-      
-      <div class="talk" onclick="highlightTalk(this)">
-        <p>
-          <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
-          <a href="quivers.pdf" class="pdf-link">PDF</a>
-        </p>
-      </div>
-      
-      <div class="talk" onclick="highlightTalk(this)">
-        <p>
-          <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
-          <a href="graded_rings.pdf" class="pdf-link">PDF</a>
-        </p>
-      </div>
-      
-      <div class="talk" onclick="highlightTalk(this)">
-        <p>
-          <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
-        </p>
-      </div>
-      
-      <div class="talk" onclick="highlightTalk(this)">
-        <p>
-          <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
-          <a href="roch.pdf" class="pdf-link">PDF</a>
-        </p>
-      </div>
-      
-      <div class="talk" onclick="highlightTalk(this)">
-        <p>
-          <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
-        </p>
-      </div>
-    </div>
-  </div>
+  <!-- Le body reste identique jusqu'au script -->
 
   <script>
     // Mathematical formulas for talks page
@@ -761,7 +233,340 @@
       }
     }
 
-    // Initialize everything
+    // 🔥 ICI COMMENCE LA SUITE DU CODE (À PARTIR DE LA LIGNE 444) 🔥
+
+    // Add progressive enhancement for talks timeline
+    function enhanceTimeline() {
+      const talks = document.querySelectorAll('.talk');
+      
+      // Create a timeline progress indicator
+      const timeline = document.createElement('div');
+      timeline.style.cssText = `
+        position: fixed;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 200px;
+        background: linear-gradient(to bottom, #3498db, #e74c3c);
+        border-radius: 2px;
+        opacity: 0.3;
+        z-index: 100;
+      `;
+      
+      const progressDot = document.createElement('div');
+      progressDot.style.cssText = `
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #e74c3c;
+        border-radius: 50%;
+        left: -4px;
+        top: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+      `;
+      
+      timeline.appendChild(progressDot);
+      document.body.appendChild(timeline);
+      
+      // Update progress based on scroll
+      window.addEventListener('scroll', () => {
+        const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        progressDot.style.top = `${Math.min(scrollPercent * 188, 188)}px`;
+      });
+    }
+
+    // Create interactive presentation checklist
+    function createPresentationChecklist() {
+      const checklist = document.createElement('div');
+      checklist.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        width: 250px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 1001;
+        transform: translateX(300px);
+        transition: transform 0.3s ease;
+      `;
+      
+      const checklistItems = [
+        'Prepare slides',
+        'Practice timing',
+        'Check equipment',
+        'Prepare Q&A',
+        'Review content',
+        'Mental preparation'
+      ];
+      
+      let checklistHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <h4 style="margin: 0; color: #2c3e50; font-size: 16px;">📋 Presentation Checklist</h4>
+          <button onclick="toggleChecklist()" style="background: none; border: none; font-size: 18px; cursor: pointer;">×</button>
+        </div>
+      `;
+      
+      checklistItems.forEach((item, index) => {
+        checklistHTML += `
+          <div style="margin: 10px 0; display: flex; align-items: center;">
+            <input type="checkbox" id="check-${index}" style="margin-right: 8px; transform: scale(1.2);">
+            <label for="check-${index}" style="font-size: 14px; color: #444; cursor: pointer;">${item}</label>
+          </div>
+        `;
+      });
+      
+      checklist.innerHTML = checklistHTML;
+      document.body.appendChild(checklist);
+      
+      // Show checklist after a delay
+      setTimeout(() => {
+        checklist.style.transform = 'translateX(0)';
+      }, 2000);
+      
+      // Add checkbox interactions
+      checklist.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const label = this.nextElementSibling;
+          if (this.checked) {
+            label.style.textDecoration = 'line-through';
+            label.style.color = '#95a5a6';
+            
+            // Celebration effect
+            createCelebrationEffect(this);
+          } else {
+            label.style.textDecoration = 'none';
+            label.style.color = '#444';
+          }
+        });
+      });
+    }
+
+    // Toggle checklist visibility
+    function toggleChecklist() {
+      const checklist = document.querySelector('[style*="position: fixed"][style*="right: 20px"][style*="width: 250px"]');
+      if (checklist) {
+        const isVisible = checklist.style.transform === 'translateX(0px)';
+        checklist.style.transform = isVisible ? 'translateX(300px)' : 'translateX(0px)';
+      }
+    }
+
+    // Create celebration effect for completed checklist items
+    function createCelebrationEffect(element) {
+      const rect = element.getBoundingClientRect();
+      const particles = [];
+      
+      for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.innerHTML = '✨';
+        particle.style.cssText = `
+          position: fixed;
+          left: ${rect.left + Math.random() * 20}px;
+          top: ${rect.top + Math.random() * 20}px;
+          font-size: 12px;
+          pointer-events: none;
+          z-index: 10000;
+          animation: sparkle 1s ease-out forwards;
+        `;
+        
+        particles.push(particle);
+        document.body.appendChild(particle);
+      }
+      
+      // Add sparkle animation if not exists
+      if (!document.querySelector('style[data-sparkle]')) {
+        const style = document.createElement('style');
+        style.setAttribute('data-sparkle', 'true');
+        style.textContent = `
+          @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      // Clean up particles
+      setTimeout(() => {
+        particles.forEach(particle => particle.remove());
+      }, 1000);
+    }
+
+    // Enhanced search functionality for talks
+    function createTalksSearch() {
+      const searchContainer = document.createElement('div');
+      searchContainer.style.cssText = `
+        margin: 20px 0;
+        position: relative;
+      `;
+      
+      const searchInput = document.createElement('input');
+      searchInput.type = 'text';
+      searchInput.placeholder = '🔍 Search talks by topic, date, or location...';
+      searchInput.style.cssText = `
+        width: 100%;
+        padding: 12px 20px;
+        border: 2px solid #e1e8ed;
+        border-radius: 25px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: white;
+      `;
+      
+      searchInput.addEventListener('focus', function() {
+        this.style.borderColor = '#3498db';
+        this.style.boxShadow = '0 0 10px rgba(52, 152, 219, 0.3)';
+      });
+      
+      searchInput.addEventListener('blur', function() {
+        this.style.borderColor = '#e1e8ed';
+        this.style.boxShadow = 'none';
+      });
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const talks = document.querySelectorAll('.talk');
+        
+        talks.forEach(talk => {
+          const content = talk.textContent.toLowerCase();
+          if (content.includes(searchTerm) || searchTerm === '') {
+            talk.style.display = 'block';
+            talk.style.animation = 'fadeInUp 0.5s ease-out';
+          } else {
+            talk.style.display = 'none';
+          }
+        });
+        
+        // Show search results count
+        const visibleTalks = Array.from(talks).filter(talk => talk.style.display !== 'none').length;
+        updateSearchResults(visibleTalks, talks.length);
+      });
+      
+      searchContainer.appendChild(searchInput);
+      
+      // Insert search before talks
+      const talksSection = document.querySelector('h4');
+      talksSection.parentNode.insertBefore(searchContainer, talksSection);
+    }
+
+    // Update search results indicator
+    function updateSearchResults(visible, total) {
+      let indicator = document.getElementById('search-results');
+      
+      if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 'search-results';
+        indicator.style.cssText = `
+          text-align: center;
+          padding: 10px;
+          color: #666;
+          font-size: 14px;
+          font-style: italic;
+        `;
+        
+        const searchContainer = document.querySelector('input[placeholder*="Search talks"]').parentNode;
+        searchContainer.appendChild(indicator);
+      }
+      
+      if (visible === total) {
+        indicator.textContent = '';
+      } else {
+        indicator.textContent = `Showing ${visible} of ${total} talks`;
+      }
+    }
+
+    // Create presentation mode toggle
+    function createPresentationMode() {
+      const modeToggle = document.createElement('button');
+      modeToggle.innerHTML = '🎤 Presentation Mode';
+      modeToggle.style.cssText = `
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      `;
+      
+      modeToggle.addEventListener('click', togglePresentationMode);
+      modeToggle.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+        this.style.boxShadow = '0 6px 20px rgba(231, 76, 60, 0.4)';
+      });
+      
+      modeToggle.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = '0 4px 15px rgba(231, 76, 60, 0.3)';
+      });
+      
+      document.body.appendChild(modeToggle);
+    }
+
+    // Toggle presentation mode
+    function togglePresentationMode() {
+      const body = document.body;
+      const isPresMode = body.classList.contains('presentation-mode');
+      
+      if (!isPresMode) {
+        // Enter presentation mode
+        body.classList.add('presentation-mode');
+        
+        // Add presentation mode styles
+        const presStyle = document.createElement('style');
+        presStyle.id = 'presentation-style';
+        presStyle.textContent = `
+          .presentation-mode {
+            background: #1a1a1a !important;
+            color: #ffffff !important;
+          }
+          .presentation-mode .talk {
+            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+            color: #ffffff !important;
+            border-left-color: #3498db !important;
+          }
+          .presentation-mode .date {
+            background: rgba(52, 152, 219, 0.3) !important;
+            color: #ffffff !important;
+          }
+          .presentation-mode h1, .presentation-mode h4, .presentation-mode p {
+            color: #ffffff !important;
+          }
+          .presentation-mode .left-column {
+            background: rgba(44, 62, 80, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+          }
+        `;
+        document.head.appendChild(presStyle);
+        
+        // Update button text
+        document.querySelector('button[style*="bottom: 80px"]').innerHTML = '🌟 Exit Presentation Mode';
+      } else {
+        // Exit presentation mode
+        body.classList.remove('presentation-mode');
+        const presStyle = document.getElementById('presentation-style');
+        if (presStyle) presStyle.remove();
+        
+        // Update button text
+        document.querySelector('button[style*="bottom: 80px"]').innerHTML = '🎤 Presentation Mode';
+      }
+    }
+
+    // Initialize everything when page loads
     document.addEventListener('DOMContentLoaded', function() {
       animateTalksCounter();
       createTimeline();
@@ -769,6 +574,14 @@
       createSkillsTracker();
       setupKeyboardNavigation();
       createPresentationTimer();
+      
+      // Add new enhancements
+      setTimeout(() => {
+        enhanceTimeline();
+        createPresentationChecklist();
+        createTalksSearch();
+        createPresentationMode();
+      }, 1000);
       
       // Add smooth scrolling to navigation
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -801,6 +614,25 @@
           }
           typeText();
         }, index * 300);
+      });
+      
+      // Add scroll-triggered animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all talks for scroll animations
+      document.querySelectorAll('.talk').forEach(talk => {
+        observer.observe(talk);
       });
     });
 
