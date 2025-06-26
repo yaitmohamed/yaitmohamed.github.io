@@ -13,19 +13,23 @@
       line-height: 1.8;
       font-size: 18px;
       color: #2c3e50;
-      background-color: #fdfdfd;
+      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
       padding: 0 30px;
+      overflow-x: hidden;
     }
     
     .container {
       display: flex;
       gap: 40px;
       align-items: flex-start;
+      animation: fadeInUp 0.8s ease-out;
     }
     
     .left-column {
       width: 30%;
       flex-shrink: 0;
+      position: sticky;
+      top: 20px;
     }
     
     .right-column {
@@ -38,6 +42,12 @@
       margin-bottom: 5px;
       color: #2c3e50;
       font-weight: 600;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    
+    h1:hover {
+      color: #3498db;
     }
     
     h2 {
@@ -55,7 +65,20 @@
       font-weight: 500;
       color: #2c3e50;
       padding-bottom: 8px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 2px solid #3498db;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    h4::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #e74c3c, #f39c12);
+      animation: slideIn 2s ease-in-out infinite;
     }
     
     p {
@@ -68,11 +91,13 @@
     a {
       color: #3498db;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
     
     a:hover {
       color: #e74c3c;
       text-decoration: underline;
+      transform: translateX(2px);
     }
     
     .nav-link {
@@ -81,6 +106,18 @@
       font-size: 17px;
       font-weight: 500;
       color: #2c3e50;
+      padding: 8px 0;
+      border-left: 3px solid transparent;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover, .nav-link[style*="color: #e74c3c"] {
+      color: #e74c3c !important;
+      border-left-color: #e74c3c;
+      transform: translateX(5px);
+      text-decoration: none;
     }
     
     .navigation {
@@ -89,36 +126,272 @@
     
     .talk {
       position: relative;
-      margin-bottom: 25px;
-      padding-left: 20px;
-      border-left: 3px solid #3498db;
-      padding-bottom: 10px;
-      transition: all 0.2s ease;
+      margin-bottom: 30px;
+      padding: 25px;
+      padding-left: 35px;
+      border-left: 4px solid #3498db;
+      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    
+    .talk::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #3498db, #e74c3c);
+      transition: width 0.3s ease;
+    }
+    
+    .talk::after {
+      content: '🎤';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 20px;
+      opacity: 0.3;
+      transition: all 0.3s ease;
     }
     
     .talk:hover {
-      background-color: #f1f1f1;
+      transform: translateX(15px) translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
       border-left-color: #e74c3c;
+      background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    }
+    
+    .talk:hover::before {
+      width: 8px;
+    }
+    
+    .talk:hover::after {
+      opacity: 1;
+      transform: scale(1.2) rotate(15deg);
     }
     
     .date {
       font-weight: 600;
       color: #2c3e50;
+      background: rgba(52, 152, 219, 0.1);
+      padding: 5px 12px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .talk:hover .date {
+      background: rgba(231, 76, 60, 0.1);
+      transform: scale(1.05);
     }
     
     .pdf-link {
-      margin-left: 5px;
+      margin-left: 10px;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white !important;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    }
+    
+    .pdf-link:hover {
+      transform: translateY(-2px) scale(1.1);
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+      background: linear-gradient(135deg, #3498db, #2980b9);
     }
     
     .university-links {
       margin-top: 30px;
       padding-top: 20px;
-      border-top: 1px solid #eee;
+      border-top: 2px solid #ecf0f1;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .university-links:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
     }
     
     .university-links a {
       display: block;
+      margin-bottom: 12px;
+      padding: 8px 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .university-links a:hover {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white !important;
+      transform: translateX(8px) scale(1.02);
+      text-decoration: none;
+    }
+    
+    .presentation-tips {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      border-left: 5px solid #27ae60;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .presentation-tips::before {
+      content: '💡';
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-size: 24px;
+      background: white;
+      padding: 5px;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .presentation-tips:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .tip-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .tip-item:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .tip-icon {
+      font-size: 24px;
       margin-bottom: 8px;
+      display: block;
+    }
+    
+    .tip-text {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+    
+    .talks-stats {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #3498db;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Mathematical animations */
+    .math-animation {
+      position: fixed;
+      pointer-events: none;
+      font-size: 16px;
+      color: rgba(52, 152, 219, 0.2);
+      z-index: -1;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideIn {
+      0% { left: -100%; }
+      50% { left: 0%; }
+      100% { left: 100%; }
+    }
+    
+    @keyframes mathFloat {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .floating-icon {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.1;
+      animation: floatAround 15s infinite linear;
+    }
+    
+    @keyframes floatAround {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
+      25% { transform: translateY(75vh) translateX(100px) rotate(90deg); }
+      50% { transform: translateY(50vh) translateX(-50px) rotate(180deg); }
+      75% { transform: translateY(25vh) translateX(75px) rotate(270deg); }
+      100% { transform: translateY(-100px) translateX(0) rotate(360deg); }
     }
     
     @media (max-width: 768px) {
@@ -131,14 +404,39 @@
         width: 100%;
       }
       
+      .left-column {
+        position: static;
+      }
+      
       body {
         padding: 0 20px;
         margin: 30px auto;
+      }
+      
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .talk {
+        padding: 20px;
+        padding-left: 25px;
+      }
+      
+      .talk:hover {
+        transform: translateX(8px) translateY(-5px) scale(1.01);
       }
     }
   </style>
 </head>
 <body>
+  <div class="floating-elements">
+    <div class="floating-icon" style="left: 10%; animation-delay: 0s;">🎤</div>
+    <div class="floating-icon" style="left: 30%; animation-delay: 3s;">📊</div>
+    <div class="floating-icon" style="left: 50%; animation-delay: 6s;">🎯</div>
+    <div class="floating-icon" style="left: 70%; animation-delay: 9s;">💡</div>
+    <div class="floating-icon" style="left: 90%; animation-delay: 12s;">📚</div>
+  </div>
+
   <div class="container">
     <div class="left-column">
       <h1>Yassine Ait Mohamed</h1>
@@ -147,6 +445,11 @@
         Department of Mathematics<br>
         University of Sherbrooke
       </p>
+      
+      <div class="talks-stats">
+        <span class="stat-number" id="talks-count">5</span>
+        <div class="stat-label">Total Talks</div>
+      </div>
       
       <div class="navigation">
         <a href="index.html" class="nav-link">Home</a>
@@ -164,41 +467,382 @@
     </div>
     
     <div class="right-column">
+      <div class="presentation-tips">
+        <h3 style="margin-top: 0; color: #2c3e50;">🎯 Presentation Excellence Tips</h3>
+        <div class="tips-grid">
+          <div class="tip-item">
+            <span class="tip-icon">📋</span>
+            <div class="tip-text"><strong>Structure:</strong> Clear intro, body, conclusion</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">👥</span>
+            <div class="tip-text"><strong>Audience:</strong> Know your listeners</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">🎨</span>
+            <div class="tip-text"><strong>Visuals:</strong> Clean, readable slides</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">⏱️</span>
+            <div class="tip-text"><strong>Timing:</strong> Practice time management</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">🗣️</span>
+            <div class="tip-text"><strong>Delivery:</strong> Clear, confident speech</div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">❓</span>
+            <div class="tip-text"><strong>Q&A:</strong> Prepare for questions</div>
+          </div>
+        </div>
+      </div>
+
       <h4>Talks</h4>
       
-      <div class="talk">
+      <div class="talk" onclick="highlightTalk(this)">
         <p>
           <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
-          [<a href="quivers.pdf" class="pdf-link">PDF</a>]
+          <a href="quivers.pdf" class="pdf-link">PDF</a>
         </p>
       </div>
       
-      <div class="talk">
+      <div class="talk" onclick="highlightTalk(this)">
         <p>
           <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
-          [<a href="graded_rings.pdf" class="pdf-link">PDF</a>]
+          <a href="graded_rings.pdf" class="pdf-link">PDF</a>
         </p>
       </div>
       
-      <div class="talk">
+      <div class="talk" onclick="highlightTalk(this)">
         <p>
           <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
         </p>
       </div>
       
-      <div class="talk">
+      <div class="talk" onclick="highlightTalk(this)">
         <p>
           <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
-          [<a href="roch.pdf" class="pdf-link">PDF</a>]
+          <a href="roch.pdf" class="pdf-link">PDF</a>
         </p>
       </div>
       
-      <div class="talk">
+      <div class="talk" onclick="highlightTalk(this)">
         <p>
           <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
         </p>
       </div>
     </div>
   </div>
+
+  <script>
+    // Mathematical formulas for talks page
+    const talksFormulas = [
+      '∀', '∃', '∈', '⊆', '∪', '∩', '→', '↔', '∧', '∨', '¬', '⟹', 
+      'Hom', 'ker', 'im', '⊕', '⊗', '≅', '∼', '≡', '∇', '∂', '∫'
+    ];
+
+    // Create floating mathematical symbols
+    function createFloatingTalksMath() {
+      const formula = talksFormulas[Math.floor(Math.random() * talksFormulas.length)];
+      const element = document.createElement('div');
+      element.className = 'math-animation';
+      element.textContent = formula;
+      element.style.left = Math.random() * window.innerWidth + 'px';
+      element.style.animationDuration = (Math.random() * 12 + 18) + 's';
+      element.style.animation = 'mathFloat ' + (Math.random() * 12 + 18) + 's linear';
+      
+      document.body.appendChild(element);
+      
+      setTimeout(() => {
+        element.remove();
+      }, 30000);
+    }
+
+    // Start mathematical animations
+    setInterval(createFloatingTalksMath, 4000);
+
+    // Highlight talk function
+    function highlightTalk(element) {
+      // Remove previous highlights
+      document.querySelectorAll('.talk').forEach(talk => {
+        talk.style.background = 'linear-gradient(135deg, white 0%, #f8f9fa 100%)';
+      });
+      
+      // Highlight current talk
+      element.style.background = 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)';
+      
+      // Add temporary glow effect
+      element.style.boxShadow = '0 0 25px rgba(255, 193, 7, 0.5)';
+      
+      setTimeout(() => {
+        element.style.boxShadow = '0 4px 15px rgba(0,0,0,0.08)';
+      }, 2000);
+    }
+
+    // Animate talks counter
+    function animateTalksCounter() {
+      const counter = document.getElementById('talks-count');
+      let current = 0;
+      const target = 5;
+      const increment = target / 30;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target;
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+      }, 50);
+    }
+
+    // Add interactive timeline
+    function createTimeline() {
+      const talks = document.querySelectorAll('.talk');
+      talks.forEach((talk, index) => {
+        talk.style.animationDelay = `${index * 0.2}s`;
+        talk.style.animation = 'fadeInUp 0.6s ease-out forwards';
+        talk.style.opacity = '0';
+        
+        setTimeout(() => {
+          talk.style.opacity = '1';
+        }, index * 200);
+      });
+    }
+
+    // Add hover sound effect simulation
+    function addHoverEffects() {
+      const talks = document.querySelectorAll('.talk');
+      talks.forEach(talk => {
+        talk.addEventListener('mouseenter', function() {
+          this.style.borderLeftColor = '#e74c3c';
+          
+          // Create ripple effect
+          const ripple = document.createElement('div');
+          ripple.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(52, 152, 219, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+          `;
+          
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes ripple {
+              to {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+              }
+            }
+          `;
+          
+          if (!document.querySelector('style[data-ripple]')) {
+            style.setAttribute('data-ripple', 'true');
+            document.head.appendChild(style);
+          }
+          
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+        
+        talk.addEventListener('mouseleave', function() {
+          this.style.borderLeftColor = '#3498db';
+        });
+      });
+    }
+
+    // Create presentation skills tracker
+    function createSkillsTracker() {
+      const skills = [
+        { name: 'Content Knowledge', level: 95 },
+        { name: 'Visual Design', level: 88 },
+        { name: 'Public Speaking', level: 90 },
+        { name: 'Time Management', level: 92 },
+        { name: 'Q&A Handling', level: 87 }
+      ];
+      
+      // This would be displayed in a modal or separate section if needed
+      window.presentationSkills = skills;
+    }
+
+    // Add keyboard navigation
+    function setupKeyboardNavigation() {
+      let currentTalk = 0;
+      const talks = document.querySelectorAll('.talk');
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          currentTalk = Math.min(currentTalk + 1, talks.length - 1);
+          highlightTalk(talks[currentTalk]);
+          talks[currentTalk].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          currentTalk = Math.max(currentTalk - 1, 0);
+          highlightTalk(talks[currentTalk]);
+          talks[currentTalk].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          talks[currentTalk].click();
+        }
+      });
+    }
+
+    // Add presentation timer widget
+    function createPresentationTimer() {
+      const timer = document.createElement('div');
+      timer.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      `;
+      
+      timer.innerHTML = `
+        <div style="text-align: center;">
+          <div style="font-weight: bold; margin-bottom: 5px;">⏱️ Presentation Timer</div>
+          <div id="timer-display">00:00</div>
+          <button onclick="toggleTimer()" style="margin-top: 5px; padding: 5px 10px; border: none; border-radius: 5px; background: white; color: #3498db; cursor: pointer;">Start</button>
+        </div>
+      `;
+      
+      timer.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+      });
+      
+      timer.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+      
+      document.body.appendChild(timer);
+    }
+
+    // Timer functionality
+    let timerInterval;
+    let seconds = 0;
+    let isRunning = false;
+
+    function toggleTimer() {
+      const button = document.querySelector('#timer-display').nextElementSibling;
+      const display = document.getElementById('timer-display');
+      
+      if (isRunning) {
+        clearInterval(timerInterval);
+        button.textContent = 'Start';
+        isRunning = false;
+      } else {
+        timerInterval = setInterval(() => {
+          seconds++;
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          display.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+        button.textContent = 'Stop';
+        isRunning = true;
+      }
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+      animateTalksCounter();
+      createTimeline();
+      addHoverEffects();
+      createSkillsTracker();
+      setupKeyboardNavigation();
+      createPresentationTimer();
+      
+      // Add smooth scrolling to navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Add typing effect to tips
+      const tips = document.querySelectorAll('.tip-text');
+      tips.forEach((tip, index) => {
+        const text = tip.innerHTML;
+        tip.innerHTML = '';
+        
+        setTimeout(() => {
+          let i = 0;
+          function typeText() {
+            if (i < text.length) {
+              tip.innerHTML += text.charAt(i);
+              i++;
+              setTimeout(typeText, 20);
+            }
+          }
+          typeText();
+        }, index * 300);
+      });
+    });
+
+    // Add visual feedback for PDF links
+    document.querySelectorAll('.pdf-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        // Create download animation
+        const icon = document.createElement('div');
+        icon.innerHTML = '📄';
+        icon.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          font-size: 30px;
+          z-index: 10000;
+          animation: downloadPulse 1s ease-out;
+          pointer-events: none;
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes downloadPulse {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+          }
+        `;
+        
+        if (!document.querySelector('style[data-download]')) {
+          style.setAttribute('data-download', 'true');
+          document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(icon);
+        
+        setTimeout(() => {
+          icon.remove();
+        }, 1000);
+      });
+    });
+  </script>
 </body>
 </html>
