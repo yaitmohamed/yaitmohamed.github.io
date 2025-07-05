@@ -11,10 +11,26 @@
       font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
       line-height: 1.8;
       font-size: 18px;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
+      color: #1a1a2e;
+      background: linear-gradient(135deg, #0f0f23 0%, #16213e 50%, #1a1a2e 100%);
       padding: 0 30px;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Quantum field background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.02) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.02) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 80%, rgba(0, 255, 127, 0.02) 0%, transparent 50%);
+      animation: quantumField 20s ease-in-out infinite;
+      z-index: -1;
     }
 
     .container {
@@ -23,6 +39,12 @@
       gap: 20px;
       align-items: start;
       flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
     }
 
     .nav-section {
@@ -35,24 +57,29 @@
       margin-bottom: 10px;
       font-size: 28px;
       font-weight: 600;
-      color: #2c3e50;
-      transition: color 0.3s ease;
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      transition: all 0.3s ease;
+      animation: quantumGlow 3s ease-in-out infinite alternate;
     }
 
     .nav-section h1:hover {
-      color: #3498db;
+      color: #ff00ff;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+      animation: quantumPulse 0.5s ease-in-out;
     }
 
     .nav-section p {
       margin: 0;
-      color: #555;
+      color: #7f7fff;
       font-style: italic;
+      text-shadow: 0 0 5px rgba(127, 127, 255, 0.3);
     }
 
     .nav-section a {
       display: block;
       margin: 10px 0;
-      color: #3498db;
+      color: #00ff7f;
       text-decoration: none;
       font-weight: 500;
       font-size: 17px;
@@ -60,27 +87,47 @@
       border-left: 3px solid transparent;
       padding-left: 10px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-section a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.2), transparent);
+      transition: width 0.3s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #e74c3c;
-      border-left-color: #e74c3c;
+      color: #ff00ff;
+      border-left-color: #ff00ff;
       transform: translateX(5px);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    }
+
+    .nav-section a:hover::before {
+      width: 100%;
     }
 
     .content-section {
       grid-column: 2 / 3;
-      animation: fadeInUp 0.8s ease-out;
+      animation: quantumFadeIn 1s ease-out;
+      color: #e0e0ff;
     }
 
     .content-section h2 {
       font-size: 22px;
-      color: #2c3e50;
+      color: #00ffff;
       margin-bottom: 15px;
       padding-bottom: 8px;
-      border-bottom: 2px solid #3498db;
+      border-bottom: 2px solid #00ffff;
       position: relative;
       overflow: hidden;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
     }
 
     .content-section h2::after {
@@ -90,25 +137,28 @@
       left: -100%;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, #e74c3c, #f39c12);
-      animation: slideIn 2s ease-in-out infinite;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff7f);
+      animation: quantumWave 3s ease-in-out infinite;
     }
 
     .content-section p {
       margin: 0 0 15px 0;
-      color: #444;
+      color: #c0c0ff;
       line-height: 1.7;
       text-align: justify;
+      text-shadow: 0 0 2px rgba(192, 192, 255, 0.3);
     }
 
     .content-section a {
-      color: #3498db;
+      color: #00ff7f;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .content-section a:hover {
-      color: #e74c3c;
+      color: #ff00ff;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
     }
 
     .photo-section {
@@ -123,57 +173,66 @@
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid white;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      transition: all 0.3s ease;
       cursor: pointer;
+      animation: quantumOrbit 8s linear infinite;
     }
 
     .profile-photo:hover {
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(255, 0, 255, 0.6);
+      border-color: #ff00ff;
     }
 
-    /* Mathematical animations */
-    .math-animation {
+    /* Quantum particles */
+    .quantum-particle {
       position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #00ffff;
+      border-radius: 50%;
       pointer-events: none;
-      font-size: 24px;
-      color: rgba(52, 152, 219, 0.3);
       z-index: -1;
-    }
-
-    .floating-formula {
-      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 0 6px #00ffff;
     }
 
     .research-highlight {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
       padding: 20px;
       border-radius: 10px;
       margin: 20px 0;
-      border-left: 4px solid #3498db;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #00ffff;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
     }
 
     .research-highlight:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+      border-left-color: #ff00ff;
     }
 
     .skill-tag {
       display: inline-block;
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white;
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+      color: #000;
       padding: 5px 12px;
       border-radius: 20px;
       font-size: 14px;
       margin: 5px 5px 5px 0;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      border: 1px solid rgba(0, 255, 255, 0.3);
     }
 
     .skill-tag:hover {
+      background: linear-gradient(135deg, #ff00ff, #ff0080);
+      color: #fff;
       transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
     }
 
     .footer {
@@ -181,61 +240,90 @@
       padding: 15px 0;
       text-align: center;
       font-size: 14px;
-      color: #777;
-      border-top: 1px solid #ddd;
+      color: #7f7fff;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
     }
 
     .visitor-counter {
       margin-top: 10px;
       padding: 5px 10px;
-      background: linear-gradient(135deg, #f1f1f1, #e8e8e8);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
       border-radius: 20px;
       display: inline-block;
       font-weight: 500;
-      animation: pulse 2s ease-in-out infinite;
+      animation: quantumPulse 2s ease-in-out infinite;
+      color: #00ffff;
+      border: 1px solid rgba(0, 255, 255, 0.3);
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
+    /* Quantum Animations */
+    @keyframes quantumFadeIn {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(30px) scale(0.95);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    @keyframes slideIn {
+    @keyframes quantumWave {
       0% { left: -100%; }
-      50% { left: 0%; }
-      100% { left: 100%; }
+      50% { left: 100%; }
+      100% { left: -100%; }
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      25% { transform: translateY(-10px) rotate(1deg); }
-      50% { transform: translateY(-5px) rotate(-1deg); }
-      75% { transform: translateY(-15px) rotate(0.5deg); }
+    @keyframes quantumGlow {
+      0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+      100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.3); }
     }
 
-    @keyframes pulse {
+    @keyframes quantumPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
 
-    @keyframes mathFloat {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    @keyframes quantumOrbit {
+      0% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
+      25% { box-shadow: 0 0 30px rgba(255, 0, 255, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(0, 255, 127, 0.4); }
+      75% { box-shadow: 0 0 30px rgba(255, 127, 0, 0.4); }
+      100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
+    }
+
+    @keyframes quantumField {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes quantumParticle {
+      0% { 
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1;
+        transform: translateY(90vh) translateX(20px) scale(1);
+      }
+      50% { 
+        transform: translateY(50vh) translateX(-30px) scale(1.2);
+      }
+      90% { 
+        opacity: 1;
+        transform: translateY(10vh) translateX(10px) scale(0.8);
+      }
+      100% { 
+        transform: translateY(-10vh) translateX(0) scale(0);
+        opacity: 0;
+      }
     }
 
     /* Responsive design */
     @media (max-width: 768px) {
       .container {
         grid-template-columns: 1fr;
+        padding: 20px;
       }
       .nav-section, .content-section, .photo-section {
         grid-column: 1;
@@ -253,28 +341,37 @@
       }
     }
 
-    /* New sections styling */
     .publication-item {
-      background: white;
+      background: rgba(0, 255, 255, 0.05);
       padding: 15px;
       margin: 10px 0;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1);
       transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
     }
 
     .publication-item:hover {
       transform: translateX(5px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(255, 0, 255, 0.2);
+      border-color: rgba(255, 0, 255, 0.3);
     }
 
     .news-ticker {
-      background: linear-gradient(90deg, #3498db, #2980b9);
-      color: white;
+      background: linear-gradient(90deg, #00ffff, #0080ff);
+      color: #000;
       padding: 10px;
       border-radius: 5px;
       margin: 20px 0;
-      animation: slideIn 3s ease-in-out;
+      animation: quantumSlide 3s ease-in-out;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    @keyframes quantumSlide {
+      0% { transform: translateX(-100%); opacity: 0; }
+      50% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
     }
   </style>
 </head>
@@ -288,31 +385,26 @@
       <div style="margin-top: 20px;">
         <a href="index.html" class="active">Home</a>
         <a href="research.html">Research</a>
-
         <a href="talks.html">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-
       </div>
     </div>
     
     <div class="content-section">
-     
       <h2>About Me</h2>
       <p>
         Welcome! I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">University of Sherbrooke</a>. My research lies at the fascinating intersection of <strong>algebraic geometry</strong>, <strong>Lie theory</strong>, and <strong>symplectic geometry</strong>
-      
+      </p>
       <p>
         Previously, I was a PhD student at <a href="https://www.usmba.ac.ma/" target="_blank">Sidi Mohamed Ben Abdellah University</a>, where I focused on derivations of graded rings.
       </p>
-
-      
 
       <h2>Research Interests</h2>
       <div style="margin: 15px 0;">
         <span class="skill-tag">Algebraic Geometry</span>
         <span class="skill-tag">Lie Theory</span>
-        <span class="skill-tag">Poisson geomerty</span>
+        <span class="skill-tag">Poisson geometry</span>
         <span class="skill-tag">Symplectic geometry</span>
         <span class="skill-tag">Ring Theory</span>
       </div>
@@ -323,8 +415,6 @@
         📧 <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a><br>
         📧 <a href="mailto:y.aitmohamed@yahoo.com">y.aitmohamed@yahoo.com</a>
       </p>
-      
-    
     </div>
     
     <div class="photo-section">
@@ -337,26 +427,50 @@
   
   <footer class="footer">
     © 2025 Yassine Ait Mohamed. All rights reserved.
-    <br><small>Crafted with passion for mathematics and elegant design</small>
+    <br><small>Exploring the quantum realm of mathematics</small>
   </footer>
 
   <script>
-    // Mathematical formulas for animation
-    const mathFormulas = [
-      '∫ f(x)dx', '∂²u/∂x²', '∇·F', '∑ᵢ₌₁ⁿ xᵢ', 'lim_{x→∞}', 
-      'det(A)', '∪ ∩ ⊆', '∀x∃y', '≈ ≡ ≠', 'α β γ δ', 
-      '⟨φ|ψ⟩', '𝔽[x]', '⊗ ⊕', '∼ ≅', 'ℝⁿ → ℂ'
+    // Quantum formulas and symbols
+    const quantumFormulas = [
+      'ψ(x,t)', 'ℏ∇²', '⟨Ψ|Ψ⟩', '|0⟩⊗|1⟩', 'Ĥ|ψ⟩', 
+      '∫|ψ|²dx', 'e^{iφ}', '[x̂,p̂]', '|↑⟩|↓⟩', '⊗', 
+      'Tr(ρ)', '∂/∂t', '∆E∆t≥ℏ/2', '|+⟩', '⟨φ|Ô|ψ⟩'
     ];
 
-    // Create floating mathematical symbols
-    function createFloatingMath() {
-      const formula = mathFormulas[Math.floor(Math.random() * mathFormulas.length)];
+    // Create quantum particles
+    function createQuantumParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'quantum-particle';
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.animation = `quantumParticle ${Math.random() * 8 + 12}s linear`;
+      
+      // Random color for particles
+      const colors = ['#00ffff', '#ff00ff', '#00ff7f', '#ffff00'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.background = color;
+      particle.style.boxShadow = `0 0 6px ${color}`;
+      
+      document.body.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 20000);
+    }
+
+    // Create floating quantum formulas
+    function createQuantumFormula() {
+      const formula = quantumFormulas[Math.floor(Math.random() * quantumFormulas.length)];
       const element = document.createElement('div');
-      element.className = 'math-animation';
+      element.style.position = 'fixed';
+      element.style.pointerEvents = 'none';
+      element.style.fontSize = '16px';
+      element.style.color = 'rgba(0, 255, 255, 0.3)';
+      element.style.zIndex = '-1';
+      element.style.fontFamily = 'monospace';
       element.textContent = formula;
       element.style.left = Math.random() * window.innerWidth + 'px';
-      element.style.animationDuration = (Math.random() * 10 + 15) + 's';
-      element.style.animation = 'mathFloat ' + (Math.random() * 10 + 15) + 's linear';
+      element.style.animation = `quantumParticle ${Math.random() * 10 + 15}s linear`;
       
       document.body.appendChild(element);
       
@@ -365,76 +479,64 @@
       }, 25000);
     }
 
-    // Start mathematical animations
-    setInterval(createFloatingMath, 3000);
+    // Start quantum animations
+    setInterval(createQuantumParticle, 2000);
+    setInterval(createQuantumFormula, 4000);
 
-    // Visitor counter with animation
+    // Visitor counter
     document.addEventListener('DOMContentLoaded', function() {
-      // Simulate visitor count (replace with actual server call)
       let count = localStorage.getItem('visitorCount') || Math.floor(Math.random() * 1000) + 500;
       count = parseInt(count) + 1;
       localStorage.setItem('visitorCount', count);
       
       const counterElement = document.getElementById('visitor-count');
       counterElement.textContent = 'Visitors: ' + count;
-      
-      // Animate counter
-      counterElement.style.animation = 'pulse 0.5s ease-in-out';
     });
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Add hover effects to content sections
-    document.querySelectorAll('.content-section h2').forEach(header => {
-      header.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateX(5px)';
-        this.style.transition = 'transform 0.3s ease';
-      });
-      
-      header.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateX(0)';
-      });
-    });
-
-    // Profile photo click effect
+    // Enhanced profile photo effect
     document.querySelector('.profile-photo').addEventListener('click', function() {
-      this.style.animation = 'pulse 0.6s ease-in-out';
+      this.style.animation = 'quantumPulse 0.6s ease-in-out';
       setTimeout(() => {
-        this.style.animation = '';
+        this.style.animation = 'quantumOrbit 8s linear infinite';
       }, 600);
     });
 
-    // Add typing effect to the main title
-    function typeWriter(element, text, speed = 50) {
+    // Quantum typing effect
+    function quantumTypeWriter(element, text, speed = 80) {
       let i = 0;
       element.innerHTML = '';
       function type() {
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
+          // Add quantum glow effect while typing
+          element.style.textShadow = '0 0 20px rgba(0, 255, 255, 0.8)';
           i++;
           setTimeout(type, speed);
+        } else {
+          element.style.textShadow = '0 0 10px rgba(0, 255, 255, 0.5)';
         }
       }
       type();
     }
 
-    // Initialize typing effect after page load
+    // Initialize quantum typing effect
     window.addEventListener('load', function() {
       const title = document.querySelector('.nav-section h1');
       const originalText = title.textContent;
-      typeWriter(title, originalText, 100);
+      quantumTypeWriter(title, originalText, 120);
+    });
+
+    // Add quantum hover effects
+    document.querySelectorAll('.content-section h2').forEach(header => {
+      header.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateX(5px)';
+        this.style.textShadow = '0 0 15px rgba(0, 255, 255, 0.8)';
+      });
+      
+      header.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateX(0)';
+        this.style.textShadow = '0 0 10px rgba(0, 255, 255, 0.5)';
+      });
     });
   </script>
 </body>
