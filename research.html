@@ -12,10 +12,26 @@
       font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
       line-height: 1.8;
       font-size: 18px;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
+      color: #e0e0ff;
+      background: linear-gradient(135deg, #0f0f23 0%, #16213e 50%, #1a1a2e 100%);
       padding: 0 30px;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Quantum field background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.02) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.02) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 80%, rgba(0, 255, 127, 0.02) 0%, transparent 50%);
+      animation: quantumField 20s ease-in-out infinite;
+      z-index: -1;
     }
 
     .container {
@@ -23,6 +39,12 @@
       grid-template-columns: 250px 1fr 200px;
       gap: 20px;
       align-items: start;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
     }
 
     .nav-section {
@@ -35,24 +57,28 @@
       margin-bottom: 10px;
       font-size: 28px;
       font-weight: 600;
-      color: #2c3e50;
-      transition: color 0.3s ease;
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      transition: all 0.3s ease;
+      animation: quantumGlow 3s ease-in-out infinite alternate;
     }
 
     .nav-section h1:hover {
-      color: #3498db;
+      color: #ff00ff;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
     }
 
     .nav-section p {
       margin: 0;
-      color: #555;
+      color: #7f7fff;
       font-style: italic;
+      text-shadow: 0 0 5px rgba(127, 127, 255, 0.3);
     }
 
     .nav-section a {
       display: block;
       margin: 10px 0;
-      color: #3498db;
+      color: #00ff7f;
       text-decoration: none;
       font-weight: 500;
       font-size: 17px;
@@ -60,28 +86,47 @@
       border-left: 3px solid transparent;
       padding-left: 10px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-section a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.2), transparent);
+      transition: width 0.3s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #e74c3c;
-      border-left-color: #e74c3c;
+      color: #ff00ff;
+      border-left-color: #ff00ff;
       transform: translateX(5px);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    }
+
+    .nav-section a:hover::before {
+      width: 100%;
     }
 
     .content-section {
       grid-column: 2 / 3;
-      animation: fadeInUp 0.8s ease-out;
+      animation: quantumFadeIn 1s ease-out;
     }
 
     .content-section h2 {
       font-size: 22px;
-      color: #2c3e50;
+      color: #00ffff;
       margin-bottom: 15px;
       margin-top: 25px;
       padding-bottom: 8px;
-      border-bottom: 2px solid #3498db;
+      border-bottom: 2px solid #00ffff;
       position: relative;
       overflow: hidden;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
     }
 
     .content-section h2::after {
@@ -91,61 +136,70 @@
       left: -100%;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, #e74c3c, #f39c12);
-      animation: slideIn 2s ease-in-out infinite;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff7f);
+      animation: quantumWave 3s ease-in-out infinite;
     }
 
     .content-section p {
       margin: 0 0 15px 0;
-      color: #444;
+      color: #c0c0ff;
       line-height: 1.7;
       text-align: justify;
+      text-shadow: 0 0 2px rgba(192, 192, 255, 0.3);
     }
 
     .content-section a {
-      color: #3498db;
+      color: #00ff7f;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .content-section a:hover {
-      color: #e74c3c;
+      color: #ff00ff;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
     }
 
     .research-stats {
       grid-column: 3 / 4;
       position: sticky;
       top: 20px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
       text-align: center;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
     }
 
     .stat-item {
       margin: 15px 0;
       padding: 10px;
-      background: white;
+      background: rgba(0, 255, 255, 0.05);
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.1);
     }
 
     .stat-item:hover {
       transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+      border-color: rgba(255, 0, 255, 0.3);
     }
 
     .stat-number {
       font-size: 24px;
       font-weight: bold;
-      color: #3498db;
+      color: #00ffff;
       display: block;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
     }
 
     .stat-label {
       font-size: 12px;
-      color: #666;
+      color: #7f7fff;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -153,13 +207,15 @@
     .paper {
       margin-bottom: 25px;
       padding: 20px;
-      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.1);
       transition: all 0.3s ease;
-      border-left: 4px solid #3498db;
+      border-left: 4px solid #00ffff;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 255, 0.1);
     }
 
     .paper::before {
@@ -169,14 +225,15 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12);
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff7f);
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
 
     .paper:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.2);
+      border-left-color: #ff00ff;
     }
 
     .paper:hover::before {
@@ -186,16 +243,18 @@
     .paper-title {
       font-weight: 600;
       font-size: 18px;
-      color: #2c3e50;
+      color: #00ffff;
       margin-bottom: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     }
 
     .paper-title:hover {
-      color: #3498db;
+      color: #ff00ff;
       transform: translateX(5px);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
     }
 
     .paper-title::before {
@@ -210,13 +269,14 @@
 
     .journal {
       font-style: italic;
-      color: #666;
+      color: #7f7fff;
       margin-bottom: 12px;
       padding: 5px 10px;
-      background: rgba(52, 152, 219, 0.1);
+      background: rgba(0, 255, 255, 0.1);
       border-radius: 15px;
       display: inline-block;
       font-size: 14px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
     }
 
     .paper-links {
@@ -227,55 +287,61 @@
       display: inline-block;
       padding: 6px 12px;
       margin: 5px 5px 5px 0;
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white !important;
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+      color: #000 !important;
       border-radius: 20px;
       font-size: 14px;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+      box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+      border: 1px solid rgba(0, 255, 255, 0.3);
     }
 
     .paper-links a:hover {
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+      background: linear-gradient(135deg, #ff00ff, #ff0080);
+      color: #fff !important;
     }
 
     .abstract {
       padding: 20px;
-      background: linear-gradient(135deg, #f8f8f8 0%, #ecf0f1 100%);
-      border-left: 4px solid #e74c3c;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+      border-left: 4px solid #ff00ff;
       border-radius: 0 8px 8px 0;
       margin: 15px 0;
       font-size: 15px;
       line-height: 1.6;
-      color: #444;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      color: #c0c0ff;
+      box-shadow: inset 0 2px 4px rgba(0, 255, 255, 0.1);
       transition: all 0.3s ease;
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 0, 255, 0.1);
     }
 
     .abstract.show {
-      animation: expandDown 0.5s ease-out;
+      animation: quantumExpandDown 0.5s ease-out;
     }
 
     .abstract-toggle {
       cursor: pointer;
-      color: #3498db;
+      color: #00ffff;
       font-size: 15px;
       display: inline-block;
       margin-bottom: 10px;
       padding: 5px 10px;
-      border: 1px solid #3498db;
+      border: 1px solid #00ffff;
       border-radius: 15px;
       transition: all 0.3s ease;
       font-weight: 500;
+      background: rgba(0, 255, 255, 0.1);
     }
 
     .abstract-toggle:hover {
-      background: #3498db;
-      color: white;
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+      color: #000;
       transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
     }
 
     .hidden {
@@ -283,14 +349,16 @@
     }
 
     .research-highlight {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
       padding: 25px;
       border-radius: 15px;
       margin: 25px 0;
-      border-left: 5px solid #3498db;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-left: 5px solid #00ffff;
+      box-shadow: 0 6px 20px rgba(0, 255, 255, 0.2);
       transition: all 0.3s ease;
       position: relative;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
     }
 
     .research-highlight::before {
@@ -299,15 +367,17 @@
       top: -10px;
       right: 20px;
       font-size: 24px;
-      background: white;
+      background: rgba(0, 255, 255, 0.1);
       padding: 5px;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      border: 1px solid rgba(0, 255, 255, 0.3);
     }
 
     .research-highlight:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+      border-left-color: #ff00ff;
     }
 
     .research-areas {
@@ -318,43 +388,46 @@
     }
 
     .research-area {
-      background: white;
+      background: rgba(0, 255, 255, 0.05);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0, 255, 255, 0.1);
       transition: all 0.3s ease;
-      border-top: 3px solid #3498db;
+      border-top: 3px solid #00ffff;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 255, 0.1);
     }
 
     .research-area:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      border-top-color: #e74c3c;
+      box-shadow: 0 8px 25px rgba(255, 0, 255, 0.2);
+      border-top-color: #ff00ff;
+      border-color: rgba(255, 0, 255, 0.2);
     }
 
     .research-area h3 {
-      color: #2c3e50;
+      color: #00ffff;
       margin-bottom: 10px;
       font-size: 16px;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     }
 
     .research-area p {
       font-size: 14px;
-      color: #666;
+      color: #c0c0ff;
       margin: 0;
     }
 
-    /* Mathematical animations */
-    .math-animation {
+    /* Quantum particles */
+    .quantum-particle {
       position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #00ffff;
+      border-radius: 50%;
       pointer-events: none;
-      font-size: 20px;
-      color: rgba(52, 152, 219, 0.2);
       z-index: -1;
-    }
-
-    .floating-formula {
-      animation: float 8s ease-in-out infinite;
+      box-shadow: 0 0 6px #00ffff;
     }
 
     ul {
@@ -365,6 +438,7 @@
     ul li {
       margin: 8px 0;
       transition: transform 0.3s ease;
+      color: #c0c0ff;
     }
 
     ul li:hover {
@@ -375,31 +449,39 @@
       padding: 5px 10px;
       border-radius: 5px;
       transition: all 0.3s ease;
+      color: #00ff7f;
     }
 
     ul li a:hover {
-      background: rgba(52, 152, 219, 0.1);
+      background: rgba(0, 255, 127, 0.1);
+      color: #ff00ff;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
+    /* Quantum Animations */
+    @keyframes quantumFadeIn {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(30px) scale(0.95);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    @keyframes slideIn {
+    @keyframes quantumWave {
       0% { left: -100%; }
-      50% { left: 0%; }
-      100% { left: 100%; }
+      50% { left: 100%; }
+      100% { left: -100%; }
     }
 
-    @keyframes expandDown {
+    @keyframes quantumGlow {
+      0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+      100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.3); }
+    }
+
+    @keyframes quantumExpandDown {
       from {
         opacity: 0;
         max-height: 0;
@@ -412,14 +494,34 @@
       }
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      25% { transform: translateY(-15px) rotate(2deg); }
-      50% { transform: translateY(-8px) rotate(-1deg); }
-      75% { transform: translateY(-20px) rotate(1deg); }
+    @keyframes quantumField {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
 
-    @keyframes mathFloat {
+    @keyframes quantumParticle {
+      0% { 
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1;
+        transform: translateY(90vh) translateX(20px) scale(1);
+      }
+      50% { 
+        transform: translateY(50vh) translateX(-30px) scale(1.2);
+      }
+      90% { 
+        opacity: 1;
+        transform: translateY(10vh) translateX(10px) scale(0.8);
+      }
+      100% { 
+        transform: translateY(-10vh) translateX(0) scale(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes quantumFloat {
       0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
       10% { opacity: 1; }
       90% { opacity: 1; }
@@ -430,6 +532,7 @@
     @media (max-width: 768px) {
       .container {
         grid-template-columns: 1fr;
+        padding: 20px;
       }
       .nav-section, .content-section, .research-stats {
         grid-column: 1;
@@ -456,19 +559,14 @@
         <a href="talks.html">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-      
       </div>
     </div>
     
     <div class="content-section">
-
-    
-
       <h2>Academic Profiles</h2>
       <ul>
         <li><a href="https://scholar.google.com/citations?hl=en&user=psAOSJUAAAAJ&view_op=list_works&authuser=2">📊 Google Scholar Profile</a></li>
         <li><a href="https://orcid.org/0009-0002-2245-4217" target="_blank">🔗 ORCID Profile</a></li>
-    
       </ul>
       
       <h2>Recent Publications</h2>
@@ -529,7 +627,7 @@
         </div>
       </div>
 
-      <h2> Notes</h2>
+      <h2>Notes</h2>
       <div class="paper">
         <div class="paper-title">
           📝 Note on Sheaf Theory
@@ -540,33 +638,67 @@
         </div>
       </div>
 
-     
-  
-      <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <h4 style="margin: 0 0 10px 0; color: #2c3e50; font-size: 14px;">🔍 Research Keywords</h4>
-        <div style="font-size: 12px; color: #666; line-height: 1.4;">
+      <div style="margin-top: 20px; padding: 15px; background: rgba(0, 255, 255, 0.05); border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 255, 255, 0.1); border: 1px solid rgba(0, 255, 255, 0.1);">
+        <h4 style="margin: 0 0 10px 0; color: #00ffff; font-size: 14px; text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);">🔍 Research Keywords</h4>
+        <div style="font-size: 12px; color: #c0c0ff; line-height: 1.4;">
           Graded Rings • Derivations • Algebraic Geometry • Lie Theory • Ring Theory • Mathematical Physics
         </div>
+      </div>
+    </div>
+
+    <div class="research-stats">
+      <div class="stat-item">
+        <span class="stat-number" id="publications-count">3</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="research-years">3+</span>
+        <span class="stat-label">Years Research</span>
       </div>
     </div>
   </div>
 
   <script>
-    // Mathematical formulas for research page
-    const researchFormulas = [
-      '∂/∂x', 'gr-dim', '⊕ᵢRᵢ', 'Spec(R)', 'Der(R)', 'Hom(M,N)', 
-      '∇²', 'sl(n)', 'GL(n)', '∧', '⊗', 'Tor', 'Ext', '𝔤', 'ad(x)'
+    // Quantum formulas and research symbols
+    const quantumResearchFormulas = [
+      'ψ(x,t)', '∂/∂x', 'ℏ∇²', '⟨Ψ|Ψ⟩', 'gr-dim', '⊕ᵢRᵢ', 'Spec(R)', 'Der(R)', 
+      'Hom(M,N)', '∇²', 'sl(n)', 'GL(n)', '∧', '⊗', 'Tor', 'Ext', '𝔤', 'ad(x)',
+      '|0⟩⊗|1⟩', 'Ĥ|ψ⟩', '∫|ψ|²dx', 'e^{iφ}', '[x̂,p̂]', '|↑⟩|↓⟩', 'Tr(ρ)', '∂/∂t'
     ];
 
-    // Create floating mathematical symbols for research
-    function createFloatingResearchMath() {
-      const formula = researchFormulas[Math.floor(Math.random() * researchFormulas.length)];
+    // Create quantum particles
+    function createQuantumParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'quantum-particle';
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.animation = `quantumParticle ${Math.random() * 8 + 12}s linear`;
+      
+      // Random color for particles
+      const colors = ['#00ffff', '#ff00ff', '#00ff7f', '#ffff00'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.background = color;
+      particle.style.boxShadow = `0 0 6px ${color}`;
+      
+      document.body.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 20000);
+    }
+
+    // Create floating quantum research formulas
+    function createQuantumResearchFormula() {
+      const formula = quantumResearchFormulas[Math.floor(Math.random() * quantumResearchFormulas.length)];
       const element = document.createElement('div');
-      element.className = 'math-animation';
+      element.style.position = 'fixed';
+      element.style.pointerEvents = 'none';
+      element.style.fontSize = '16px';
+      element.style.color = 'rgba(0, 255, 255, 0.2)';
+      element.style.zIndex = '-1';
+      element.style.fontFamily = 'monospace';
       element.textContent = formula;
       element.style.left = Math.random() * window.innerWidth + 'px';
-      element.style.animationDuration = (Math.random() * 12 + 18) + 's';
-      element.style.animation = 'mathFloat ' + (Math.random() * 12 + 18) + 's linear';
+      element.style.animation = `quantumFloat ${Math.random() * 12 + 18}s linear`;
       
       document.body.appendChild(element);
       
@@ -575,10 +707,15 @@
       }, 30000);
     }
 
-    // Start mathematical animations
-    setInterval(createFloatingResearchMath, 4000);
+    // Start quantum animations
+    setInterval(createQuantumParticle, 2000);
+    setInterval(createQuantumResearchFormula, 4000);
 
-    // Enhanced abstract toggle with animation
+    // Enhanced abstract toggle with quantum animation
+    function toggleAbstract(id) {
+      const element = document.getElementById(id);
+      const toggle = element.
+// Enhanced abstract toggle with quantum animation
     function toggleAbstract(id) {
       const element = document.getElementById(id);
       const toggle = element.previousElementSibling;
@@ -587,21 +724,23 @@
         element.classList.remove('hidden');
         element.classList.add('show');
         toggle.innerHTML = '📖 Hide Abstract';
-        toggle.style.background = '#e74c3c';
-        toggle.style.color = 'white';
-        toggle.style.borderColor = '#e74c3c';
+        toggle.style.background = 'linear-gradient(135deg, #ff00ff, #ff0080)';
+        toggle.style.color = '#fff';
+        toggle.style.borderColor = '#ff00ff';
+        toggle.style.boxShadow = '0 0 15px rgba(255, 0, 255, 0.5)';
       } else {
         element.classList.add('hidden');
         element.classList.remove('show');
         toggle.innerHTML = '📖 View Abstract';
-        toggle.style.background = '';
-        toggle.style.color = '#3498db';
-        toggle.style.borderColor = '#3498db';
+        toggle.style.background = 'rgba(0, 255, 255, 0.1)';
+        toggle.style.color = '#00ffff';
+        toggle.style.borderColor = '#00ffff';
+        toggle.style.boxShadow = '';
       }
     }
 
-    // Animate statistics on load
-    function animateStats() {
+    // Animate statistics with quantum effect
+    function animateQuantumStats() {
       const stats = [
         { id: 'publications-count', target: 3, suffix: '' },
         { id: 'research-years', target: 3, suffix: '+' }
@@ -609,38 +748,57 @@
 
       stats.forEach(stat => {
         const element = document.getElementById(stat.id);
-        let current = 0;
-        const increment = stat.target / 30;
-        
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= stat.target) {
-            element.textContent = stat.target + stat.suffix;
-            clearInterval(timer);
-          } else {
-            element.textContent = Math.floor(current) + stat.suffix;
-          }
-        }, 50);
+        if (element) {
+          let current = 0;
+          const increment = stat.target / 30;
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= stat.target) {
+              element.textContent = stat.target + stat.suffix;
+              clearInterval(timer);
+              // Add quantum glow effect when done
+              element.style.animation = 'quantumGlow 2s ease-in-out infinite alternate';
+            } else {
+              element.textContent = Math.floor(current) + stat.suffix;
+            }
+          }, 50);
+        }
       });
     }
 
-    // Initialize animations
+    // Initialize quantum animations and effects
     document.addEventListener('DOMContentLoaded', function() {
-      animateStats();
+      animateQuantumStats();
       
-      // Add hover effects to paper titles
+      // Add quantum hover effects to paper titles
       document.querySelectorAll('.paper-title').forEach(title => {
         title.addEventListener('mouseenter', function() {
           this.style.transform = 'translateX(10px)';
+          this.style.textShadow = '0 0 15px rgba(255, 0, 255, 0.8)';
         });
         
         title.addEventListener('mouseleave', function() {
           this.style.transform = 'translateX(0)';
+          this.style.textShadow = '0 0 5px rgba(0, 255, 255, 0.5)';
+        });
+      });
+
+      // Add quantum effects to headers
+      document.querySelectorAll('.content-section h2').forEach(header => {
+        header.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateX(5px)';
+          this.style.textShadow = '0 0 15px rgba(0, 255, 255, 0.8), 0 0 25px rgba(0, 255, 255, 0.5)';
+        });
+        
+        header.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateX(0)';
+          this.style.textShadow = '0 0 10px rgba(0, 255, 255, 0.5)';
         });
       });
     });
 
-    // Smooth scrolling for navigation
+    // Smooth scrolling for navigation with quantum effect
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -654,16 +812,157 @@
       });
     });
 
-    // Paper hover effects
+    // Enhanced paper hover effects with quantum styling
     document.querySelectorAll('.paper').forEach(paper => {
       paper.addEventListener('mouseenter', function() {
-        this.style.borderLeftColor = '#e74c3c';
+        this.style.borderLeftColor = '#ff00ff';
+        this.style.boxShadow = '0 8px 30px rgba(255, 0, 255, 0.3)';
+        
+        // Add particles around the paper
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '3px';
+            particle.style.height = '3px';
+            particle.style.background = '#ff00ff';
+            particle.style.borderRadius = '50%';
+            particle.style.boxShadow = '0 0 4px #ff00ff';
+            particle.style.left = Math.random() * this.offsetWidth + 'px';
+            particle.style.top = Math.random() * this.offsetHeight + 'px';
+            particle.style.opacity = '0.7';
+            particle.style.animation = 'quantumParticle 2s ease-out forwards';
+            
+            this.appendChild(particle);
+            
+            setTimeout(() => {
+              particle.remove();
+            }, 2000);
+          }, i * 200);
+        }
       });
       
       paper.addEventListener('mouseleave', function() {
-        this.style.borderLeftColor = '#3498db';
+        this.style.borderLeftColor = '#00ffff';
+        this.style.boxShadow = '0 4px 15px rgba(0, 255, 255, 0.1)';
       });
     });
+
+    // Quantum typing effect for titles
+    function quantumTypeWriter(element, text, speed = 100) {
+      let i = 0;
+      element.innerHTML = '';
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          // Add quantum glow while typing
+          element.style.textShadow = '0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5)';
+          i++;
+          setTimeout(type, speed);
+        } else {
+          element.style.textShadow = '0 0 10px rgba(0, 255, 255, 0.5)';
+        }
+      }
+      type();
+    }
+
+    // Initialize quantum typing effect for main title
+    window.addEventListener('load', function() {
+      const title = document.querySelector('.nav-section h1');
+      if (title) {
+        const originalText = title.textContent;
+        quantumTypeWriter(title, originalText, 150);
+      }
+    });
+
+    // Add quantum pulse effect to navigation links
+    document.querySelectorAll('.nav-section a').forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.animation = 'quantumGlow 0.5s ease-in-out';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 500);
+      });
+    });
+
+    // Quantum background interaction
+    document.addEventListener('mousemove', function(e) {
+      // Create subtle quantum particles following cursor occasionally
+      if (Math.random() < 0.02) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.left = e.clientX + 'px';
+        particle.style.top = e.clientY + 'px';
+        particle.style.width = '2px';
+        particle.style.height = '2px';
+        particle.style.background = '#00ffff';
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '1000';
+        particle.style.boxShadow = '0 0 4px #00ffff';
+        particle.style.animation = 'quantumParticle 3s ease-out forwards';
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+          particle.remove();
+        }, 3000);
+      }
+    });
+
+    // Enhanced research stats with quantum animations
+    document.querySelectorAll('.stat-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) rotate(2deg)';
+        this.style.boxShadow = '0 6px 20px rgba(255, 0, 255, 0.4)';
+        
+        const number = this.querySelector('.stat-number');
+        if (number) {
+          number.style.animation = 'quantumGlow 1s ease-in-out infinite alternate';
+        }
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+        this.style.boxShadow = '0 2px 8px rgba(0, 255, 255, 0.1)';
+        
+        const number = this.querySelector('.stat-number');
+        if (number) {
+          number.style.animation = '';
+        }
+      });
+    });
+
+    // Paper links quantum effects
+    document.querySelectorAll('.paper-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        // Create quantum burst effect
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const burst = document.createElement('div');
+            burst.style.position = 'absolute';
+            burst.style.width = '4px';
+            burst.style.height = '4px';
+            burst.style.background = '#ff00ff';
+            burst.style.borderRadius = '50%';
+            burst.style.left = '50%';
+            burst.style.top = '50%';
+            burst.style.transform = 'translate(-50%, -50%)';
+            burst.style.boxShadow = '0 0 6px #ff00ff';
+            burst.style.animation = `quantumParticle 1s ease-out forwards`;
+            
+            this.style.position = 'relative';
+            this.appendChild(burst);
+            
+            setTimeout(() => {
+              burst.remove();
+            }, 1000);
+          }, i * 100);
+        }
+      });
+    });
+
+    console.log("🌌 Quantum research interface initialized! ⚛️");
   </script>
 </body>
-</html>
+</html>        
