@@ -2,27 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.3">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teaching - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
-      max-width: 1200px;
-      margin: 60px auto;
-      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-      line-height: 1.8;
-      font-size: 18px;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+      font-size: 16px;
       color: #2c3e50;
-      background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
-      padding: 0 30px;
-      overflow-x: hidden;
+      background: #ffffff;
+      padding: 40px 20px;
     }
 
     .container {
       display: grid;
-      grid-template-columns: 250px 1fr 200px;
-      gap: 20px;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
       align-items: start;
+      background: #fdfdfd;
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .nav-section {
@@ -32,427 +36,103 @@
     }
 
     .nav-section h1 {
-      margin-bottom: 10px;
-      font-size: 28px;
-      font-weight: 600;
-      color: #2c3e50;
-      transition: color 0.3s ease;
+      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a365d;
+      letter-spacing: 0.5px;
     }
 
-    .nav-section h1:hover {
-      color: #006633; /* Sherbrooke Green */
+    .nav-section .subtitle {
+      margin: 0 0 20px 0;
+      color: #718096;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
     }
 
-    .nav-section p {
-      margin: 0;
-      color: #555;
-      font-style: italic;
+    .nav-section nav {
+      margin-top: 30px;
     }
 
     .nav-section a {
       display: block;
-      margin: 10px 0;
-      color: #006633; /* Sherbrooke Green */
+      margin: 8px 0;
+      color: #2d3748;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 8px 0;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-      transition: all 0.3s ease;
+      font-weight: 400;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #004d26; /* Darker Sherbrooke Green */
-      border-left-color: #004d26;
-      transform: translateX(5px);
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .content-section {
       grid-column: 2 / 3;
-      animation: fadeInUp 0.8s ease-out;
+      color: #2d3748;
     }
 
     .content-section h2 {
-      font-size: 22px;
-      color: #2c3e50;
-      margin-bottom: 15px;
-      margin-top: 25px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #006633; /* Sherbrooke Green */
-      position: relative;
-      overflow: hidden;
+      font-size: 20px;
+      color: #1a365d;
+      margin: 30px 0 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e0;
+      font-weight: 400;
+      letter-spacing: 0.3px;
     }
 
-    .content-section h2::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #006633, #66b266); /* Sherbrooke Green gradient */
-      animation: slideIn 2s ease-in-out infinite;
+    .content-section h2:first-child {
+      margin-top: 0;
+    }
+
+    .content-section h3 {
+      font-size: 18px;
+      color: #1a365d;
+      margin: 25px 0 15px 0;
+      font-weight: 400;
     }
 
     .content-section p {
-      margin: 0 0 15px 0;
-      color: #444;
+      margin: 0 0 16px 0;
+      color: #4a5568;
       line-height: 1.7;
       text-align: justify;
     }
 
     .content-section a {
-      color: #006633; /* Sherbrooke Green */
+      color: #2c5282;
       text-decoration: none;
-      transition: color 0.3s ease;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .content-section a:hover {
-      color: #004d26; /* Darker Sherbrooke Green */
-    }
-
-    .teaching-tools {
-      grid-column: 3 / 4;
-      position: sticky;
-      top: 20px;
-    }
-
-    .tool-widget {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%); /* Light green tint */
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-
-    .tool-widget:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,102,51,0.15); /* Sherbrooke Green shadow */
-    }
-
-    .tool-widget h4 {
-      margin: 0 0 15px 0;
-      color: #2c3e50;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .calculator-widget input {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .calculator-widget button {
-      width: 100%;
-      padding: 8px;
-      background: linear-gradient(135deg, #006633, #004d26); /* Sherbrooke Green */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-
-    .calculator-widget button:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, #004d26, #003319); /* Darker Sherbrooke Green */
-    }
-
-    .grade-calculator {
-      text-align: center;
-    }
-
-    .grade-result {
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .quick-links {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .quick-links a {
-      display: block;
-      padding: 8px 0;
-      color: #006633; /* Sherbrooke Green */
-      text-decoration: none;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .quick-links a:hover {
-      color: #004d26; /* Darker Sherbrooke Green */
-      transform: translateX(5px);
-    }
-
-    .entry {
-      position: relative;
-      margin-bottom: 25px;
-      padding: 20px;
-      padding-left: 30px;
-      border-left: 4px solid #006633; /* Sherbrooke Green */
-      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
-      border-radius: 0 10px 10px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .entry::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #006633, #66b266); /* Sherbrooke Green gradient */
-      transition: width 0.3s ease;
-    }
-
-    .entry:hover {
-      transform: translateX(10px) translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,102,51,0.15); /* Sherbrooke Green shadow */
-      border-left-color: #004d26; /* Darker Sherbrooke Green */
-    }
-
-    .entry:hover::before {
-      width: 8px;
-    }
-
-    .date {
-      font-weight: 600;
-      color: #2c3e50;
-      margin-bottom: 8px;
-      font-size: 16px;
-      padding: 5px 10px;
-      background: rgba(0, 102, 51, 0.1); /* Light Sherbrooke Green */
-      border-radius: 15px;
-      display: inline-block;
-    }
-
-    .position {
-      font-weight: 600;
-      color: #006633; /* Sherbrooke Green */
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .institution {
-      font-style: italic;
-      color: #666;
-      font-size: 15px;
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .teaching-highlight {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%); /* Light green tint */
-      padding: 25px;
-      border-radius: 15px;
-      margin: 25px 0;
-      border-left: 5px solid #006633; /* Sherbrooke Green */
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .teaching-highlight::before {
-      content: '🎓';
-      position: absolute;
-      top: -10px;
-      right: 20px;
-      font-size: 24px;
-      background: white;
-      padding: 5px;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .teaching-highlight:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,102,51,0.15); /* Sherbrooke Green shadow */
-    }
-
-    .pdf-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 25px;
-    }
-
-    .pdf-cell {
+      background: #f7fafc;
       padding: 20px;
-      background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
-      border: 2px solid #e1e8ed;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pdf-cell::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .pdf-cell:hover::before {
-      left: 100%;
-    }
-
-    .pdf-cell:hover {
-      background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); /* Light Sherbrooke Green */
-      border-color: #006633; /* Sherbrooke Green */
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 8px 25px rgba(0, 102, 51, 0.2); /* Sherbrooke Green shadow */
-    }
-
-    .pdf-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #006633, #004d26); /* Sherbrooke Green */
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .pdf-cell:hover .pdf-icon {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    .pdf-title {
-      font-weight: 500;
-      color: #2c3e50;
-      flex: 1;
-      transition: color 0.3s ease;
-    }
-
-    .pdf-cell:hover .pdf-title {
-      color: #006633; /* Sherbrooke Green */
-    }
-
-    .course-filter {
+      border-radius: 6px;
       margin: 20px 0;
-      text-align: center;
+      border-left: 3px solid #1a365d;
+      border: 1px solid #e2e8f0;
     }
 
-    .filter-btn {
-      display: inline-block;
-      padding: 8px 16px;
-      margin: 5px;
-      background: white;
-      color: #006633; /* Sherbrooke Green */
-      border: 2px solid #006633; /* Sherbrooke Green */
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: #006633; /* Sherbrooke Green */
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .search-box {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 20px 0;
-      border: 2px solid #e1e8ed;
-      border-radius: 25px;
+    .teaching-highlight h3 {
+      margin-top: 0;
+      color: #1a365d;
       font-size: 16px;
-      transition: all 0.3s ease;
+      font-weight: 500;
     }
 
-    .search-box:focus {
-      outline: none;
-      border-color: #006633; /* Sherbrooke Green */
-      box-shadow: 0 0 10px rgba(0, 102, 51, 0.3); /* Sherbrooke Green shadow */
-    }
-
-    /* Mathematical animations */
-    .math-animation {
-      position: fixed;
-      pointer-events: none;
-      font-size: 18px;
-      color: rgba(0, 102, 51, 0.2); /* Sherbrooke Green */
-      z-index: -1;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      0% { left: -100%; }
-      50% { left: 0%; }
-      100% { left: 100%; }
-    }
-
-    @keyframes mathFloat {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-      .nav-section, .content-section, .teaching-tools {
-        grid-column: 1;
-      }
-      .nav-section, .teaching-tools {
-        position: static;
-      }
-      .pdf-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Statistics Dashboard */
     .stats-dashboard {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -463,29 +143,227 @@
     .stat-card {
       background: white;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 6px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
     }
 
     .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,102,51,0.15); /* Sherbrooke Green shadow */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border-color: #cbd5e0;
     }
 
     .stat-number {
       font-size: 24px;
-      font-weight: bold;
-      color: #006633; /* Sherbrooke Green */
+      font-weight: 600;
+      color: #1a365d;
       display: block;
     }
 
     .stat-label {
       font-size: 12px;
-      color: #666;
+      color: #718096;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    .entry {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e0;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .entry:hover {
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .date {
+      font-weight: 500;
+      color: #1a365d;
+      margin-bottom: 8px;
+      font-size: 14px;
+      padding: 4px 10px;
+      background: #f7fafc;
+      border-radius: 4px;
+      display: inline-block;
+      border: 1px solid #e2e8f0;
+    }
+
+    .position {
+      font-weight: 500;
+      color: #1a365d;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .institution {
+      font-style: italic;
+      color: #718096;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .course-filter {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .filter-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 4px;
+      background: #f7fafc;
+      color: #2d3748;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #edf2f7;
+      border-color: #a0aec0;
+      color: #1a365d;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: #1a365d;
+      box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1);
+    }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .pdf-cell {
+      padding: 15px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .pdf-cell:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .pdf-icon {
+      width: 35px;
+      height: 35px;
+      background: #edf2f7;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      color: #2d3748;
+      font-weight: 500;
+      font-size: 12px;
+      border: 1px solid #cbd5e0;
+      transition: all 0.2s ease;
+    }
+
+    .pdf-cell:hover .pdf-icon {
+      background: #e2e8f0;
+      border-color: #a0aec0;
+    }
+
+    .pdf-title {
+      font-weight: 400;
+      color: #2d3748;
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .pdf-cell:hover .pdf-title {
+      color: #1a365d;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+      
+      .container {
+        grid-template-columns: 1fr;
+        padding: 25px;
+        gap: 25px;
+      }
+      
+      .nav-section, .content-section {
+        grid-column: 1;
+      }
+      
+      .nav-section {
+        position: static;
+      }
+      
+      .nav-section nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .nav-section a {
+        margin: 0;
+      }
+
+      .pdf-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .nav-section h1 {
+        font-size: 22px;
+      }
+      
+      .content-section h2 {
+        font-size: 18px;
+      }
+
+      .stats-dashboard {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -493,22 +371,23 @@
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
-      <p>PhD Student<br>
-         Department of Mathematics<br>
-         University of Sherbrooke</p>
-      <div style="margin-top: 20px;">
+      <div class="subtitle">
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
+      </div>
+      <nav>
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
         <a href="talks.html">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html" class="active">Teaching</a>
-        
-      </div>
+      </nav>
     </div>
     
     <div class="content-section">
       <div class="teaching-highlight">
-        <h3 style="margin-top: 0; color: #2c3e50;">🎯 Teaching Philosophy</h3>
+        <h3>🎯 Teaching Philosophy</h3>
         <p>
           I believe in making mathematics accessible and engaging through interactive learning, real-world applications, and fostering critical thinking skills that extend beyond the classroom.
         </p>
@@ -516,16 +395,15 @@
 
       <div class="stats-dashboard">
         <div class="stat-card">
-          <span class="stat-number" id="years-teaching">6+</span>
+          <span class="stat-number">6+</span>
           <div class="stat-label">Years Teaching</div>
         </div>
-    
         <div class="stat-card">
-          <span class="stat-number" id="courses-taught">8</span>
+          <span class="stat-number">8</span>
           <div class="stat-label">Courses</div>
         </div>
         <div class="stat-card">
-          <span class="stat-number" id="resources-created">15+</span>
+          <span class="stat-number">15+</span>
           <div class="stat-label">Resources</div>
         </div>
       </div>
@@ -536,7 +414,7 @@
         <div class="date">January 2025 - April 2025</div>
         <div class="position">🔢 Teaching Assistant - Linear Algebra</div>
         <div class="institution">MAT253, University of Sherbrooke</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Leading tutorial sessions, grading assignments, and helping students understand vector spaces, linear transformations, and matrix operations.
         </p>
       </div>
@@ -545,7 +423,7 @@
         <div class="date">September 2024 - December 2024</div>
         <div class="position">📊 Teaching Assistant - Differential & Integral Calculus I</div>
         <div class="institution">MAT194, University of Sherbrooke</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Conducted exercise sessions, provided individual tutoring, and developed supplementary learning materials for first-year students.
         </p>
       </div>
@@ -554,7 +432,7 @@
         <div class="date">September 2024 - December 2024</div>
         <div class="position">🎯 Mathematics Tutor</div>
         <div class="institution">Center for Mathematics Help, University of Sherbrooke</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Provided personalized tutoring sessions across various mathematics subjects for undergraduate students.
         </p>
       </div>
@@ -563,7 +441,7 @@
         <div class="date">September 2020 - December 2023</div>
         <div class="position">🔬 Advanced Mathematics Tutor</div>
         <div class="institution">Algebra, Real and Complex Analysis, Topology</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Specialized tutoring in advanced mathematical topics for graduate and upper-level undergraduate students.
         </p>
       </div>
@@ -572,7 +450,7 @@
         <div class="date">September 2022 - November 2023</div>
         <div class="position">🏫 Mathematics Instructor</div>
         <div class="institution">Mini School Center, Fez-Morocco</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Designed and delivered comprehensive mathematics courses for high school students preparing for university entrance exams.
         </p>
       </div>
@@ -581,7 +459,7 @@
         <div class="date">September 2018 - March 2019</div>
         <div class="position">🌟 Mathematics Tutor</div>
         <div class="institution">Olympia Centre Zarhounia, Meknes - Morocco</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Provided foundational mathematics instruction for secondary school students with focus on problem-solving techniques.
         </p>
       </div>
@@ -590,7 +468,7 @@
         <div class="date">September 2017 - March 2018</div>
         <div class="position">📈 Mathematics Tutor</div>
         <div class="institution">Maxcence Centre, Meknes - Morocco</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        <p style="margin-top: 10px; font-size: 14px; color: #718096;">
           Early teaching experience focusing on building strong mathematical foundations for secondary school students.
         </p>
       </div>
@@ -604,7 +482,7 @@
             🔗 VosCours.fr Profile
           </a>
         </p>
-        <p style="font-size: 14px; color: #666; margin-top: 10px;">
+        <p style="font-size: 14px; color: #718096; margin-top: 10px;">
           Offering personalized online mathematics tutoring sessions with flexible scheduling and interactive learning tools.
         </p>
       </div>
@@ -698,444 +576,61 @@
         </div>
       </div>
     </div>
-
-    <div class="teaching-tools">
-      <div class="tool-widget">
-        <h4>🧮 Quick Calculator</h4>
-        <div class="calculator-widget">
-          <input type="text" id="calcInput" placeholder="Enter expression...">
-          <button onclick="calculate()">Calculate</button>
-          <div id="calcResult" style="margin-top: 10px; font-weight: bold; color: #006633;"></div>
-        </div>
-      </div>
-
-      <div class="tool-widget">
-        <h4>📊 Grade Calculator</h4>
-        <div class="grade-calculator">
-          <input type="number" id="totalPoints" placeholder="Total points" style="width: 100%; margin: 5px 0; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
-          <input type="number" id="earnedPoints" placeholder="Earned points" style="width: 100%; margin: 5px 0; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
-          <button onclick="calculateGrade()">Calculate Grade</button>
-          <div id="gradeResult" class="grade-result"></div>
-        </div>
-      </div>
-
-      <div class="tool-widget">
-        <h4>🔗 Quick Links</h4>
-        <div class="quick-links">
-          <a href="https://www.desmos.com/calculator" target="_blank">📈 Desmos Graphing</a>
-          <a href="https://www.wolframalpha.com/" target="_blank">🧠 Wolfram Alpha</a>
-          <a href="https://www.geogebra.org/" target="_blank">📐 GeoGebra</a>
-          <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">🏫 Math Department</a>
-        </div>
-      </div>
-
-      <div class="tool-widget">
-        <h4>📚 Study Tips</h4>
-        <div style="font-size: 12px; color: #666; line-height: 1.4;">
-          <p><strong>💡 Daily Practice:</strong> Spend 30 minutes daily on problem-solving</p>
-          <p><strong>🎯 Active Learning:</strong> Explain concepts to others</p>
-          <p><strong>📝 Note Taking:</strong> Summarize key theorems and proofs</p>
-          <p><strong>🤝 Study Groups:</strong> Collaborate with classmates</p>
-        </div>
-      </div>
-    </div>
   </div>
 
   <script>
-    // Mathematical formulas for teaching page
-    const teachingFormulas = [
-      '∫', '∂', '∑', '∏', 'lim', 'det', '∇', '△', 'sin', 'cos', 'tan', 
-      'log', 'ln', 'e^x', 'x²', '√x', '∞', 'π', 'θ', 'α', 'β', 'γ'
-    ];
-
-    // Create floating mathematical symbols
-    function createFloatingTeachingMath() {
-      const formula = teachingFormulas[Math.floor(Math.random() * teachingFormulas.length)];
-      const element = document.createElement('div');
-      element.className = 'math-animation';
-      element.textContent = formula;
-      element.style.left = Math.random() * window.innerWidth + 'px';
-      element.style.animationDuration = (Math.random() * 15 + 20) + 's';
-      element.style.animation = 'mathFloat ' + (Math.random() * 15 + 20) + 's linear';
+    // Filter resources function
+    function filterResources(category) {
+      const cells = document.querySelectorAll('.pdf-cell');
+      const buttons = document.querySelectorAll('.filter-btn');
       
-      document.body.appendChild(element);
+      // Update active button
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
       
-      setTimeout(() => {
-        element.remove();
-      }, 35000);
+      // Filter cells
+      cells.forEach(cell => {
+        const cellCategory = cell.getAttribute('data-category');
+        if (category === 'all' || cellCategory.includes(category)) {
+          cell.style.display = 'flex';
+        } else {
+          cell.style.display = 'none';
+        }
+      });
     }
 
-    // Start mathematical animations
-    setInterval(createFlo// Start mathematical animations
-   setInterval(createFloatingTeachingMath, 3500);
+    // Search functionality
+    function setupSearch() {
+      const searchBox = document.getElementById('searchBox');
+      const cells = document.querySelectorAll('.pdf-cell');
+      
+      searchBox.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        cells.forEach(cell => {
+          const title = cell.querySelector('.pdf-title').textContent.toLowerCase();
+          const category = cell.getAttribute('data-category').toLowerCase();
+          
+          if (title.includes(searchTerm) || category.includes(searchTerm)) {
+            cell.style.display = 'flex';
+          } else {
+            cell.style.display = 'none';
+          }
+        });
+        
+        // If search is empty, show all
+        if (searchTerm === '') {
+          cells.forEach(cell => {
+            cell.style.display = 'flex';
+          });
+        }
+      });
+    }
 
-   // Calculator function
-   function calculate() {
-     const input = document.getElementById('calcInput').value;
-     const result = document.getElementById('calcResult');
-     
-     try {
-       // Basic safety check
-       if (input.match(/[^0-9+\-*/().\s]/)) {
-         throw new Error('Invalid characters');
-       }
-       
-       const calculation = eval(input);
-       result.textContent = `= ${calculation}`;
-       result.style.color = '#006633'; // Sherbrooke Green
-     } catch (error) {
-       result.textContent = 'Error: Invalid expression';
-       result.style.color = '#dc3545'; // Error red
-     }
-   }
-
-   // Grade calculator function
-   function calculateGrade() {
-     const total = parseFloat(document.getElementById('totalPoints').value);
-     const earned = parseFloat(document.getElementById('earnedPoints').value);
-     const result = document.getElementById('gradeResult');
-     
-     if (isNaN(total) || isNaN(earned) || total === 0) {
-       result.textContent = 'Please enter valid numbers';
-       result.style.background = '#dc3545';
-       result.style.color = 'white';
-       return;
-     }
-     
-     const percentage = (earned / total) * 100;
-     let grade, color;
-     
-     if (percentage >= 90) {
-       grade = 'A+';
-       color = '#006633'; // Sherbrooke Green
-     } else if (percentage >= 85) {
-       grade = 'A';
-       color = '#28a745';
-     } else if (percentage >= 80) {
-       grade = 'A-';
-       color = '#66b266';
-     } else if (percentage >= 75) {
-       grade = 'B+';
-       color = '#ffc107';
-     } else if (percentage >= 70) {
-       grade = 'B';
-       color = '#fd7e14';
-     } else if (percentage >= 65) {
-       grade = 'B-';
-       color = '#e0a800';
-     } else if (percentage >= 60) {
-       grade = 'C+';
-       color = '#dc3545';
-     } else if (percentage >= 55) {
-       grade = 'C';
-       color = '#c82333';
-     } else {
-       grade = 'F';
-       color = '#721c24';
-     }
-     
-     result.innerHTML = `${percentage.toFixed(1)}% - Grade: ${grade}`;
-     result.style.background = color;
-     result.style.color = 'white';
-   }
-
-   // Filter resources function
-   function filterResources(category) {
-     const cells = document.querySelectorAll('.pdf-cell');
-     const buttons = document.querySelectorAll('.filter-btn');
-     
-     // Update active button
-     buttons.forEach(btn => btn.classList.remove('active'));
-     event.target.classList.add('active');
-     
-     // Filter cells
-     cells.forEach(cell => {
-       const cellCategory = cell.getAttribute('data-category');
-       if (category === 'all' || cellCategory.includes(category)) {
-         cell.style.display = 'flex';
-         cell.style.animation = 'fadeInUp 0.5s ease-out';
-       } else {
-         cell.style.display = 'none';
-       }
-     });
-   }
-
-   // Search functionality
-   function setupSearch() {
-     const searchBox = document.getElementById('searchBox');
-     const cells = document.querySelectorAll('.pdf-cell');
-     
-     searchBox.addEventListener('input', function() {
-       const searchTerm = this.value.toLowerCase();
-       
-       cells.forEach(cell => {
-         const title = cell.querySelector('.pdf-title').textContent.toLowerCase();
-         const category = cell.getAttribute('data-category').toLowerCase();
-         
-         if (title.includes(searchTerm) || category.includes(searchTerm)) {
-           cell.style.display = 'flex';
-           cell.style.animation = 'fadeInUp 0.5s ease-out';
-         } else {
-           cell.style.display = 'none';
-         }
-       });
-       
-       // If search is empty, show all
-       if (searchTerm === '') {
-         cells.forEach(cell => {
-           cell.style.display = 'flex';
-         });
-       }
-     });
-   }
-
-   // Animate statistics on load
-   function animateTeachingStats() {
-     const stats = [
-       { id: 'years-teaching', target: 6, suffix: '+' },
-       { id: 'courses-taught', target: 8, suffix: '' },
-       { id: 'resources-created', target: 15, suffix: '+' }
-     ];
-
-     stats.forEach(stat => {
-       const element = document.getElementById(stat.id);
-       if (element) {
-         let current = 0;
-         const increment = stat.target / 50;
-         
-         const timer = setInterval(() => {
-           current += increment;
-           if (current >= stat.target) {
-             element.textContent = stat.target + stat.suffix;
-             clearInterval(timer);
-           } else {
-             element.textContent = Math.floor(current) + stat.suffix;
-           }
-         }, 30);
-       }
-     });
-   }
-
-   // Add keyboard shortcuts for calculator
-   function setupKeyboardShortcuts() {
-     const calcInput = document.getElementById('calcInput');
-     
-     calcInput.addEventListener('keypress', function(event) {
-       if (event.key === 'Enter') {
-         calculate();
-       }
-     });
-     
-     // Allow Enter key for grade calculator inputs
-     document.getElementById('totalPoints').addEventListener('keypress', function(event) {
-       if (event.key === 'Enter') {
-         calculateGrade();
-       }
-     });
-     
-     document.getElementById('earnedPoints').addEventListener('keypress', function(event) {
-       if (event.key === 'Enter') {
-         calculateGrade();
-       }
-     });
-   }
-
-   // Interactive hover effects for teaching entries
-   function setupInteractiveEffects() {
-     const entries = document.querySelectorAll('.entry');
-     
-     entries.forEach(entry => {
-       entry.addEventListener('mouseenter', function() {
-         this.style.borderLeftColor = '#004d26'; // Darker Sherbrooke Green
-         const position = this.querySelector('.position');
-         if (position) {
-           position.style.transform = 'translateX(5px)';
-         }
-       });
-       
-       entry.addEventListener('mouseleave', function() {
-         this.style.borderLeftColor = '#006633'; // Sherbrooke Green
-         const position = this.querySelector('.position');
-         if (position) {
-           position.style.transform = 'translateX(0)';
-         }
-       });
-     });
-   }
-
-   // Dynamic tooltip system
-   function createTooltip(element, text) {
-     const tooltip = document.createElement('div');
-     tooltip.style.cssText = `
-       position: absolute;
-       background: #2c3e50;
-       color: white;
-       padding: 8px 12px;
-       border-radius: 6px;
-       font-size: 12px;
-       z-index: 1000;
-       pointer-events: none;
-       opacity: 0;
-       transition: opacity 0.3s ease;
-       white-space: nowrap;
-     `;
-     tooltip.textContent = text;
-     
-     element.addEventListener('mouseenter', function(e) {
-       document.body.appendChild(tooltip);
-       tooltip.style.left = e.pageX + 'px';
-       tooltip.style.top = (e.pageY - 40) + 'px';
-       setTimeout(() => tooltip.style.opacity = '1', 10);
-     });
-     
-     element.addEventListener('mouseleave', function() {
-       tooltip.style.opacity = '0';
-       setTimeout(() => {
-         if (tooltip.parentNode) {
-           tooltip.parentNode.removeChild(tooltip);
-         }
-       }, 300);
-     });
-     
-     element.addEventListener('mousemove', function(e) {
-       tooltip.style.left = e.pageX + 'px';
-       tooltip.style.top = (e.pageY - 40) + 'px';
-     });
-   }
-
-   // Add tooltips to PDF resources
-   function setupTooltips() {
-     const pdfCells = document.querySelectorAll('.pdf-cell');
-     const tooltips = [
-       'Linear algebra exercises with solutions',
-       'Comprehensive problem sets for MATH253',
-       'Tutorial exercises for Algebra fundamentals',
-       'Summary of sets and applications theory',
-       'Group theory concepts and proofs',
-       'Advanced analysis exercises with detailed solutions',
-       'Endomorphism reduction techniques',
-       'Topology problem sets with solutions',
-       'Practice test with step-by-step solutions',
-       'Additional practice problems',
-       'Assignment with detailed explanations',
-       'Final practice test',
-       'Real numbers theory and applications',
-       'Real sequences and convergence',
-       'Real sequences assignment solutions'
-     ];
-     
-     pdfCells.forEach((cell, index) => {
-       if (tooltips[index]) {
-         createTooltip(cell, tooltips[index]);
-       }
-     });
-   }
-
-   // Initialize everything when page loads
-   document.addEventListener('DOMContentLoaded', function() {
-     animateTeachingStats();
-     setupSearch();
-     setupKeyboardShortcuts();
-     setupInteractiveEffects();
-     setupTooltips();
-     
-     // Add smooth scrolling to navigation
-     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-       anchor.addEventListener('click', function (e) {
-         e.preventDefault();
-         const target = document.querySelector(this.getAttribute('href'));
-         if (target) {
-           target.scrollIntoView({
-             behavior: 'smooth',
-             block: 'start'
-           });
-         }
-       });
-     });
-     
-     // Add typing effect to teaching highlight
-     const highlight = document.querySelector('.teaching-highlight p');
-     if (highlight) {
-       const text = highlight.textContent;
-       highlight.textContent = '';
-       let i = 0;
-       
-       function typeText() {
-         if (i < text.length) {
-           highlight.textContent += text.charAt(i);
-           i++;
-           setTimeout(typeText, 30);
-         }
-       }
-       
-       setTimeout(typeText, 1000);
-     }
-   });
-
-   // Advanced search with suggestions
-   function setupAdvancedSearch() {
-     const searchBox = document.getElementById('searchBox');
-     const suggestions = ['algebra', 'analysis', 'topology', 'exercises', 'linear', 'calculus', 'groups'];
-     
-     let suggestionBox = document.createElement('div');
-     suggestionBox.style.cssText = `
-       position: absolute;
-       background: white;
-       border: 1px solid #ddd;
-       border-radius: 5px;
-       max-height: 150px;
-       overflow-y: auto;
-       z-index: 1000;
-       display: none;
-       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-     `;
-     
-     searchBox.parentNode.insertBefore(suggestionBox, searchBox.nextSibling);
-     
-     searchBox.addEventListener('input', function() {
-       const value = this.value.toLowerCase();
-       suggestionBox.innerHTML = '';
-       
-       if (value.length > 0) {
-         const matches = suggestions.filter(s => s.includes(value));
-         
-         if (matches.length > 0) {
-           suggestionBox.style.display = 'block';
-           matches.forEach(match => {
-             const div = document.createElement('div');
-             div.textContent = match;
-             div.style.cssText = 'padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #eee;';
-             div.addEventListener('click', function() {
-               searchBox.value = match;
-               searchBox.dispatchEvent(new Event('input'));
-               suggestionBox.style.display = 'none';
-             });
-             div.addEventListener('mouseenter', function() {
-               this.style.background = '#e8f5e8'; // Light Sherbrooke Green
-             });
-             div.addEventListener('mouseleave', function() {
-               this.style.background = 'white';
-             });
-             suggestionBox.appendChild(div);
-           });
-         } else {
-           suggestionBox.style.display = 'none';
-         }
-       } else {
-         suggestionBox.style.display = 'none';
-       }
-     });
-     
-     // Hide suggestions when clicking outside
-     document.addEventListener('click', function(e) {
-       if (!searchBox.contains(e.target) && !suggestionBox.contains(e.target)) {
-         suggestionBox.style.display = 'none';
-       }
-     });
-   }
-
-   // Call advanced search setup
-   setTimeout(setupAdvancedSearch, 500);
- </script>
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setupSearch();
+    });
+  </script>
 </body>
 </html>
