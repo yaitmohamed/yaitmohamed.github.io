@@ -1,227 +1,314 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Yassine Ait Mohamed</title>
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yassine Ait Mohamed - Mathematics PhD Student</title>
+  <style>
+    body {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #2c3e50;
+      background: #ffffff;
+      padding: 40px 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr 220px;
+      grid-template-rows: auto 1fr;
+      gap: 40px;
+      align-items: start;
+      background: #fdfdfd;
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-section {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      position: sticky;
+      top: 20px;
+    }
+
+    .nav-section h1 {
+      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a365d;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-section .subtitle {
+      margin: 0 0 20px 0;
+      color: #718096;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .nav-section nav {
+      margin-top: 30px;
+    }
+
+    .nav-section a {
+      display: block;
+      margin: 8px 0;
+      color: #2d3748;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-section a:hover, .nav-section a.active {
+      color: #1a365d;
+      border-bottom-color: #1a365d;
+    }
+
+    .content-section {
+      grid-column: 2 / 3;
+      color: #2d3748;
+    }
+
+    .content-section h2 {
+      font-size: 20px;
+      color: #1a365d;
+      margin: 30px 0 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e0;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .content-section h2:first-child {
+      margin-top: 0;
+    }
+
+    .content-section p {
+      margin: 0 0 16px 0;
+      color: #4a5568;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .content-section a {
+      color: #2c5282;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .content-section a:hover {
+      color: #1a365d;
+      border-bottom-color: #1a365d;
+    }
+
+    .photo-section {
+      grid-column: 3 / 4;
+      text-align: center;
+      position: sticky;
+      top: 20px;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .profile-photo:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .research-interests {
+      margin: 20px 0;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: #edf2f7;
+      color: #2d3748;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin: 3px 6px 3px 0;
+      border: 1px solid #cbd5e0;
+      font-weight: 400;
+      transition: all 0.2s ease;
+    }
+
+    .skill-tag:hover {
+      background: #e2e8f0;
+      border-color: #a0aec0;
+    }
+
+    .contact-info {
+      background: #f7fafc;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 25px 0;
+      border: 1px solid #e2e8f0;
+    }
+
+    .contact-info strong {
+      color: #1a365d;
+      font-weight: 500;
+    }
+
+    /* Academic publication style */
+    .publication-item {
+      background: #ffffff;
+      padding: 18px;
+      margin: 15px 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid #cbd5e0;
+      transition: all 0.2s ease;
+    }
+
+    .publication-item:hover {
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
       body {
-        padding:50px;
-        font:16px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-        color:#494949;
-        font-weight:300;
+        padding: 20px 15px;
       }
-      .date {
-        float: right;
+      
+      .container {
+        grid-template-columns: 1fr 150px;
+        grid-template-rows: auto 1fr;
+        padding: 25px;
+        gap: 20px;
       }
-      div.y{
-        display: inline-block;
-        width: 130px;
+      
+      .nav-section {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        position: static;
       }
-      div.u {
-        font-weight: bold;
-        display: inline-block;
-        width: 190px;
+      
+      .photo-section {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        position: static;
+        align-self: start;
       }
-      div.j {
-        display: inline-block;
-        width: 190px;
+      
+      .content-section {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
       }
-      .abstract {
-        padding-top: .25em;
-        padding-left: 1em;
-        display: none;
+      
+      .profile-photo {
+        width: 120px;
+        height: 120px;
       }
-      .joint-with {
-        margin-left: 15px;
+      
+      .nav-section nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
       }
-      .joint-with a {
-        margin-left: 0px;
-        color: #555;
+      
+      .nav-section a {
+        margin: 0;
       }
-      .joint-with a:hover {
-        color: #555;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        grid-template-columns: 1fr 100px;
+        padding: 20px;
+        gap: 15px;
       }
-      .joint-with a::before {
-        display: inline-block;
-        content: '▸';
-        margin: 0 3px;
-        transition: transform 250ms ease-in-out;
+      
+      .profile-photo {
+        width: 80px;
+        height: 80px;
       }
-      .joint-with a.active::before {
-        transform: rotate(90deg);
+      
+      .nav-section h1 {
+        font-size: 22px;
       }
-      h1, h2, h3, h4, h5, h6 {
-        margin:0 0 20px;
-        color: #393939;
+      
+      .content-section h2 {
+        font-size: 18px;
       }
-      p, ul, ol, table, pre, dl {
-        margin:0 0 20px;
-      }
-      h1, h2, h3 {
-        line-height:1.1;
-      }
-      a {
-        color: #2e8ab8;
-        text-decoration: none;
-      }
-      a:hover {
-        color: #069;
-      }
-      a small {
-        font-size:11px;
-        color:#777;
-        margin-top:-0.3em;
-        display:block;
-      }
-      a:hover small {
-        color:#777;
-      }
-      .wrapper {
-        width:900px;
-        margin:0 auto;
-      }
-      header {
-        width:270px;
-        float:left;
-        position:fixed;
-      }
-      header h1 {
-        text-align: left;
-        margin-bottom: 5px;
-      }
-      header h1 a {
-        color: #393939;
-        font-weight: bold;
-        font-size: 32px;
-      }
-      header h3 a {
-        color: #393939;
-      }
-      strong {
-        color:#222;
-        font-weight:500;
-      }
-      section {
-        width:600px;
-        float:right;
-        padding-bottom:50px;
-      }
-      section h1 {
-        font-size: 28px;
-        text-align: center;
-      }
-      section h2 {
-        margin-top: 20px;
-        margin-bottom: 10px;
-      }
-      section h3, h4, h5 {
-        margin-bottom: 5px;
-      }
-      section p {
-        text-align: justify;
-      }
-      small {
-        font-size:11px;
-      }
-      hr {
-        border:0;
-        background:#e5e5e5;
-        height:1px;
-        margin:0 0 20px;
-      }
-      @media print, screen and (max-width: 960px) {
-        div.wrapper {
-          width:auto;
-          margin:0;
-        }
-        header, section {
-          float:none;
-          position:static;
-          width:auto;
-        }
-        header {
-          padding-right:320px;
-        }
-        section {
-          border-width:1px 0;
-          padding:20px 0;
-          margin:0 0 20px;
-        }
-        header a small {
-          display:inline;
-        }
-        header ul {
-          position:absolute;
-          right:50px;
-          top:52px;
-        }
-      }
-      @media print, screen and (max-width: 720px) {
-        body {
-          word-wrap:break-word;
-        }
-        header {
-          padding:0;
-        }
-        header ul, header p.view {
-          position:static;
-        }
-      }
-      @media print, screen and (max-width: 480px) {
-        body {
-          padding:15px;
-        }
-        header ul {
-          width:99%;
-        }
-        header li, header ul li + li + li {
-          width:33%;
-        }
-      }
-      @media print {
-        body {
-          padding:0.4in;
-          font-size:12pt;
-          color:#444;
-        }
-      }
-    </style>
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="PhD Student, University of Sherbrooke, Department of Mathematics">
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="./">Yassine Ait Mohamed</a></h1>
-        <p>PhD Student<br>
-          Department of Mathematics<br>
-          University of Sherbrooke</p>
-        <h3><a href="./research.html">Research</a></h3>
-        <h3><a href="./talks.html">Talks</a></h3>
-        <h3><a href="./cv.html">CV</a></h3>
-        <h3><a href="./teaching.html">Teaching</a></h3>
-      </header>
-      <section>
-        <img src="./photo.jpg" width=175 style="display: block; margin-left: auto; margin-right: auto; margin-top: 10px;">
-        <h4>Introduction</h4>
-        <p style="margin-top:10px"> I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">University of Sherbrooke, Department of Mathematics</a> under supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. Previously, I was a PhD student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a> under supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.</p>
-<!---
-        <h4>PhD opportunity</h4>
-        <p>I have an opening for a funded PhD position starting in Fall 2024. If you are interested in doing research in geometry and/or mathematical physics, please contact me.</p>
-	--->
-        <h4>Email</h4>
-        <p><a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a></p>
-      </section>
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav-section">
+      <h1>Yassine Ait Mohamed</h1>
+      <div class="subtitle">
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
+      </div>
+      <nav>
+        <a href="#" class="active">Home</a>
+        <a href="#">Research</a>
+        <a href="#">Publications</a>
+        <a href="#">Teaching</a>
+        <a href="#">CV</a>
+        <a href="#">Contact</a>
+      </nav>
     </div>
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
-    <script>
-      $(document.body).on('click', '[data-toggle]', function(event) {
-        event.preventDefault();
-        var $target = $(event.target);
-        $target.toggleClass('active');
-        $('[data-toggle-id=' + $target.data('toggle') + ']').slideToggle();
-      });
-    </script>
-  </body>
+    
+    <div class="content-section">
+      <h2>About</h2>
+      <p>
+        I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">University of Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Dr. Maxence Mayrand</a>. My research focuses on several interconnected areas of modern mathematics.
+      </p>
+
+      <p>
+        Prior to my current position, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the guidance of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Prof. Lahcen Oukhitte</a>.
+      </p>
+
+      <h2>Research Interests</h2>
+      <div class="research-interests">
+        <p>My research interests span several areas of mathematics, with particular emphasis on:</p>
+        <span class="skill-tag">Lie Theory</span>
+        <span class="skill-tag">Poisson Geometry</span>
+        <span class="skill-tag">Symplectic Geometry</span>
+        <span class="skill-tag">Ring Theory</span>
+      </div>
+
+      <h2>Contact Information</h2>
+      <div class="contact-info">
+        <p>
+          <strong>Email:</strong><br>
+          <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
+        </p>
+        <p>
+          <strong>Office:</strong><br>
+          Department of Mathematics<br>
+          University of Sherbrooke<br>
+          Sherbrooke, QC, Canada
+        </p>
+      </div>
+    </div>
+    
+    <div class="photo-section">
+      <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
+    </div>
+  </div>
+</body>
 </html>
