@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.3">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
-      max-width: 1200px;
-      margin: 60px auto;
-      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-      line-height: 1.8;
-      font-size: 18px;
-      color: #333;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #2c3e50;
       background: #ffffff;
-      padding: 0 30px;
+      padding: 40px 20px;
     }
 
     .container {
       display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 20px;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
       align-items: start;
-      background: #f8f9fa;
-      border-radius: 20px;
-      padding: 30px;
-      border: 1px solid rgba(0, 102, 51, 0.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: #fdfdfd;
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .nav-section {
@@ -36,131 +36,146 @@
     }
 
     .nav-section h1 {
-      margin-bottom: 10px;
-      font-size: 28px;
-      font-weight: 600;
-      color: #006633;
-      transition: color 0.3s ease;
+      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a365d;
+      letter-spacing: 0.5px;
     }
 
-    .nav-section h1:hover {
-      color: #66b266;
+    .nav-section .subtitle {
+      margin: 0 0 20px 0;
+      color: #718096;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
     }
 
-    .nav-section p {
-      margin: 0;
-      color: #666;
-      font-style: italic;
+    .nav-section nav {
+      margin-top: 30px;
     }
 
     .nav-section a {
       display: block;
-      margin: 10px 0;
-      color: #006633;
+      margin: 8px 0;
+      color: #2d3748;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 8px 0;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-      transition: all 0.3s ease;
+      font-weight: 400;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #004d26;
-      border-left-color: #004d26;
-      transform: translateX(5px);
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .content-section {
       grid-column: 2 / 3;
+      color: #2d3748;
     }
 
     .content-section h2 {
-      font-size: 22px;
-      color: #006633;
-      margin-bottom: 15px;
-      margin-top: 25px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #006633;
+      font-size: 20px;
+      color: #1a365d;
+      margin: 30px 0 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e0;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .content-section h2:first-child {
+      margin-top: 0;
     }
 
     .content-section p {
-      margin: 0 0 15px 0;
-      color: #444;
+      margin: 0 0 16px 0;
+      color: #4a5568;
       line-height: 1.7;
       text-align: justify;
     }
 
     .content-section a {
-      color: #006633;
+      color: #2c5282;
       text-decoration: none;
-      transition: color 0.3s ease;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .content-section a:hover {
-      color: #66b266;
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .summary-item {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 20px;
-      padding: 20px;
-      border-left: 4px solid #006633;
+      margin-bottom: 15px;
+      padding: 18px;
+      border-left: 3px solid #cbd5e0;
       background: #ffffff;
-      border-radius: 0 10px 10px 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #cbd5e0;
     }
 
     .summary-item:hover {
-      border-left-color: #66b266;
-      transform: translateX(5px);
-      box-shadow: 0 4px 15px rgba(0, 102, 51, 0.2);
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .institution {
       flex: 2;
-      font-weight: 600;
-      color: #006633;
+      font-weight: 500;
+      color: #1a365d;
+      font-size: 15px;
     }
 
     .position {
       flex: 2;
-      color: #444;
+      color: #4a5568;
       font-style: italic;
       margin: 0 15px;
+      font-size: 14px;
     }
 
     .dates {
       flex: 1;
-      color: #006633;
-      font-weight: 600;
+      color: #1a365d;
+      font-weight: 500;
       text-align: right;
-      background: rgba(0, 102, 51, 0.1);
-      padding: 5px 10px;
-      border-radius: 15px;
+      background: #f7fafc;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      border: 1px solid #e2e8f0;
     }
 
     .download-button {
       display: inline-block;
-      padding: 15px 30px;
-      background: #006633;
-      color: white;
-      border-radius: 25px;
+      padding: 10px 20px;
+      background: #edf2f7;
+      color: #2d3748;
+      border-radius: 6px;
       text-decoration: none;
-      font-weight: 600;
-      margin-top: 20px;
-      transition: all 0.3s ease;
+      font-weight: 500;
+      margin-top: 15px;
+      transition: all 0.2s ease;
+      border: 1px solid #cbd5e0;
+      font-size: 14px;
     }
 
     .download-button:hover {
-      background: #66b266;
-      color: white;
+      background: #e2e8f0;
+      color: #1a365d;
       text-decoration: none;
-      transform: translateY(-2px);
+      border-color: #a0aec0;
     }
 
     .download-button::before {
@@ -170,15 +185,33 @@
 
     /* Responsive design */
     @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+      
       .container {
         grid-template-columns: 1fr;
-        padding: 20px;
+        padding: 25px;
+        gap: 25px;
       }
+      
       .nav-section, .content-section {
         grid-column: 1;
       }
+      
       .nav-section {
         position: static;
+      }
+      
+      .nav-section nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .nav-section a {
+        margin: 0;
       }
       
       .summary-item {
@@ -187,8 +220,26 @@
       }
       
       .institution, .position, .dates {
-        margin: 5px 0;
+        margin: 3px 0;
         text-align: left;
+      }
+      
+      .dates {
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .nav-section h1 {
+        font-size: 22px;
+      }
+      
+      .content-section h2 {
+        font-size: 18px;
       }
     }
   </style>
@@ -197,16 +248,18 @@
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
-      <p>PhD Student<br>
-         Department of Mathematics<br>
-         University of Sherbrooke</p>
-      <div style="margin-top: 20px;">
+      <div class="subtitle">
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
+      </div>
+      <nav>
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
         <a href="talks.html">Talks</a>
         <a href="cv.html" class="active">CV</a>
         <a href="teaching.html">Teaching</a>
-      </div>
+      </nav>
     </div>
     
     <div class="content-section">
