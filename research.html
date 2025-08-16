@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.3">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
-      max-width: 1200px;
-      margin: 60px auto;
-      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-      line-height: 1.8;
-      font-size: 18px;
-      color: #333;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #2c3e50;
       background: #ffffff;
-      padding: 0 30px;
+      padding: 40px 20px;
     }
 
     .container {
       display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 20px;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
       align-items: start;
-      background: #f8f9fa;
-      border-radius: 20px;
-      padding: 30px;
-      border: 1px solid rgba(0, 102, 51, 0.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: #fdfdfd;
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .nav-section {
@@ -36,94 +36,114 @@
     }
 
     .nav-section h1 {
-      margin-bottom: 10px;
-      font-size: 28px;
-      font-weight: 600;
-      color: #006633;
+      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a365d;
+      letter-spacing: 0.5px;
     }
 
-    .nav-section p {
-      margin: 0;
-      color: #666;
-      font-style: italic;
+    .nav-section .subtitle {
+      margin: 0 0 20px 0;
+      color: #718096;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .nav-section nav {
+      margin-top: 30px;
     }
 
     .nav-section a {
       display: block;
-      margin: 10px 0;
-      color: #006633;
+      margin: 8px 0;
+      color: #2d3748;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 8px 0;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-      transition: all 0.3s ease;
+      font-weight: 400;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #004d26;
-      border-left-color: #004d26;
-      transform: translateX(5px);
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .content-section {
       grid-column: 2 / 3;
+      color: #2d3748;
     }
 
     .content-section h2 {
-      font-size: 22px;
-      color: #006633;
-      margin-bottom: 15px;
-      margin-top: 25px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #006633;
+      font-size: 20px;
+      color: #1a365d;
+      margin: 30px 0 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e0;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .content-section h2:first-child {
+      margin-top: 0;
+    }
+
+    .content-section h3 {
+      font-size: 18px;
+      color: #1a365d;
+      margin: 25px 0 15px 0;
+      font-weight: 400;
     }
 
     .content-section p {
-      margin: 0 0 15px 0;
-      color: #444;
+      margin: 0 0 16px 0;
+      color: #4a5568;
       line-height: 1.7;
       text-align: justify;
     }
 
     .content-section a {
-      color: #006633;
+      color: #2c5282;
       text-decoration: none;
-      transition: color 0.3s ease;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .content-section a:hover {
-      color: #66b266;
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     .paper {
       margin-bottom: 25px;
       padding: 20px;
       background: #ffffff;
-      border-radius: 10px;
-      border-left: 4px solid #006633;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e0;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .paper:hover {
-      transform: translateY(-3px);
-      border-left-color: #66b266;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .paper-title {
-      font-weight: 600;
-      font-size: 18px;
-      color: #006633;
-      margin-bottom: 12px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #1a365d;
+      margin-bottom: 10px;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: color 0.2s ease;
+      line-height: 1.4;
     }
 
     .paper-title:hover {
-      color: #66b266;
+      color: #2c5282;
     }
 
     .paper-title::before {
@@ -133,64 +153,68 @@
 
     .journal {
       font-style: italic;
-      color: #666;
+      color: #718096;
       margin-bottom: 12px;
-      padding: 5px 10px;
-      background: rgba(0, 102, 51, 0.1);
-      border-radius: 15px;
+      padding: 4px 10px;
+      background: #f7fafc;
+      border-radius: 4px;
       display: inline-block;
-      font-size: 14px;
+      font-size: 13px;
+      border: 1px solid #e2e8f0;
     }
 
     .paper-links {
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     .paper-links a {
       display: inline-block;
-      padding: 6px 12px;
-      margin: 5px 5px 5px 0;
-      background: #006633;
-      color: #fff !important;
-      border-radius: 20px;
-      font-size: 14px;
+      padding: 4px 10px;
+      margin: 3px 6px 3px 0;
+      background: #edf2f7;
+      color: #2d3748 !important;
+      border-radius: 4px;
+      font-size: 13px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      border: 1px solid #cbd5e0;
+      transition: all 0.2s ease;
     }
 
     .paper-links a:hover {
-      background: #66b266;
-      transform: translateY(-2px);
+      background: #e2e8f0;
+      border-color: #a0aec0;
     }
 
     .abstract {
-      padding: 20px;
-      background: rgba(0, 102, 51, 0.05);
-      border-left: 4px solid #66b266;
-      border-radius: 0 8px 8px 0;
-      margin: 15px 0;
-      font-size: 15px;
+      padding: 16px;
+      background: #f7fafc;
+      border-left: 3px solid #1a365d;
+      border-radius: 0 4px 4px 0;
+      margin: 12px 0;
+      font-size: 14px;
       line-height: 1.6;
-      color: #444;
+      color: #4a5568;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #1a365d;
     }
 
     .abstract-toggle {
       cursor: pointer;
-      color: #006633;
-      font-size: 15px;
+      color: #2d3748;
+      font-size: 13px;
       display: inline-block;
-      margin-bottom: 10px;
-      padding: 5px 10px;
-      border: 1px solid #006633;
-      border-radius: 15px;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      background: rgba(0, 102, 51, 0.1);
+      margin-bottom: 8px;
+      padding: 4px 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      font-weight: 400;
+      background: #f7fafc;
     }
 
     .abstract-toggle:hover {
-      background: #006633;
-      color: #fff;
+      background: #e2e8f0;
+      border-color: #a0aec0;
     }
 
     .hidden {
@@ -204,32 +228,182 @@
 
     ul li {
       margin: 8px 0;
-      color: #444;
+      color: #4a5568;
     }
 
     ul li a {
-      color: #006633;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: all 0.3s ease;
+      color: #2c5282;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-decoration: none;
     }
 
     ul li a:hover {
-      background: rgba(0, 102, 51, 0.1);
-      color: #66b266;
+      background: #f7fafc;
+      color: #1a365d;
+    }
+
+    /* Links Grid */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .link-category {
+      background: white;
+      padding: 18px;
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .link-category:hover {
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .link-category h3 {
+      color: #1a365d;
+      margin-bottom: 12px;
+      font-size: 15px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .link-category ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .link-category ul li {
+      margin-bottom: 6px;
+    }
+
+    .link-category ul li a {
+      color: #2c5282;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 2px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .link-category ul li a:hover {
+      color: #1a365d;
+      border-bottom-color: #1a365d;
+      background: transparent;
+    }
+
+    /* Bibliography */
+    .bibliography-item {
+      background: white;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .bibliography-item:hover {
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .bibliography-item .title {
+      font-weight: 500;
+      color: #1a365d;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .bibliography-item .authors {
+      color: #718096;
+      font-style: italic;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .bibliography-item .journal {
+      color: #4a5568;
+      font-size: 13px;
+    }
+
+    /* Research Keywords */
+    .research-keywords {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .research-keywords h4 {
+      margin: 0 0 8px 0;
+      color: #1a365d;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .research-keywords div {
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.4;
     }
 
     /* Responsive design */
     @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+      
       .container {
         grid-template-columns: 1fr;
-        padding: 20px;
+        padding: 25px;
+        gap: 25px;
       }
+      
       .nav-section, .content-section {
         grid-column: 1;
       }
+      
       .nav-section {
         position: static;
+      }
+      
+      .nav-section nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .nav-section a {
+        margin: 0;
+      }
+
+      .links-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .nav-section h1 {
+        font-size: 22px;
+      }
+      
+      .content-section h2 {
+        font-size: 18px;
       }
     }
   </style>
@@ -238,16 +412,18 @@
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
-      <p>PhD Student<br>
-         Department of Mathematics<br>
-         University of Sherbrooke</p>
-      <div style="margin-top: 20px;">
+      <div class="subtitle">
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
+      </div>
+      <nav>
         <a href="index.html">Home</a>
         <a href="research.html" class="active">Research</a>
         <a href="talks.html">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-      </div>
+      </nav>
     </div>
     
     <div class="content-section">
@@ -255,10 +431,10 @@
       <ul>
         <li><a href="https://scholar.google.com/citations?hl=en&user=psAOSJUAAAAJ&view_op=list_works&authuser=2">📊 Google Scholar Profile</a></li>
         <li><a href="https://orcid.org/0009-0002-2245-4217" target="_blank">🔗 ORCID Profile</a></li>
-        <li><a href=''https://www.apprentus.com/profile'' target=''-blank''>🔗 Apprentus</li>
+        <li><a href="https://www.apprentus.com/profile" target="_blank">🔗 Apprentus</a></li>
       </ul>
       
-      <h2> Papers</h2>
+      <h2>Papers</h2>
 
       <div class="paper">
         <div class="paper-title" onclick="toggleAbstract('paper1')">
@@ -304,7 +480,7 @@
         </div>
       </div>
 
- <div class="paper">
+      <div class="paper">
         <div class="paper-title" onclick="toggleAbstract('paper4')">
          A Survey of Poisson-Dirac Geometry: Manifolds, Reductions, and Morita Equivalences
         </div>
@@ -317,9 +493,6 @@
         ..........................
         </div>
       </div>
-
-
-      
 
       <h2>Master's thesis</h2>
       <div class="paper">
@@ -344,149 +517,128 @@
         </div>
       </div>
 
-      <div style="margin-top: 20px; padding: 15px; background: rgba(0, 102, 51, 0.05); border-radius: 8px; border: 1px solid rgba(0, 102, 51, 0.1);">
-        <h4 style="margin: 0 0 10px 0; color: #006633; font-size: 14px;">🔍 Research Keywords</h4>
-        <div style="font-size: 12px; color: #666; line-height: 1.4;">
-          Graded Rings • Derivations • Lie Theory • Symplectic geometry • shifted symplectic geometry • Dirac geometry • Lie groupoids. 
+      <div class="research-keywords">
+        <h4>🔍 Research Keywords</h4>
+        <div>
+          Graded Rings • Derivations • Lie Theory • Symplectic geometry • shifted symplectic geometry • Dirac geometry • Lie groupoids.
         </div>
+      </div>
+
+      <h2>Useful Links & Mathematical Library</h2>
+
+      <div class="links-grid">
+        <!-- Mathematical Databases -->
+        <div class="link-category">
+          <h3>📚 Mathematical Databases</h3>
+          <ul>
+            <li><a href="https://arxiv.org/" target="_blank">arXiv.org</a></li>
+            <li><a href="https://mathscinet.ams.org/" target="_blank">MathSciNet</a></li>
+            <li><a href="https://zbmath.org/" target="_blank">zbMATH Open</a></li>
+            <li><a href="https://scholar.google.com/" target="_blank">Google Scholar</a></li>
+            <li><a href="https://www.researchgate.net/" target="_blank">ResearchGate</a></li>
+          </ul>
+        </div>
+
+        <!-- Mathematical Tools -->
+        <div class="link-category">
+          <h3>🔧 Mathematical Tools</h3>
+          <ul>
+            <li><a href="https://www.overleaf.com/" target="_blank">Overleaf (LaTeX)</a></li>
+            <li><a href="https://www.sagemath.org/" target="_blank">SageMath</a></li>
+            <li><a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha</a></li>
+            <li><a href="https://www.geogebra.org/" target="_blank">GeoGebra</a></li>
+            <li><a href="https://www.desmos.com/" target="_blank">Desmos Graphing</a></li>
+          </ul>
+        </div>
+
+        <!-- Institutions & Societies -->
+        <div class="link-category">
+          <h3>🏛️ Institutions & Societies</h3>
+          <ul>
+            <li><a href="https://www.ams.org/" target="_blank">American Mathematical Society</a></li>
+            <li><a href="https://www.mathunion.org/" target="_blank">International Mathematical Union</a></li>
+            <li><a href="https://smf.emath.fr/" target="_blank">Société Mathématique de France</a></li>
+            <li><a href="https://www.cms.math.ca/" target="_blank">Canadian Mathematical Society</a></li>
+            <li><a href="https://www.ems-ph.org/" target="_blank">European Mathematical Society</a></li>
+          </ul>
+        </div>
+
+        <!-- Specialized References -->
+        <div class="link-category">
+          <h3>📖 Specialized References</h3>
+          <ul>
+            <li><a href="https://ncatlab.org/" target="_blank">nLab (Category Theory)</a></li>
+            <li><a href="https://planetmath.org/" target="_blank">PlanetMath</a></li>
+            <li><a href="https://encyclopediaofmath.org/" target="_blank">Encyclopedia of Mathematics</a></li>
+            <li><a href="https://oeis.org/" target="_blank">OEIS (Integer Sequences)</a></li>
+            <li><a href="https://mathworld.wolfram.com/" target="_blank">MathWorld</a></li>
+          </ul>
+        </div>
+
+        <!-- Learning Resources -->
+        <div class="link-category">
+          <h3>🎓 Learning Resources</h3>
+          <ul>
+            <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+            <li><a href="https://ocw.mit.edu/" target="_blank">MIT OpenCourseWare</a></li>
+            <li><a href="https://www.khanacademy.org/" target="_blank">Khan Academy</a></li>
+            <li><a href="https://www.edx.org/" target="_blank">edX</a></li>
+            <li><a href="https://www.3blue1brown.com/" target="_blank">3Blue1Brown</a></li>
+          </ul>
+        </div>
+
+        <!-- Communities -->
+        <div class="link-category">
+          <h3>🌐 Communities</h3>
+          <ul>
+            <li><a href="https://mathoverflow.net/" target="_blank">MathOverflow</a></li>
+            <li><a href="https://math.stackexchange.com/" target="_blank">Mathematics Stack Exchange</a></li>
+            <li><a href="https://www.reddit.com/r/math/" target="_blank">r/math (Reddit)</a></li>
+            <li><a href="https://mathstodon.xyz/" target="_blank">Mathstodon</a></li>
+            <li><a href="https://www.artofproblemsolving.com/" target="_blank">Art of Problem Solving</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>📚 Recommended Bibliography</h3>
+
+      <div class="bibliography-item">
+        <div class="title">Lie Groups and Lie Algebras</div>
+        <div class="authors">Jean-Pierre Serre</div>
+        <div class="journal">Springer-Verlag, Graduate Texts in Mathematics</div>
+      </div>
+
+      <div class="bibliography-item">
+        <div class="title">Introduction to Smooth Manifolds</div>
+        <div class="authors">John M. Lee</div>
+        <div class="journal">Springer-Verlag, Graduate Texts in Mathematics, Vol. 218</div>
+      </div>
+
+      <div class="bibliography-item">
+        <div class="title">Lectures on Symplectic Geometry</div>
+        <div class="authors">Ana Cannas da Silva</div>
+        <div class="journal">Springer-Verlag, Lecture Notes in Mathematics</div>
+      </div>
+
+      <div class="bibliography-item">
+        <div class="title">A Guide to Quantum Groups</div>
+        <div class="authors">Vyjayanthi Chari, Andrew Pressley</div>
+        <div class="journal">Cambridge University Press</div>
+      </div>
+
+      <div class="bibliography-item">
+        <div class="title">Poisson Structures and Their Normal Forms</div>
+        <div class="authors">Jean-Paul Dufour, Nguyen Tien Zung</div>
+        <div class="journal">Birkhäuser, Progress in Mathematics, Vol. 242</div>
+      </div>
+
+      <div class="bibliography-item">
+        <div class="title">Introduction to Commutative Algebra</div>
+        <div class="authors">Michael Atiyah, Ian G. MacDonald</div>
+        <div class="journal">Addison-Wesley Publishing Company</div>
       </div>
     </div>
   </div>
-
-
-<!-- À ajouter dans votre section content-section, après les autres sous-sections -->
-
-<h2>Useful Links & Mathematical Library</h2>
-
-<!-- Links Grid -->
-<div class="links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-  
-  <!-- Mathematical Databases -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">📚 Mathematical Databases</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://arxiv.org/" target="_blank" style="color: #006633; text-decoration: none;">arXiv.org</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://mathscinet.ams.org/" target="_blank" style="color: #006633; text-decoration: none;">MathSciNet</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://zbmath.org/" target="_blank" style="color: #006633; text-decoration: none;">zbMATH Open</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://scholar.google.com/" target="_blank" style="color: #006633; text-decoration: none;">Google Scholar</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.researchgate.net/" target="_blank" style="color: #006633; text-decoration: none;">ResearchGate</a></li>
-    </ul>
-  </div>
-
-  <!-- Mathematical Tools -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">🔧 Mathematical Tools</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://www.overleaf.com/" target="_blank" style="color: #006633; text-decoration: none;">Overleaf (LaTeX)</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.sagemath.org/" target="_blank" style="color: #006633; text-decoration: none;">SageMath</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.wolframalpha.com/" target="_blank" style="color: #006633; text-decoration: none;">Wolfram Alpha</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.geogebra.org/" target="_blank" style="color: #006633; text-decoration: none;">GeoGebra</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.desmos.com/" target="_blank" style="color: #006633; text-decoration: none;">Desmos Graphing</a></li>
-    </ul>
-  </div>
-
-  <!-- Institutions & Societies -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">🏛️ Institutions & Societies</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://www.ams.org/" target="_blank" style="color: #006633; text-decoration: none;">American Mathematical Society</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.mathunion.org/" target="_blank" style="color: #006633; text-decoration: none;">International Mathematical Union</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://smf.emath.fr/" target="_blank" style="color: #006633; text-decoration: none;">Société Mathématique de France</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.cms.math.ca/" target="_blank" style="color: #006633; text-decoration: none;">Canadian Mathematical Society</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.ems-ph.org/" target="_blank" style="color: #006633; text-decoration: none;">European Mathematical Society</a></li>
-    </ul>
-  </div>
-
-  <!-- Specialized References -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">📖 Specialized References</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://ncatlab.org/" target="_blank" style="color: #006633; text-decoration: none;">nLab (Category Theory)</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://planetmath.org/" target="_blank" style="color: #006633; text-decoration: none;">PlanetMath</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://encyclopediaofmath.org/" target="_blank" style="color: #006633; text-decoration: none;">Encyclopedia of Mathematics</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://oeis.org/" target="_blank" style="color: #006633; text-decoration: none;">OEIS (Integer Sequences)</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://mathworld.wolfram.com/" target="_blank" style="color: #006633; text-decoration: none;">MathWorld</a></li>
-    </ul>
-  </div>
-
-  <!-- Learning Resources -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">🎓 Learning Resources</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://www.coursera.org/" target="_blank" style="color: #006633; text-decoration: none;">Coursera</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://ocw.mit.edu/" target="_blank" style="color: #006633; text-decoration: none;">MIT OpenCourseWare</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.khanacademy.org/" target="_blank" style="color: #006633; text-decoration: none;">Khan Academy</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.edx.org/" target="_blank" style="color: #006633; text-decoration: none;">edX</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.3blue1brown.com/" target="_blank" style="color: #006633; text-decoration: none;">3Blue1Brown</a></li>
-    </ul>
-  </div>
-
-  <!-- Communities -->
-  <div class="link-category" style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <h3 style="color: #006633; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #006633; padding-bottom: 5px;">🌐 Communities</h3>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin-bottom: 8px;"><a href="https://mathoverflow.net/" target="_blank" style="color: #006633; text-decoration: none;">MathOverflow</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://math.stackexchange.com/" target="_blank" style="color: #006633; text-decoration: none;">Mathematics Stack Exchange</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.reddit.com/r/math/" target="_blank" style="color: #006633; text-decoration: none;">r/math (Reddit)</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://mathstodon.xyz/" target="_blank" style="color: #006633; text-decoration: none;">Mathstodon</a></li>
-      <li style="margin-bottom: 8px;"><a href="https://www.artofproblemsolving.com/" target="_blank" style="color: #006633; text-decoration: none;">Art of Problem Solving</a></li>
-    </ul>
-  </div>
-</div>
-
-<!-- Recommended Bibliography -->
-<h3 style="color: #006633; margin-top: 30px; margin-bottom: 20px; font-size: 20px;">📚 Recommended Bibliography</h3>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">Lie Groups and Lie Algebras</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">Jean-Pierre Serre</div>
-  <div class="journal" style="color: #444;">Springer-Verlag, Graduate Texts in Mathematics</div>
-</div>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">Introduction to Smooth Manifolds</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">John M. Lee</div>
-  <div class="journal" style="color: #444;">Springer-Verlag, Graduate Texts in Mathematics, Vol. 218</div>
-</div>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">Lectures on Symplectic Geometry</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">Ana Cannas da Silva</div>
-  <div class="journal" style="color: #444;">Springer-Verlag, Lecture Notes in Mathematics</div>
-</div>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">A Guide to Quantum Groups</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">Vyjayanthi Chari, Andrew Pressley</div>
-  <div class="journal" style="color: #444;">Cambridge University Press</div>
-</div>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">Poisson Structures and Their Normal Forms</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">Jean-Paul Dufour, Nguyen Tien Zung</div>
-  <div class="journal" style="color: #444;">Birkhäuser, Progress in Mathematics, Vol. 242</div>
-</div>
-
-<div class="bibliography-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #006633; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-  <div class="title" style="font-weight: bold; color: #006633; margin-bottom: 5px;">Introduction to Commutative Algebra</div>
-  <div class="authors" style="color: #666; font-style: italic; margin-bottom: 3px;">Michael Atiyah, Ian G. MacDonald</div>
-  <div class="journal" style="color: #444;">Addison-Wesley Publishing Company</div>
-</div>
-
-<!-- CSS supplémentaire si nécessaire -->
-<style>
-@media (max-width: 768px) {
-  .links-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-</style>
-
-
-
-
-
-
   
   <script>
     function toggleAbstract(id) {
@@ -496,15 +648,15 @@
       if (element.classList.contains('hidden')) {
         element.classList.remove('hidden');
         toggle.innerHTML = '📖 Hide Abstract';
-        toggle.style.background = '#006633';
-        toggle.style.color = '#fff';
-        toggle.style.borderColor = '#006633';
+        toggle.style.background = '#e2e8f0';
+        toggle.style.color = '#1a365d';
+        toggle.style.borderColor = '#a0aec0';
       } else {
         element.classList.add('hidden');
         toggle.innerHTML = '📖 View Abstract';
-        toggle.style.background = 'rgba(0, 102, 51, 0.1)';
-        toggle.style.color = '#006633';
-        toggle.style.borderColor = '#006633';
+        toggle.style.background = '#f7fafc';
+        toggle.style.color = '#2d3748';
+        toggle.style.borderColor = '#cbd5e0';
       }
     }
   </script>
