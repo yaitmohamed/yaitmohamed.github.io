@@ -7,163 +7,326 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     body {
-      max-width: 1200px;
-      margin: 60px auto;
-      font-family: 'Computer Modern', 'Latin Modern', Georgia, serif;
-      line-height: 1.8;
-      font-size: 18px;
-      color: #333;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #2c3e50;
       background: #ffffff;
-      padding: 0 30px;
+      padding: 40px 20px;
     }
-    
+
     .container {
       display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 20px;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
       align-items: start;
-      background: #f8f9fa;
-      border-radius: 20px;
-      padding: 30px;
-      border: 1px solid rgba(0, 102, 51, 0.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: #fdfdfd;
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
-    
+
     .nav-section {
       grid-column: 1 / 2;
       position: sticky;
       top: 20px;
     }
-    
+
     .nav-section h1 {
-      font-size: 28px;
-      margin-bottom: 5px;
-      color: #006633;
-      font-weight: 600;
-      transition: color 0.3s ease;
+      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a365d;
+      letter-spacing: 0.5px;
     }
-    
-    .nav-section h1:hover {
-      color: #66b266;
+
+    .nav-section .subtitle {
+      margin: 0 0 20px 0;
+      color: #718096;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
     }
-    
-    .nav-section p {
-      margin: 0;
-      color: #666;
-      font-style: italic;
+
+    .nav-section nav {
+      margin-top: 30px;
     }
-    
+
     .nav-section a {
       display: block;
-      margin: 10px 0;
-      color: #006633;
+      margin: 8px 0;
+      color: #2d3748;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 8px 0;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-      transition: all 0.3s ease;
+      font-weight: 400;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
-    
+
     .nav-section a:hover, .nav-section a.active {
-      color: #004d26;
-      border-left-color: #004d26;
-      transform: translateX(5px);
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
-    
+
     .content-section {
       grid-column: 2 / 3;
+      color: #2d3748;
     }
-    
+
     .content-section h2 {
-      font-size: 22px;
-      color: #006633;
-      margin-bottom: 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #006633;
+      font-size: 20px;
+      color: #1a365d;
+      margin: 30px 0 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e0;
+      font-weight: 400;
+      letter-spacing: 0.3px;
     }
-    
+
+    .content-section h2:first-child {
+      margin-top: 0;
+    }
+
     .content-section p {
-      margin: 0 0 15px 0;
-      color: #444;
+      margin: 0 0 16px 0;
+      color: #4a5568;
       line-height: 1.7;
       text-align: justify;
     }
-    
+
     .content-section a {
-      color: #006633;
+      color: #2c5282;
       text-decoration: none;
-      transition: color 0.3s ease;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
-    
+
     .content-section a:hover {
-      color: #66b266;
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
-    
+
     .talk {
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       padding: 20px;
       background: #ffffff;
-      border-radius: 10px;
-      border-left: 4px solid #006633;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e0;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    
+
     .talk:hover {
-      transform: translateY(-3px);
-      border-left-color: #66b266;
-      box-shadow: 0 6px 20px rgba(0, 102, 51, 0.15);
+      border-left-color: #1a365d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-    
+
+    .talk p {
+      margin: 0;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
     .date {
-      font-weight: 600;
-      color: #006633;
-      background: rgba(0, 102, 51, 0.1);
-      padding: 5px 12px;
-      border-radius: 15px;
+      font-weight: 500;
+      color: #1a365d;
+      background: #f7fafc;
+      padding: 4px 10px;
+      border-radius: 4px;
       display: inline-block;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
+      margin-bottom: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 14px;
+      transition: all 0.2s ease;
     }
-    
+
     .talk:hover .date {
-      background: rgba(0, 102, 51, 0.2);
+      background: #edf2f7;
+      border-color: #cbd5e0;
     }
-    
+
     .pdf-link {
       margin-left: 10px;
-      padding: 4px 12px;
-      background: #006633;
-      color: white !important;
-      border-radius: 15px;
-      font-size: 12px;
-      font-weight: 500;
+      padding: 4px 10px;
+      background: #edf2f7;
+      color: #2d3748 !important;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 400;
       text-decoration: none !important;
-      transition: all 0.3s ease;
+      border: 1px solid #cbd5e0;
+      transition: all 0.2s ease;
       display: inline-block;
     }
-    
+
     .pdf-link:hover {
-      transform: translateY(-2px);
-      background: #66b266;
+      background: #e2e8f0;
+      border-color: #a0aec0;
+      color: #1a365d !important;
     }
-    
+
+    /* Timeline Style Enhancement */
+    .talks-timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .talks-timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+    }
+
+    .talk.timeline-item {
+      position: relative;
+      margin-left: 0;
+      padding-left: 30px;
+    }
+
+    .talk.timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 25px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1a365d;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px #e2e8f0;
+    }
+
+    .talk.timeline-item:hover::before {
+      background: #2c5282;
+      box-shadow: 0 0 0 2px #cbd5e0;
+    }
+
+    /* Talk Content Styling */
+    .talk-description {
+      color: #4a5568;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Statistics Box */
+    .stats-box {
+      background: #f7fafc;
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .stats-box h3 {
+      color: #1a365d;
+      margin: 0 0 15px 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+
+    .stat-item {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a365d;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+      
       .container {
         grid-template-columns: 1fr;
-        padding: 20px;
+        padding: 25px;
+        gap: 25px;
       }
+      
       .nav-section, .content-section {
         grid-column: 1;
       }
+      
       .nav-section {
         position: static;
       }
-      .talk {
-        padding: 15px;
+      
+      .nav-section nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .nav-section a {
+        margin: 0;
+      }
+
+      .talks-timeline {
+        padding-left: 0;
+      }
+
+      .talks-timeline::before {
+        display: none;
+      }
+
+      .talk.timeline-item {
+        padding-left: 0;
+      }
+
+      .talk.timeline-item::before {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .nav-section h1 {
+        font-size: 22px;
+      }
+      
+      .content-section h2 {
+        font-size: 18px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -172,54 +335,74 @@
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
-      <p>
+      <div class="subtitle">
         PhD Student<br>
         Department of Mathematics<br>
         University of Sherbrooke
-      </p>
-      
-      <div style="margin-top: 20px;">
+      </div>
+      <nav>
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
         <a href="talks.html" class="active">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-      </div>
+      </nav>
     </div>
     
     <div class="content-section">
-      <h2>My Talks</h2>
+      <h2>Conference & Seminar Presentations</h2>
       
-      <div class="talk">
-        <p>
-          <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
-          <a href="quivers.pdf" class="pdf-link">PDF</a>
-        </p>
+      <!-- Talks Timeline -->
+      <div class="talks-timeline">
+        <div class="talk timeline-item">
+          <p>
+            <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
+            <a href="quivers.pdf" class="pdf-link">PDF</a>
+          </p>
+        </div>
+        
+        <div class="talk timeline-item">
+          <p>
+            <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
+            <a href="graded_rings.pdf" class="pdf-link">PDF</a>
+          </p>
+        </div>
+        
+        <div class="talk timeline-item">
+          <p>
+            <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
+          </p>
+        </div>
+        
+        <div class="talk timeline-item">
+          <p>
+            <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
+            <a href="roch.pdf" class="pdf-link">PDF</a>
+          </p>
+        </div>
+        
+        <div class="talk timeline-item">
+          <p>
+            <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
+          </p>
+        </div>
       </div>
-      
-      <div class="talk">
-        <p>
-          <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
-          <a href="graded_rings.pdf" class="pdf-link">PDF</a>
-        </p>
+
+      <h2>Research Areas Covered</h2>
+      <div style="background: #f7fafc; padding: 16px; border-radius: 6px; border: 1px solid #e2e8f0; margin-top: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Algebraic Geometry</span>
+          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Lie Theory</span>
+          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Ring Theory</span>
+          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Differential Geometry</span>
+          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Representation Theory</span>
+        </div>
       </div>
-      
-      <div class="talk">
-        <p>
-          <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
-        </p>
-      </div>
-      
-      <div class="talk">
-        <p>
-          <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
-          <a href="roch.pdf" class="pdf-link">PDF</a>
-        </p>
-      </div>
-      
-      <div class="talk">
-        <p>
-          <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
+
+      <h2>Upcoming Talks</h2>
+      <div style="background: #ffffff; padding: 18px; border-radius: 6px; border-left: 3px solid #cbd5e0; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin-top: 15px;">
+        <p style="color: #718096; font-style: italic; margin: 0;">
+          Information about upcoming conference presentations and seminar talks will be updated here as they are scheduled.
         </p>
       </div>
     </div>
