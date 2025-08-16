@@ -73,6 +73,22 @@
       border-bottom-color: #1a365d;
     }
 
+    /* Content tabs */
+    .content-tab {
+      display: none;
+    }
+
+    .content-tab.active {
+      display: block;
+    }
+
+    .content-tab h3 {
+      color: #1a365d;
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
     .content-section {
       grid-column: 2 / 3;
       color: #2d3748;
@@ -263,46 +279,154 @@
         University of Sherbrooke
       </div>
       <nav>
-        <a href="#" class="active">Home</a>
-        <a href="#">Research</a>
-        <a href="#">Publications</a>
-        <a href="#">Teaching</a>
-        <a href="#">CV</a>
-        <a href="#">Contact</a>
+        <a href="#home" class="nav-link active" onclick="showSection('home')">Home</a>
+        <a href="#research" class="nav-link" onclick="showSection('research')">Research</a>
+        <a href="#publications" class="nav-link" onclick="showSection('publications')">Publications</a>
+        <a href="#teaching" class="nav-link" onclick="showSection('teaching')">Teaching</a>
+        <a href="#talks" class="nav-link" onclick="showSection('talks')">Talks</a>
+        <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
       </nav>
     </div>
     
     <div class="content-section">
-      <h2>About</h2>
-      <p>
-        I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">University of Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Dr. Maxence Mayrand</a>. My research focuses on several interconnected areas of modern mathematics.
-      </p>
+      <!-- Home Section -->
+      <div id="home-section" class="content-tab active">
+        <h2>About</h2>
+        <p>
+          I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">University of Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Dr. Maxence Mayrand</a>. My research focuses on several interconnected areas of modern mathematics.
+        </p>
 
-      <p>
-        Prior to my current position, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the guidance of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Prof. Lahcen Oukhitte</a>.
-      </p>
+        <p>
+          Prior to my current position, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the guidance of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Prof. Lahcen Oukhitte</a>.
+        </p>
 
-      <h2>Research Interests</h2>
-      <div class="research-interests">
-        <p>My research interests span several areas of mathematics, with particular emphasis on:</p>
-        <span class="skill-tag">Lie Theory</span>
-        <span class="skill-tag">Poisson Geometry</span>
-        <span class="skill-tag">Symplectic Geometry</span>
-        <span class="skill-tag">Ring Theory</span>
+        <h2>Research Interests</h2>
+        <div class="research-interests">
+          <p>My research interests span several areas of mathematics, with particular emphasis on:</p>
+          <span class="skill-tag">Lie Theory</span>
+          <span class="skill-tag">Poisson Geometry</span>
+          <span class="skill-tag">Symplectic Geometry</span>
+          <span class="skill-tag">Ring Theory</span>
+        </div>
       </div>
 
-      <h2>Contact Information</h2>
-      <div class="contact-info">
-        <p>
-          <strong>Email:</strong><br>
-          <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
-        </p>
-        <p>
-          <strong>Office:</strong><br>
-          Department of Mathematics<br>
-          University of Sherbrooke<br>
-          Sherbrooke, QC, Canada
-        </p>
+      <!-- Research Section -->
+      <div id="research-section" class="content-tab">
+        <h2>Research Projects</h2>
+        <div class="publication-item">
+          <h3>Lie Algebras and Poisson Structures</h3>
+          <p>Investigating the relationship between Lie algebras and Poisson structures on manifolds, with applications to integrable systems and mathematical physics.</p>
+        </div>
+
+        <div class="publication-item">
+          <h3>Symplectic Geometry Applications</h3>
+          <p>Exploring applications of symplectic geometry in classical mechanics and quantum field theory.</p>
+        </div>
+
+        <div class="publication-item">
+          <h3>Ring Theory and Algebraic Structures</h3>
+          <p>Research on special classes of rings and their applications in algebraic geometry and representation theory.</p>
+        </div>
+
+        <h2>Current Work</h2>
+        <p>My current research focuses on the intersection of Lie theory and Poisson geometry, particularly examining how certain algebraic structures can be understood through geometric methods.</p>
+      </div>
+
+      <!-- Publications Section -->
+      <div id="publications-section" class="content-tab">
+        <h2>Publications</h2>
+        <div class="publication-item">
+          <h3>In Preparation</h3>
+          <p><strong>Title:</strong> On Poisson Structures and Lie Algebras<br>
+          <strong>Authors:</strong> Y. Ait Mohamed, M. Mayrand<br>
+          <strong>Status:</strong> Manuscript in preparation</p>
+        </div>
+
+        <h2>Conference Proceedings</h2>
+        <div class="publication-item">
+          <p>Details of conference proceedings and abstracts will be updated as they become available.</p>
+        </div>
+
+        <h2>Preprints</h2>
+        <div class="publication-item">
+          <p>Preprints and working papers will be listed here as they are submitted to arXiv.</p>
+        </div>
+      </div>
+
+      <!-- Teaching Section -->
+      <div id="teaching-section" class="content-tab">
+        <h2>Teaching Experience</h2>
+        <div class="publication-item">
+          <h3>University of Sherbrooke</h3>
+          <p><strong>Teaching Assistant</strong> (2023-Present)<br>
+          Courses: Linear Algebra, Calculus I & II, Abstract Algebra</p>
+        </div>
+
+        <div class="publication-item">
+          <h3>University of Sidi Mohamed Ben Abdellah</h3>
+          <p><strong>Teaching Assistant</strong> (2020-2023)<br>
+          Courses: Mathematical Analysis, Algebra, Geometry</p>
+        </div>
+
+        <h2>Tutoring & Mentoring</h2>
+        <p>I have extensive experience in tutoring undergraduate students in various mathematical subjects, helping them develop both computational skills and mathematical intuition.</p>
+
+        <h2>Teaching Philosophy</h2>
+        <p>I believe in making mathematics accessible through clear explanations, concrete examples, and encouraging students to develop their problem-solving abilities.</p>
+      </div>
+
+      <!-- Talks Section -->
+      <div id="talks-section" class="content-tab">
+        <h2>Conference Talks</h2>
+        <div class="publication-item">
+          <h3>Upcoming Presentations</h3>
+          <p>Information about upcoming conference presentations will be updated here.</p>
+        </div>
+
+        <h2>Seminars</h2>
+        <div class="publication-item">
+          <h3>Department Seminars</h3>
+          <p>Regular participation in department seminars at the University of Sherbrooke, presenting research progress and results.</p>
+        </div>
+
+        <h2>Workshop Participation</h2>
+        <div class="publication-item">
+          <h3>Mathematical Workshops</h3>
+          <p>Active participation in workshops related to Lie theory, Poisson geometry, and related fields.</p>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div id="contact-section" class="content-tab">
+        <h2>Contact Information</h2>
+        <div class="contact-info">
+          <p>
+            <strong>Email:</strong><br>
+            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
+          </p>
+          <p>
+            <strong>Office:</strong><br>
+            Department of Mathematics<br>
+            University of Sherbrooke<br>
+            Sherbrooke, QC, Canada
+          </p>
+          <p>
+            <strong>Mailing Address:</strong><br>
+            Département de mathématiques<br>
+            Université de Sherbrooke<br>
+            2500 Boulevard de l'Université<br>
+            Sherbrooke, QC J1K 2R1<br>
+            Canada
+          </p>
+        </div>
+
+        <h2>Academic Profiles</h2>
+        <div class="research-interests">
+          <a href="https://www.researchgate.net/" target="_blank" class="skill-tag">ResearchGate</a>
+          <a href="https://orcid.org/" target="_blank" class="skill-tag">ORCID</a>
+          <a href="https://scholar.google.com/" target="_blank" class="skill-tag">Google Scholar</a>
+          <a href="https://arxiv.org/" target="_blank" class="skill-tag">arXiv</a>
+        </div>
       </div>
     </div>
     
@@ -310,5 +434,41 @@
       <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
     </div>
   </div>
+
+  <script>
+    function showSection(sectionName) {
+      // Hide all content tabs
+      const tabs = document.querySelectorAll('.content-tab');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Remove active class from all nav links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Show selected section
+      const selectedTab = document.getElementById(sectionName + '-section');
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+
+      // Add active class to clicked nav link
+      const activeLink = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+
+      // Prevent default link behavior
+      return false;
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      showSection('home');
+    });
+  </script>
 </body>
 </html>
