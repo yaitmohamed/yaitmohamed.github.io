@@ -11,7 +11,7 @@
       margin: 0 auto;
       font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
-      font-size: 16px;
+      font-size: 18px; /* Augmenté de 16px à 18px */
       color: #2c3e50;
       background: #ffffff;
       padding: 40px 20px;
@@ -37,7 +37,7 @@
 
     .nav-section h1 {
       margin-bottom: 8px;
-      font-size: 24px;
+      font-size: 28px; /* Augmenté de 24px à 28px */
       font-weight: 400;
       color: #1a365d;
       letter-spacing: 0.5px;
@@ -47,7 +47,7 @@
       margin: 0 0 20px 0;
       color: #718096;
       font-style: normal;
-      font-size: 14px;
+      font-size: 16px; /* Augmenté de 14px à 16px */
       line-height: 1.4;
     }
 
@@ -61,7 +61,7 @@
       color: #2d3748;
       text-decoration: none;
       font-weight: 400;
-      font-size: 15px;
+      font-size: 17px; /* Augmenté de 15px à 17px */
       padding: 6px 0;
       border-bottom: 1px solid transparent;
       transition: all 0.2s ease;
@@ -78,7 +78,7 @@
     }
 
     .content-section h2 {
-      font-size: 20px;
+      font-size: 24px; /* Augmenté de 20px à 24px */
       color: #1a365d;
       margin: 30px 0 15px 0;
       padding-bottom: 5px;
@@ -96,6 +96,7 @@
       color: #4a5568;
       line-height: 1.7;
       text-align: justify;
+      font-size: 18px; /* Ajouté pour la cohérence */
     }
 
     .content-section a {
@@ -129,18 +130,19 @@
       margin: 0;
       color: #4a5568;
       line-height: 1.6;
+      font-size: 18px; /* Ajouté pour la cohérence */
     }
 
     .date {
       font-weight: 500;
       color: #1a365d;
       background: #f7fafc;
-      padding: 4px 10px;
+      padding: 6px 12px; /* Augmenté le padding */
       border-radius: 4px;
       display: inline-block;
       margin-bottom: 8px;
       border: 1px solid #e2e8f0;
-      font-size: 14px;
+      font-size: 16px; /* Augmenté de 14px à 16px */
       transition: all 0.2s ease;
     }
 
@@ -151,11 +153,11 @@
 
     .pdf-link {
       margin-left: 10px;
-      padding: 4px 10px;
+      padding: 6px 12px; /* Augmenté le padding */
       background: #edf2f7;
       color: #2d3748 !important;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 15px; /* Augmenté de 13px à 15px */
       font-weight: 400;
       text-decoration: none !important;
       border: 1px solid #cbd5e0;
@@ -212,7 +214,7 @@
     /* Talk Content Styling */
     .talk-description {
       color: #4a5568;
-      font-size: 14px;
+      font-size: 16px; /* Augmenté de 14px à 16px */
       line-height: 1.5;
     }
 
@@ -229,7 +231,7 @@
     .stats-box h3 {
       color: #1a365d;
       margin: 0 0 15px 0;
-      font-size: 16px;
+      font-size: 18px; /* Augmenté de 16px à 18px */
       font-weight: 500;
     }
 
@@ -247,23 +249,34 @@
     }
 
     .stat-number {
-      font-size: 24px;
+      font-size: 26px; /* Augmenté de 24px à 26px */
       font-weight: 600;
       color: #1a365d;
       display: block;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 14px; /* Augmenté de 12px à 14px */
       color: #718096;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    /* Tags de domaines de recherche */
+    .research-tag {
+      background: #edf2f7;
+      color: #2d3748;
+      padding: 6px 12px; /* Augmenté le padding */
+      border-radius: 4px;
+      font-size: 15px; /* Augmenté de 13px à 15px */
+      border: 1px solid #cbd5e0;
     }
 
     /* Responsive design */
     @media (max-width: 768px) {
       body {
         padding: 20px 15px;
+        font-size: 17px; /* Ajusté pour mobile */
       }
       
       .container {
@@ -313,16 +326,20 @@
     }
 
     @media (max-width: 480px) {
+      body {
+        font-size: 16px; /* Ajusté pour très petits écrans */
+      }
+      
       .container {
         padding: 20px;
       }
       
       .nav-section h1 {
-        font-size: 22px;
+        font-size: 24px; /* Ajusté pour petits écrans */
       }
       
       .content-section h2 {
-        font-size: 18px;
+        font-size: 20px; /* Ajusté pour petits écrans */
       }
 
       .stats-grid {
@@ -391,17 +408,17 @@
       <h2>Research Areas Covered</h2>
       <div style="background: #f7fafc; padding: 16px; border-radius: 6px; border: 1px solid #e2e8f0; margin-top: 20px;">
         <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Algebraic Geometry</span>
-          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Lie Theory</span>
-          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Ring Theory</span>
-          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Differential Geometry</span>
-          <span style="background: #edf2f7; color: #2d3748; padding: 4px 10px; border-radius: 4px; font-size: 13px; border: 1px solid #cbd5e0;">Representation Theory</span>
+          <span class="research-tag">Algebraic Geometry</span>
+          <span class="research-tag">Lie Theory</span>
+          <span class="research-tag">Ring Theory</span>
+          <span class="research-tag">Differential Geometry</span>
+          <span class="research-tag">Representation Theory</span>
         </div>
       </div>
 
       <h2>Upcoming Talks</h2>
       <div style="background: #ffffff; padding: 18px; border-radius: 6px; border-left: 3px solid #cbd5e0; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin-top: 15px;">
-        <p style="color: #718096; font-style: italic; margin: 0;">
+        <p style="color: #718096; font-style: italic; margin: 0; font-size: 18px;">
           Information about upcoming conference presentations and seminar talks will be updated here as they are scheduled.
         </p>
       </div>
