@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yassine Ait Mohamed - Mathematics PhD Student</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,57 +12,26 @@
     }
 
     body {
-      max-width: 1400px;
+      max-width: 1100px;
       margin: 0 auto;
-      font-family: 'Source Sans Pro', sans-serif;
-      line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
       font-size: 18px;
-      color: #e0e0e0;
-      background: #0a0a0a;
-      min-height: 100vh;
+      color: #333;
+      background: #f8f9fa;
       padding: 40px 20px;
-      overflow-x: hidden;
-    }
-
-    .grid-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(0, 255, 127, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 127, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: -1;
     }
 
     .container {
       display: grid;
-      grid-template-columns: 320px 1fr 280px;
+      grid-template-columns: 280px 1fr 220px;
       grid-template-rows: auto 1fr;
-      gap: 50px;
+      gap: 40px;
       align-items: start;
-      background: rgba(13, 13, 13, 0.8);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 60px;
-      border: 1px solid rgba(0, 255, 127, 0.2);
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(0, 255, 127, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.7), #00ff7f);
+      background: white;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .nav-section {
@@ -74,105 +42,56 @@
     }
 
     .nav-section h1 {
-      margin-bottom: 12px;
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      margin-bottom: 8px;
+      font-size: 28px;
       font-weight: 600;
-      color: #00ff7f;
+      color: #2c3e50;
       letter-spacing: -0.5px;
-      line-height: 1.2;
-      text-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
     }
 
     .nav-section .subtitle {
-      margin: 0 0 30px 0;
-      color: #888;
-      font-style: normal;
-      font-size: 18px;
-      line-height: 1.5;
-      font-weight: 400;
-      padding: 20px 0;
-      border-top: 2px solid rgba(0, 255, 127, 0.3);
-      border-bottom: 2px solid rgba(0, 255, 127, 0.3);
-    }
-
-    .nav-section .degree {
-      font-weight: 600;
-      color: #00ff7f;
-      font-size: 19px;
-    }
-
-    .nav-section .institution {
-      font-style: italic;
-      margin-top: 8px;
-      color: #4a5568;
+      margin: 0 0 20px 0;
+      color: #6c757d;
+      font-size: 16px;
+      line-height: 1.4;
+      padding: 16px 0;
+      border-top: 1px solid #dee2e6;
+      border-bottom: 1px solid #dee2e6;
     }
 
     .nav-section nav {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .nav-section a {
       display: block;
-      margin: 12px 0;
-      color: #4a5568;
+      margin: 8px 0;
+      color: #495057;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 18px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-section a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-              background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .nav-section a:hover::before {
-      left: 100%;
+      font-weight: 400;
+      font-size: 17px;
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease;
     }
 
     .nav-section a:hover, .nav-section a.active {
-      color: #2b6cb0;
-      background: rgba(102, 126, 234, 0.08);
-      transform: translateX(8px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+      color: #007bff;
+      border-bottom-color: #007bff;
     }
 
     .content-section {
       grid-column: 2 / 3;
-      color: #e0e0e0;
+      color: #333;
     }
 
     .content-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      color: #00ff7f;
-      margin: 40px 0 20px 0;
-      padding-bottom: 15px;
-      border-bottom: 3px solid rgba(0, 255, 127, 0.3);
-      font-weight: 500;
-      letter-spacing: -0.3px;
-      position: relative;
-    }
-
-    .content-section h2::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #00ff7f, transparent);
+      font-size: 24px;
+      color: #2c3e50;
+      margin: 30px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #007bff;
+      font-weight: 600;
     }
 
     .content-section h2:first-child {
@@ -180,41 +99,20 @@
     }
 
     .content-section p {
-      margin: 0 0 20px 0;
-      color: #ccc;
-      line-height: 1.8;
+      margin: 0 0 16px 0;
+      color: #555;
+      line-height: 1.7;
       text-align: justify;
       font-size: 18px;
-      font-weight: 400;
     }
 
     .content-section a {
-      color: #00ff7f;
+      color: #007bff;
       text-decoration: none;
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .content-section a::before {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background: linear-gradient(90deg, #00ff7f, transparent);
-      transition: width 0.3s ease;
-    }
-
-    .content-section a:hover::before {
-      width: 100%;
     }
 
     .content-section a:hover {
-      color: #00ff7f;
-      text-shadow: 0 0 8px rgba(0, 255, 127, 0.5);
+      text-decoration: underline;
     }
 
     .photo-section {
@@ -222,146 +120,48 @@
       text-align: center;
       position: sticky;
       top: 20px;
-      padding: 30px 20px;
-      background: rgba(13, 13, 13, 0.8);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 255, 127, 0.2);
     }
 
     .profile-photo {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid rgba(0, 255, 127, 0.9);
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.2),
-        0 5px 15px rgba(0, 0, 0, 0.1),
-        0 0 30px rgba(0, 255, 127, 0.3);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      margin: 10px auto;
-    }
-
-    .profile-photo:hover {
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.25),
-        0 10px 20px rgba(0, 0, 0, 0.15),
-        0 0 50px rgba(0, 255, 127, 0.5);
-      transform: translateY(-5px) scale(1.02);
+      border: 3px solid #dee2e6;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .research-interests {
-      margin: 30px 0;
+      margin: 20px 0;
     }
 
     .skill-tag {
       display: inline-block;
-      background: rgba(0, 255, 127, 0.1);
-      color: #00ff7f;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-size: 16px;
-      margin: 6px 8px 6px 0;
+      background: #e9ecef;
+      color: #495057;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 15px;
+      margin: 4px 6px 4px 0;
       font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 15px rgba(0, 255, 127, 0.2);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(0, 255, 127, 0.3);
-    }
-
-    .skill-tag::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.2), transparent);
-      transition: left 0.6s;
-    }
-
-    .skill-tag:hover::before {
-      left: 100%;
-    }
-
-    .skill-tag:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 255, 127, 0.3);
-      background: rgba(0, 255, 127, 0.2);
     }
 
     .contact-info {
-      background: rgba(0, 255, 127, 0.05);
-      padding: 30px;
-      border-radius: 16px;
-      margin: 35px 0;
-      border: 1px solid rgba(0, 255, 127, 0.2);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-info::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.7));
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      margin: 25px 0;
+      border-left: 4px solid #007bff;
     }
 
     .contact-info strong {
-      color: #00ff7f;
+      color: #2c3e50;
       font-weight: 600;
-      font-size: 19px;
     }
 
     .contact-info p {
       font-size: 18px;
       margin-top: 8px;
-    }
-
-    .contact-info a {
-      color: #00ff7f;
-      font-weight: 500;
-    }
-
-    /* Publication style */
-    .publication-item {
-      background: rgba(13, 13, 13, 0.6);
-      padding: 25px;
-      margin: 20px 0;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      border-left: 5px solid rgba(0, 255, 127, 0.3);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .publication-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 5px;
-      height: 100%;
-      background: linear-gradient(180deg, #00ff7f, rgba(0, 255, 127, 0.7));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .publication-item:hover::before {
-      opacity: 1;
-    }
-
-    .publication-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     }
 
     /* Responsive design */
@@ -372,10 +172,10 @@
       }
       
       .container {
-        grid-template-columns: 1fr 180px;
+        grid-template-columns: 1fr 150px;
         grid-template-rows: auto 1fr;
-        padding: 40px 25px;
-        gap: 30px;
+        padding: 25px;
+        gap: 20px;
       }
       
       .nav-section {
@@ -397,29 +197,19 @@
       }
       
       .profile-photo {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
       }
       
       .nav-section nav {
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
-        margin-top: 20px;
+        margin-top: 15px;
       }
       
       .nav-section a {
         margin: 0;
-        padding: 8px 16px;
-        font-size: 16px;
-      }
-
-      .nav-section h1 {
-        font-size: 28px;
-      }
-
-      .content-section h2 {
-        font-size: 26px;
       }
     }
 
@@ -429,14 +219,14 @@
       }
       
       .container {
-        grid-template-columns: 1fr 120px;
-        padding: 30px 20px;
-        gap: 20px;
+        grid-template-columns: 1fr 100px;
+        padding: 20px;
+        gap: 15px;
       }
       
       .profile-photo {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
       }
       
       .nav-section h1 {
@@ -444,56 +234,19 @@
       }
       
       .content-section h2 {
-        font-size: 22px;
+        font-size: 20px;
       }
-
-      .skill-tag {
-        font-size: 14px;
-        padding: 8px 16px;
-      }
-    }
-
-    /* Loading animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .container {
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    /* Subtle background pattern */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <div class="grid-bg"></div>
-  
   <div class="container">
     <div class="nav-section">
       <h1>Yassine Ait Mohamed</h1>
       <div class="subtitle">
-        <div class="degree">PhD Student</div>
-        <div class="institution">Department of Mathematics<br>University of Sherbrooke</div>
+        PhD Student<br>
+        Department of Mathematics<br>
+        University of Sherbrooke
       </div>
       <nav>
         <a href="index.html" class="active">Home</a>
