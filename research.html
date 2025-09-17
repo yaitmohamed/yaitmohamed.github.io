@@ -6,83 +6,159 @@
   <title>Research - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      max-width: 1100px;
-      margin: 0 auto;
       font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
-      font-size: 18px; /* Augmenté de 16px à 18px */
+      font-size: 18px;
       color: #2c3e50;
-      background: #ffffff;
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navigation horizontale unique */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 3px solid #1a365d;
+      z-index: 1000;
+      padding: 20px 0;
+      transform: translateY(-100%);
+      animation: slideDown 0.8s ease-out 0.5s both;
+    }
+
+    @keyframes slideDown {
+      to { transform: translateY(0); }
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a365d;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: #2d3748;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(26, 54, 93, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .nav-links a:hover::before {
+      left: 100%;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: #1a365d;
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+    }
+
+    /* Section principale - Plein écran */
+    .main-section {
+      min-height: 100vh;
+      padding: 100px 40px 40px;
+      position: relative;
     }
 
     .container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-      align-items: start;
-      background: #fdfdfd;
-      border-radius: 8px;
-      padding: 40px;
-      border: 1px solid #e8e8e8;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 50px;
+      border: 2px solid rgba(26, 54, 93, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
     }
 
-    .nav-section {
-      grid-column: 1 / 2;
-      position: sticky;
-      top: 20px;
+    @keyframes fadeInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .nav-section h1 {
-      margin-bottom: 8px;
-      font-size: 28px; /* Augmenté de 24px à 28px */
-      font-weight: 400;
-      color: #1a365d;
-      letter-spacing: 0.5px;
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #1a365d, #2c5282, transparent);
+      animation: scan 4s ease-in-out infinite;
     }
 
-    .nav-section .subtitle {
-      margin: 0 0 20px 0;
-      color: #718096;
-      font-style: normal;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-      line-height: 1.4;
-    }
-
-    .nav-section nav {
-      margin-top: 30px;
-    }
-
-    .nav-section a {
-      display: block;
-      margin: 8px 0;
-      color: #2d3748;
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 17px; /* Augmenté de 15px à 17px */
-      padding: 6px 0;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .nav-section a:hover, .nav-section a.active {
-      color: #1a365d;
-      border-bottom-color: #1a365d;
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
 
     .content-section {
-      grid-column: 2 / 3;
       color: #2d3748;
     }
 
-    .content-section h2 {
-      font-size: 24px; /* Augmenté de 20px à 24px */
+    .main-title {
+      font-size: 3rem;
+      font-weight: 400;
       color: #1a365d;
-      margin: 30px 0 15px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #cbd5e0;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .content-section h2 {
+      font-size: 24px;
+      color: #1a365d;
+      margin: 30px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #cbd5e0;
       font-weight: 400;
       letter-spacing: 0.3px;
     }
@@ -92,7 +168,7 @@
     }
 
     .content-section h3 {
-      font-size: 21px; /* Augmenté de 18px à 21px */
+      font-size: 21px;
       color: #1a365d;
       margin: 25px 0 15px 0;
       font-weight: 400;
@@ -103,7 +179,7 @@
       color: #4a5568;
       line-height: 1.7;
       text-align: justify;
-      font-size: 18px; /* Ajouté pour la cohérence */
+      font-size: 18px;
     }
 
     .content-section a {
@@ -118,24 +194,26 @@
       border-bottom-color: #1a365d;
     }
 
+    /* Papers */
     .paper {
       margin-bottom: 25px;
-      padding: 20px;
+      padding: 25px;
       background: #ffffff;
-      border-radius: 6px;
-      border-left: 3px solid #cbd5e0;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      border-left: 4px solid #cbd5e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .paper:hover {
       border-left-color: #1a365d;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(26, 54, 93, 0.2);
+      transform: translateY(-3px);
     }
 
     .paper-title {
       font-weight: 500;
-      font-size: 18px; /* Augmenté de 16px à 18px */
+      font-size: 18px;
       color: #1a365d;
       margin-bottom: 10px;
       cursor: pointer;
@@ -145,6 +223,7 @@
 
     .paper-title:hover {
       color: #2c5282;
+      transform: translateX(5px);
     }
 
     .paper-title::before {
@@ -156,11 +235,11 @@
       font-style: italic;
       color: #718096;
       margin-bottom: 12px;
-      padding: 4px 10px;
+      padding: 6px 12px;
       background: #f7fafc;
       border-radius: 4px;
       display: inline-block;
-      font-size: 15px; /* Augmenté de 13px à 15px */
+      font-size: 15px;
       border: 1px solid #e2e8f0;
     }
 
@@ -170,12 +249,12 @@
 
     .paper-links a {
       display: inline-block;
-      padding: 6px 12px; /* Augmenté le padding */
+      padding: 8px 16px;
       margin: 3px 6px 3px 0;
       background: #edf2f7;
       color: #2d3748 !important;
       border-radius: 4px;
-      font-size: 15px; /* Augmenté de 13px à 15px */
+      font-size: 15px;
       text-decoration: none;
       border: 1px solid #cbd5e0;
       transition: all 0.2s ease;
@@ -184,15 +263,16 @@
     .paper-links a:hover {
       background: #e2e8f0;
       border-color: #a0aec0;
+      transform: translateY(-2px);
     }
 
     .abstract {
-      padding: 16px;
+      padding: 20px;
       background: #f7fafc;
       border-left: 3px solid #1a365d;
       border-radius: 0 4px 4px 0;
-      margin: 12px 0;
-      font-size: 16px; /* Augmenté de 14px à 16px */
+      margin: 15px 0;
+      font-size: 16px;
       line-height: 1.6;
       color: #4a5568;
       border: 1px solid #e2e8f0;
@@ -202,10 +282,10 @@
     .abstract-toggle {
       cursor: pointer;
       color: #2d3748;
-      font-size: 15px; /* Augmenté de 13px à 15px */
+      font-size: 15px;
       display: inline-block;
       margin-bottom: 8px;
-      padding: 6px 12px; /* Augmenté le padding */
+      padding: 8px 16px;
       border: 1px solid #cbd5e0;
       border-radius: 4px;
       transition: all 0.2s ease;
@@ -222,20 +302,21 @@
       display: none;
     }
 
+    /* Lists */
     ul {
       padding-left: 20px;
       margin-bottom: 20px;
     }
 
     ul li {
-      margin: 8px 0;
+      margin: 12px 0;
       color: #4a5568;
-      font-size: 18px; /* Ajouté pour la cohérence */
+      font-size: 18px;
     }
 
     ul li a {
       color: #2c5282;
-      padding: 4px 8px;
+      padding: 6px 12px;
       border-radius: 4px;
       transition: all 0.2s ease;
       text-decoration: none;
@@ -246,298 +327,277 @@
       color: #1a365d;
     }
 
-    /* Links Grid */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .link-category {
-      background: white;
-      padding: 18px;
-      border-radius: 6px;
-      border-left: 3px solid #cbd5e0;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-    }
-
-    .link-category:hover {
-      border-left-color: #1a365d;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .link-category h3 {
-      color: #1a365d;
-      margin-bottom: 12px;
-      font-size: 17px; /* Augmenté de 15px à 17px */
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 4px;
-      font-weight: 500;
-    }
-
-    .link-category ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .link-category ul li {
-      margin-bottom: 6px;
-      font-size: 16px; /* Augmenté pour la cohérence */
-    }
-
-    .link-category ul li a {
-      color: #2c5282;
-      text-decoration: none;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-      padding: 2px 0;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .link-category ul li a:hover {
-      color: #1a365d;
-      border-bottom-color: #1a365d;
-      background: transparent;
-    }
-
-    /* Bibliography */
-    .bibliography-item {
-      background: white;
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border-left: 3px solid #cbd5e0;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-    }
-
-    .bibliography-item:hover {
-      border-left-color: #1a365d;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .bibliography-item .title {
-      font-weight: 500;
-      color: #1a365d;
-      margin-bottom: 4px;
-      font-size: 17px; /* Augmenté de 15px à 17px */
-    }
-
-    .bibliography-item .authors {
-      color: #718096;
-      font-style: italic;
-      margin-bottom: 2px;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-    }
-
-    .bibliography-item .journal {
-      color: #4a5568;
-      font-size: 15px; /* Augmenté de 13px à 15px */
-    }
-
-    /* Research Keywords */
-    .research-keywords {
-      margin-top: 20px;
-      padding: 15px;
+    /* Research Keywords & Interests */
+    .research-keywords, .research-interests {
+      margin-top: 25px;
+      padding: 20px;
       background: #f7fafc;
       border-radius: 6px;
       border: 1px solid #e2e8f0;
     }
 
-    .research-keywords h4 {
-      margin: 0 0 8px 0;
+    .research-keywords h4, .research-interests h4 {
+      margin: 0 0 10px 0;
       color: #1a365d;
-      font-size: 16px; /* Augmenté de 14px à 16px */
+      font-size: 16px;
       font-weight: 500;
     }
 
-    .research-keywords div {
-      font-size: 14px; /* Augmenté de 12px à 14px */
+    .research-keywords div, .research-interests div {
+      font-size: 14px;
       color: #718096;
       line-height: 1.4;
     }
 
-    /* Responsive design */
+    /* Geometric background elements */
+    .geometric-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.08), rgba(44, 82, 130, 0.08));
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .circle:nth-child(1) {
+      width: 180px;
+      height: 180px;
+      top: 15%;
+      right: 10%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 220px;
+      height: 220px;
+      bottom: 25%;
+      left: 5%;
+      animation-delay: 3s;
+    }
+
+    .circle:nth-child(3) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      body {
-        padding: 20px 15px;
-        font-size: 17px; /* Ajusté pour mobile */
-      }
-      
-      .container {
-        grid-template-columns: 1fr;
-        padding: 25px;
-        gap: 25px;
-      }
-      
-      .nav-section, .content-section {
-        grid-column: 1;
-      }
-      
-      .nav-section {
-        position: static;
-      }
-      
-      .nav-section nav {
-        display: flex;
-        flex-wrap: wrap;
+      .nav-content {
+        padding: 0 20px;
+        flex-direction: column;
         gap: 15px;
-        margin-top: 15px;
-      }
-      
-      .nav-section a {
-        margin: 0;
       }
 
-      .links-grid {
-        grid-template-columns: 1fr !important;
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-section {
+        padding: 120px 20px 40px;
+      }
+
+      .container {
+        padding: 40px 30px;
+        border-radius: 15px;
+      }
+
+      .main-title {
+        font-size: 2.5rem;
+      }
+
+      .content-section h2 {
+        font-size: 22px;
+      }
+
+      .nav-links a {
+        padding: 10px 15px;
+        font-size: 15px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .paper {
+        padding: 20px;
       }
     }
 
     @media (max-width: 480px) {
-      body {
-        font-size: 16px; /* Ajusté pour très petits écrans */
-      }
-      
       .container {
-        padding: 20px;
+        padding: 30px 20px;
       }
-      
-      .nav-section h1 {
-        font-size: 24px; /* Ajusté pour petits écrans */
+
+      .main-title {
+        font-size: 2rem;
       }
-      
+
       .content-section h2 {
-        font-size: 20px; /* Ajusté pour petits écrans */
+        font-size: 20px;
       }
+
+      body {
+        font-size: 16px;
+      }
+
+      .nav-links a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      .paper {
+        padding: 15px;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="nav-section">
-      <h1>Yassine Ait Mohamed</h1>
-      <div class="subtitle">
-        PhD Student<br>
-        Department of Mathematics<br>
-        Université de Sherbrooke
-      </div>
-      <nav>
+  <!-- Geometric background -->
+  <div class="geometric-bg">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- Navigation horizontale unique -->
+  <nav class="top-nav">
+    <div class="nav-content">
+      <a href="#" class="logo">YAM</a>
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="research.html" class="active">Research</a>
         <a href="talks.html">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-      </nav>
+      </div>
     </div>
-    
-    <div class="content-section">
-      <h2>Research Group Affiliation</h2>
-      <ul>
-        <li><a href="https://sag.recherche.usherbrooke.ca/equipe" target="_blank">🧮 SAG Research Group Team - Université de Sherbrooke</a></li>
-      </ul>
+  </nav>
 
-      <h2>Academic Profiles</h2>
-      <ul>
-        <li><a href="https://orcid.org/0009-0002-2245-4217" target="_blank">🔗 ORCID Profile</a></li>
-        <li><a href="https://www.researchgate.net/profile/Yassine-Ait-Mohamed" target="_blank">🔗 ResearchGate Profile</a></li>
-      </ul>
+  <!-- Section principale plein écran -->
+  <section class="main-section">
+    <div class="container">
+      <div class="content-section">
+        <h1 class="main-title">Research</h1>
 
-      <h2>Papers</h2>
+        <h2>Research Group Affiliation</h2>
+        <ul>
+          <li><a href="https://sag.recherche.usherbrooke.ca/equipe" target="_blank">🧮 SAG Research Group Team - Université de Sherbrooke</a></li>
+        </ul>
 
-      <div class="paper">
-        <div class="paper-title" onclick="toggleAbstract('paper1')">
-          On graded rings with homogeneous derivations
+        <h2>Academic Profiles</h2>
+        <ul>
+          <li><a href="https://orcid.org/0009-0002-2245-4217" target="_blank">🔗 ORCID Profile</a></li>
+          <li><a href="https://www.researchgate.net/profile/Yassine-Ait-Mohamed" target="_blank">🔗 ResearchGate Profile</a></li>
+        </ul>
+
+        <h2>Papers</h2>
+
+        <div class="paper">
+          <div class="paper-title" onclick="toggleAbstract('paper1')">
+            On graded rings with homogeneous derivations
+          </div>
+          <div class="journal">Revista de la Unión Matemática Argentina</div>
+          <div class="paper-links">
+            <a href="https://doi.org/10.33044/revuma.4934" target="_blank">📄 DOI</a>
+            <a href="#" target="_blank">📥 PDF</a>
+          </div>
+          <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper1'); return false;">📖 View Abstract</a>
+          <div id="paper1" class="abstract hidden">
+            The concept of homogeneous derivations was introduced by Kanunnikov (2018). In this paper, we establish interesting results related to homogeneous derivations. First, we prove the existence of a non-trivial family of derivations that are not homogeneous on graded rings. Furthermore, based on homogeneous derivations, we extend certain existing significant results in the context of prime (resp. semiprime) rings to gr-prime (resp. gr-semiprime) rings, such as Posner's and Herstein's theorems.
+          </div>
         </div>
-        <div class="journal">Revista de la Unión Matemática Argentina</div>
-        <div class="paper-links">
-          <a href="https://doi.org/10.33044/revuma.4934" target="_blank">📄 DOI</a>
-          <a href="#" target="_blank">📥 PDF</a>
+
+        <div class="paper">
+          <div class="paper-title" onclick="toggleAbstract('paper2')">
+            Generalized homogeneous derivations in graded rings
+          </div>
+          <div class="journal">Preprint - Under Review</div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/abs/2412.17187" target="_blank">📑 ArXiv</a>
+            <a href="#" target="_blank">📥 PDF</a>
+          </div>
+          <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper2'); return false;">📖 View Abstract</a>
+          <div id="paper2" class="abstract hidden">
+           We introduce generalized homogeneous derivations on graded rings, extending the homogeneous derivations introduced by Kanunnikov. We define gr-generalized derivations that preserve the graded structure and extend several results from prime rings to gr-prime rings. We also characterize when gr-semiprime rings contain non-trivial central graded ideals and examine the algebraic properties of these derivations. Finally, we construct functorial properties and categorical frameworks for derivation structures in both ring and module settings.
+          </div>
         </div>
-        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper1'); return false;">📖 View Abstract</a>
-        <div id="paper1" class="abstract hidden">
-          The concept of homogeneous derivations was introduced by Kanunnikov (2018). In this paper, we establish interesting results related to homogeneous derivations. First, we prove the existence of a non-trivial family of derivations that are not homogeneous on graded rings. Furthermore, based on homogeneous derivations, we extend certain existing significant results in the context of prime (resp. semiprime) rings to gr-prime (resp. gr-semiprime) rings, such as Posner's and Herstein's theorems.
+
+        <div class="paper">
+          <div class="paper-title" onclick="toggleAbstract('paper3')">
+            Differential Structures in Graded Rings and Modules
+          </div>
+          <div class="journal">Under review</div>
+          <div class="paper-links">
+          </div>
+          <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper3'); return false;">📖 View Abstract</a>
+          <div id="paper3" class="abstract hidden">
+        In this paper, we study homogeneous derivations which preserve the degree and we will call them dp-derivations. We establish fundamental structural properties, proving that inverse images of gr-prime differential ideals are integrally closed in commutative graded rings with dp-derivations. For differential simplicity, we show that gr-simple rings of prime characteristic have gr-nilradical as the unique gr-prime ideal. We demonstrate that dp-skew polynomial rings preserve the gr-Noetherian property, extending the Hilbert basis theorem to differential graded contexts.          
+          </div>
+        </div>
+
+        <h2>Master's thesis</h2>
+        <div class="paper">
+          <div class="paper-title">
+            🎓 Divisors in Algebraic Geometry, Central Simple Algebras and Severi-Brauer Varieties
+          </div>
+          <div class="journal">Master's Thesis - University of Sidi Mohamed Ben Abdellah</div>
+          <div class="paper-links">
+            <a href="master_thesis.pdf" target="_blank">📄 PDF</a>
+            <a href="#" target="_blank">🎯 Slides</a>
+          </div>
+        </div>
+
+        <h2>Notes</h2>
+        <div class="paper">
+          <div class="paper-title">
+            📝 Note on Sheaf Theory
+          </div>
+          <div class="journal">Research Notes</div>
+          <div class="paper-links">
+            <a href="sheaf.pdf" target="_blank">📄 PDF</a>
+          </div>
+        </div>
+
+        <div class="research-interests">
+          <h4>🔍 Research interests</h4>
+          <div> 
+       Algebraic geometry • Shifted symplectic geometry • Topological quantum field theories •Ring Theory
+        </div>
+        </div>
+        
+        <div class="research-keywords">
+          <h4>🔍 Research Keywords</h4>
+          <div>
+            Graded Rings • Derivations • Generalized derivations
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="paper">
-        <div class="paper-title" onclick="toggleAbstract('paper2')">
-          Generalized homogeneous derivations in graded rings
-        </div>
-        <div class="journal">Preprint - Under Review</div>
-        <div class="paper-links">
-          <a href="https://arxiv.org/abs/2412.17187" target="_blank">📑 ArXiv</a>
-          <a href="#" target="_blank">📥 PDF</a>
-        </div>
-        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper2'); return false;">📖 View Abstract</a>
-        <div id="paper2" class="abstract hidden">
-         We introduce generalized homogeneous derivations on graded rings, extending the homogeneous derivations introduced by Kanunnikov. We define gr-generalized derivations that preserve the graded structure and extend several results from prime rings to gr-prime rings. We also characterize when gr-semiprime rings contain non-trivial central graded ideals and examine the algebraic properties of these derivations. Finally, we construct functorial properties and categorical frameworks for derivation structures in both ring and module settings.
-        </div>
-      </div>
-
-      <div class="paper">
-        <div class="paper-title" onclick="toggleAbstract('paper3')">
-          Differential Structures in Graded Rings and Modules
-        </div>
-        <div class="journal">Under review</div>
-        <div class="paper-links">
-        </div>
-        <a href="#" class="abstract-toggle" onclick="toggleAbstract('paper3'); return false;">📖 View Abstract</a>
-        <div id="paper3" class="abstract hidden">
-      In this paper, we study homogeneous derivations which preserve the degree and we will call them dp-derivations. We establish fundamental structural properties, proving that inverse images of gr-prime differential ideals are integrally closed in commutative graded rings with dp-derivations. For differential simplicity, we show that gr-simple rings of prime characteristic have gr-nilradical as the unique gr-prime ideal. We demonstrate that dp-skew polynomial rings preserve the gr-Noetherian property, extending the Hilbert basis theorem to differential graded contexts.          
-        </div>
-      </div>
-
-      
-
-      <h2>Master's thesis</h2>
-      <div class="paper">
-        <div class="paper-title">
-          🎓 Divisors in Algebraic Geometry, Central Simple Algebras and Severi-Brauer Varieties
-        </div>
-        <div class="journal">Master's Thesis - University of Sidi Mohamed Ben Abdellah</div>
-        <div class="paper-links">
-          <a href="master_thesis.pdf" target="_blank">📄 PDF</a>
-          <a href="#" target="_blank">🎯 Slides</a>
-        </div>
-      </div>
-
-      <h2>Notes</h2>
-      <div class="paper">
-        <div class="paper-title">
-          📝 Note on Sheaf Theory
-        </div>
-        <div class="journal">Research Notes</div>
-        <div class="paper-links">
-          <a href="sheaf.pdf" target="_blank">📄 PDF</a>
-        </div>
-      </div>
-
-
- 
-   
-      <div class="research-interests">
-        <h4>🔍 Research interests</h4>
-        <div> 
-     Algebraic geometry • Shifted symplectic geometry • Topological quantum field theories •Ring Theory
-      <div>
-      
-      
-      <div class="research-keywords">
-        <h4>🔍 Research Keywords</h4>
-        <div>
-          Graded Rings • Derivations • Generalized derivations
-        </div>
-      </div>
-
-      
-
-
-     
-     
   <script>
     function toggleAbstract(id) {
       const element = document.getElementById(id);
@@ -557,6 +617,32 @@
         toggle.style.borderColor = '#cbd5e0';
       }
     }
+
+    // Navigation active highlighting
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        if (!this.classList.contains('active')) {
+          this.style.transform = 'translateY(-3px) scale(1.05)';
+        }
+      });
+      
+      link.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('active')) {
+          this.style.transform = 'translateY(0) scale(1)';
+        }
+      });
+    });
+
+    // Subtle parallax effect for geometric shapes
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const circles = document.querySelectorAll('.circle');
+      
+      circles.forEach((circle, index) => {
+        const speed = (index + 1) * 0.05;
+        circle.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
   </script>
 </body>
 </html>
