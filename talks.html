@@ -6,83 +6,159 @@
   <title>Talks - Yassine Ait Mohamed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      max-width: 1100px;
-      margin: 0 auto;
       font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
-      font-size: 18px; /* Augmenté de 16px à 18px */
+      font-size: 18px;
       color: #2c3e50;
-      background: #ffffff;
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navigation horizontale unique */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 3px solid #1a365d;
+      z-index: 1000;
+      padding: 20px 0;
+      transform: translateY(-100%);
+      animation: slideDown 0.8s ease-out 0.5s both;
+    }
+
+    @keyframes slideDown {
+      to { transform: translateY(0); }
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a365d;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: #2d3748;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(26, 54, 93, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .nav-links a:hover::before {
+      left: 100%;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: #1a365d;
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+    }
+
+    /* Section principale - Plein écran */
+    .main-section {
+      min-height: 100vh;
+      padding: 100px 40px 40px;
+      position: relative;
     }
 
     .container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-      align-items: start;
-      background: #fdfdfd;
-      border-radius: 8px;
-      padding: 40px;
-      border: 1px solid #e8e8e8;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 50px;
+      border: 2px solid rgba(26, 54, 93, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
     }
 
-    .nav-section {
-      grid-column: 1 / 2;
-      position: sticky;
-      top: 20px;
+    @keyframes fadeInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .nav-section h1 {
-      margin-bottom: 8px;
-      font-size: 28px; /* Augmenté de 24px à 28px */
-      font-weight: 400;
-      color: #1a365d;
-      letter-spacing: 0.5px;
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #1a365d, #2c5282, transparent);
+      animation: scan 4s ease-in-out infinite;
     }
 
-    .nav-section .subtitle {
-      margin: 0 0 20px 0;
-      color: #718096;
-      font-style: normal;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-      line-height: 1.4;
-    }
-
-    .nav-section nav {
-      margin-top: 30px;
-    }
-
-    .nav-section a {
-      display: block;
-      margin: 8px 0;
-      color: #2d3748;
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 17px; /* Augmenté de 15px à 17px */
-      padding: 6px 0;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .nav-section a:hover, .nav-section a.active {
-      color: #1a365d;
-      border-bottom-color: #1a365d;
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
 
     .content-section {
-      grid-column: 2 / 3;
       color: #2d3748;
     }
 
-    .content-section h2 {
-      font-size: 24px; /* Augmenté de 20px à 24px */
+    .main-title {
+      font-size: 3rem;
+      font-weight: 400;
       color: #1a365d;
-      margin: 30px 0 15px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #cbd5e0;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .content-section h2 {
+      font-size: 24px;
+      color: #1a365d;
+      margin: 30px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #cbd5e0;
       font-weight: 400;
       letter-spacing: 0.3px;
     }
@@ -96,7 +172,7 @@
       color: #4a5568;
       line-height: 1.7;
       text-align: justify;
-      font-size: 18px; /* Ajouté pour la cohérence */
+      font-size: 18px;
     }
 
     .content-section a {
@@ -111,197 +187,264 @@
       border-bottom-color: #1a365d;
     }
 
+    /* Timeline & Talks */
+    .talks-timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .talks-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #1a365d, #2c5282);
+      border-radius: 2px;
+    }
+
     .talk {
-      margin-bottom: 20px;
-      padding: 20px;
+      margin-bottom: 25px;
+      padding: 25px;
       background: #ffffff;
-      border-radius: 6px;
-      border-left: 3px solid #cbd5e0;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      border-left: 4px solid #cbd5e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      margin-left: 0;
+      padding-left: 30px;
+    }
+
+    .talk::before {
+      content: '';
+      position: absolute;
+      left: -47px;
+      top: 30px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1a365d;
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 0 3px #e2e8f0;
+      transition: all 0.3s ease;
     }
 
     .talk:hover {
       border-left-color: #1a365d;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(26, 54, 93, 0.2);
+      transform: translateY(-3px) translateX(5px);
+    }
+
+    .talk:hover::before {
+      background: #2c5282;
+      box-shadow: 0 0 0 3px #cbd5e0;
+      transform: scale(1.2);
     }
 
     .talk p {
       margin: 0;
       color: #4a5568;
       line-height: 1.6;
-      font-size: 18px; /* Ajouté pour la cohérence */
+      font-size: 18px;
     }
 
     .date {
       font-weight: 500;
       color: #1a365d;
       background: #f7fafc;
-      padding: 6px 12px; /* Augmenté le padding */
-      border-radius: 4px;
+      padding: 8px 16px;
+      border-radius: 20px;
       display: inline-block;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       border: 1px solid #e2e8f0;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-      transition: all 0.2s ease;
+      font-size: 16px;
+      transition: all 0.3s ease;
     }
 
     .talk:hover .date {
-      background: #edf2f7;
+      background: linear-gradient(135deg, #edf2f7, #f7fafc);
       border-color: #cbd5e0;
+      transform: translateX(3px);
     }
 
     .pdf-link {
-      margin-left: 10px;
-      padding: 6px 12px; /* Augmenté le padding */
-      background: #edf2f7;
+      margin-left: 15px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #edf2f7, #f7fafc);
       color: #2d3748 !important;
-      border-radius: 4px;
-      font-size: 15px; /* Augmenté de 13px à 15px */
-      font-weight: 400;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 500;
       text-decoration: none !important;
       border: 1px solid #cbd5e0;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
       display: inline-block;
     }
 
     .pdf-link:hover {
-      background: #e2e8f0;
-      border-color: #a0aec0;
-      color: #1a365d !important;
+      background: linear-gradient(135deg, #1a365d, #2c5282);
+      color: white !important;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
     }
 
-    /* Timeline Style Enhancement */
-    .talks-timeline {
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .talks-timeline::before {
-      content: '';
-      position: absolute;
-      left: 8px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #e2e8f0;
-    }
-
-    .talk.timeline-item {
-      position: relative;
-      margin-left: 0;
-      padding-left: 30px;
-    }
-
-    .talk.timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -12px;
-      top: 25px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #1a365d;
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 0 2px #e2e8f0;
-    }
-
-    .talk.timeline-item:hover::before {
-      background: #2c5282;
-      box-shadow: 0 0 0 2px #cbd5e0;
-    }
-
-    /* Talk Content Styling */
-    .talk-description {
-      color: #4a5568;
-      font-size: 16px; /* Augmenté de 14px à 16px */
-      line-height: 1.5;
-    }
-
-    /* Statistics Box */
-    .stats-box {
+    /* Research Areas */
+    .research-areas {
       background: #f7fafc;
-      padding: 20px;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 25px;
-      text-align: center;
+      padding: 25px;
+      border-radius: 15px;
+      border: 2px solid #e2e8f0;
+      margin-top: 25px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .stats-box h3 {
-      color: #1a365d;
-      margin: 0 0 15px 0;
-      font-size: 18px; /* Augmenté de 16px à 18px */
+    .research-areas::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1a365d, #2c5282);
+    }
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .research-tag {
+      background: #ffffff;
+      color: #2d3748;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 15px;
+      border: 1px solid #cbd5e0;
+      transition: all 0.3s ease;
       font-weight: 500;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
+    .research-tag:hover {
+      background: linear-gradient(135deg, #1a365d, #2c5282);
+      color: white;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(26, 54, 93, 0.2);
     }
 
-    .stat-item {
+    /* Upcoming talks */
+    .upcoming-talks {
       background: #ffffff;
-      padding: 12px;
-      border-radius: 4px;
-      border: 1px solid #e2e8f0;
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 4px solid #cbd5e0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      transition: all 0.3s ease;
     }
 
-    .stat-number {
-      font-size: 26px; /* Augmenté de 24px à 26px */
-      font-weight: 600;
-      color: #1a365d;
-      display: block;
+    .upcoming-talks:hover {
+      border-left-color: #1a365d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(26, 54, 93, 0.15);
     }
 
-    .stat-label {
-      font-size: 14px; /* Augmenté de 12px à 14px */
+    .upcoming-talks p {
       color: #718096;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-style: italic;
+      margin: 0;
+      font-size: 18px;
     }
 
-    /* Tags de domaines de recherche */
-    .research-tag {
-      background: #edf2f7;
-      color: #2d3748;
-      padding: 6px 12px; /* Augmenté le padding */
-      border-radius: 4px;
-      font-size: 15px; /* Augmenté de 13px à 15px */
-      border: 1px solid #cbd5e0;
+    /* Geometric background elements */
+    .geometric-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
     }
 
-    /* Responsive design */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.08), rgba(44, 82, 130, 0.08));
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .circle:nth-child(1) {
+      width: 180px;
+      height: 180px;
+      top: 15%;
+      right: 10%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 220px;
+      height: 220px;
+      bottom: 25%;
+      left: 5%;
+      animation-delay: 3s;
+    }
+
+    .circle:nth-child(3) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      body {
-        padding: 20px 15px;
-        font-size: 17px; /* Ajusté pour mobile */
-      }
-      
-      .container {
-        grid-template-columns: 1fr;
-        padding: 25px;
-        gap: 25px;
-      }
-      
-      .nav-section, .content-section {
-        grid-column: 1;
-      }
-      
-      .nav-section {
-        position: static;
-      }
-      
-      .nav-section nav {
-        display: flex;
-        flex-wrap: wrap;
+      .nav-content {
+        padding: 0 20px;
+        flex-direction: column;
         gap: 15px;
-        margin-top: 15px;
       }
-      
-      .nav-section a {
-        margin: 0;
+
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-section {
+        padding: 120px 20px 40px;
+      }
+
+      .container {
+        padding: 40px 30px;
+        border-radius: 15px;
+      }
+
+      .main-title {
+        font-size: 2.5rem;
+      }
+
+      .content-section h2 {
+        font-size: 22px;
+      }
+
+      .nav-links a {
+        padding: 10px 15px;
+        font-size: 15px;
+      }
+
+      .logo {
+        font-size: 24px;
       }
 
       .talks-timeline {
@@ -312,117 +455,199 @@
         display: none;
       }
 
-      .talk.timeline-item {
-        padding-left: 0;
+      .talk {
+        padding-left: 25px;
       }
 
-      .talk.timeline-item::before {
+      .talk::before {
         display: none;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .research-tags {
+        gap: 8px;
+      }
+
+      .research-tag {
+        font-size: 14px;
+        padding: 6px 12px;
       }
     }
 
     @media (max-width: 480px) {
-      body {
-        font-size: 16px; /* Ajusté pour très petits écrans */
-      }
-      
       .container {
-        padding: 20px;
-      }
-      
-      .nav-section h1 {
-        font-size: 24px; /* Ajusté pour petits écrans */
-      }
-      
-      .content-section h2 {
-        font-size: 20px; /* Ajusté pour petits écrans */
+        padding: 30px 20px;
       }
 
-      .stats-grid {
-        grid-template-columns: 1fr;
+      .main-title {
+        font-size: 2rem;
       }
+
+      .content-section h2 {
+        font-size: 20px;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      .nav-links a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      .talk {
+        padding: 20px;
+      }
+
+      .date, .pdf-link {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="nav-section">
-      <h1>Yassine Ait Mohamed</h1>
-      <div class="subtitle">
-        PhD Student<br>
-        Department of Mathematics<br>
-        Université de Sherbrooke
-      </div>
-      <nav>
+  <!-- Geometric background -->
+  <div class="geometric-bg">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- Navigation horizontale unique -->
+  <nav class="top-nav">
+    <div class="nav-content">
+      <a href="#" class="logo">YAM</a>
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
         <a href="talks.html" class="active">Talks</a>
         <a href="cv.html">CV</a>
         <a href="teaching.html">Teaching</a>
-      </nav>
+      </div>
     </div>
-    
-    <div class="content-section">
-      <h2>Conference & Seminar Presentations</h2>
+  </nav>
+
+  <!-- Section principale plein écran -->
+  <section class="main-section">
+    <div class="container">
+      <div class="content-section">
+        <h1 class="main-title">Talks & Presentations</h1>
+
+        <h2>Conference & Seminar Presentations</h2>
+        
+        <!-- Talks Timeline -->
+        <div class="talks-timeline">
+          <div class="talk">
+            <p>
+              <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
+              <a href="quivers.pdf" class="pdf-link">PDF</a>
+            </p>
+          </div>
+          
+          <div class="talk">
+            <p>
+              <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
+              <a href="graded_rings.pdf" class="pdf-link">PDF</a>
+            </p>
+          </div>
+          
+          <div class="talk">
+            <p>
+              <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
+            </p>
+          </div>
+          
+          <div class="talk">
+            <p>
+              <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
+              <a href="roch.pdf" class="pdf-link">PDF</a>
+            </p>
+          </div>
+          
+          <div class="talk">
+            <p>
+              <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
+            </p>
+          </div>
+        </div>
+
+        <h2>Research Areas Covered</h2>
+        <div class="research-areas">
+          <div class="research-tags">
+            <span class="research-tag">Algebraic Geometry</span>
+            <span class="research-tag">Lie Theory</span>
+            <span class="research-tag">Ring Theory</span>
+            <span class="research-tag">Differential Geometry</span>
+            <span class="research-tag">Representation Theory</span>
+          </div>
+        </div>
+
+        <h2>Upcoming Talks</h2>
+        <div class="upcoming-talks">
+          <p>
+            Information about upcoming conference presentations and seminar talks will be updated here as they are scheduled.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Navigation active highlighting
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        if (!this.classList.contains('active')) {
+          this.style.transform = 'translateY(-3px) scale(1.05)';
+        }
+      });
       
-      <!-- Talks Timeline -->
-      <div class="talks-timeline">
-        <div class="talk timeline-item">
-          <p>
-            <span class="date">November 2024:</span> On bound quivers, MAT728 Selected Topics in Algebra, Faculty of Sciences, University of Sherbrooke 
-            <a href="quivers.pdf" class="pdf-link">PDF</a>
-          </p>
-        </div>
-        
-        <div class="talk timeline-item">
-          <p>
-            <span class="date">January 2023:</span> On Graded Rings (1), seminar of Non-commutative Algebra, Laboratory of Meddling and Mathematical Structures, Faculty of Science and Technology-Fez 
-            <a href="graded_rings.pdf" class="pdf-link">PDF</a>
-          </p>
-        </div>
-        
-        <div class="talk timeline-item">
-          <p>
-            <span class="date">December 2021:</span> Tensor algebra and enveloping algebra of a Lie algebra, seminar of Theory of Hopf algebras, Faculty of Science Dhar El Mahraz
-          </p>
-        </div>
-        
-        <div class="talk timeline-item">
-          <p>
-            <span class="date">November 2021:</span> About Riemann-Roch Theorem, seminar of Algebraic geometry, Faculty of Science Dhar El Mahraz 
-            <a href="roch.pdf" class="pdf-link">PDF</a>
-          </p>
-        </div>
-        
-        <div class="talk timeline-item">
-          <p>
-            <span class="date">February 2021:</span> Action of a Lie group on a differential variety, seminar of Differential geometry 2, Faculty of Science Dhar El Mahraz
-          </p>
-        </div>
-      </div>
+      link.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('active')) {
+          this.style.transform = 'translateY(0) scale(1)';
+        }
+      });
+    });
 
-      <h2>Research Areas Covered</h2>
-      <div style="background: #f7fafc; padding: 16px; border-radius: 6px; border: 1px solid #e2e8f0; margin-top: 20px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span class="research-tag">Algebraic Geometry</span>
-          <span class="research-tag">Lie Theory</span>
-          <span class="research-tag">Ring Theory</span>
-          <span class="research-tag">Differential Geometry</span>
-          <span class="research-tag">Representation Theory</span>
-        </div>
-      </div>
+    // Subtle parallax effect for geometric shapes
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const circles = document.querySelectorAll('.circle');
+      
+      circles.forEach((circle, index) => {
+        const speed = (index + 1) * 0.05;
+        circle.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
 
-      <h2>Upcoming Talks</h2>
-      <div style="background: #ffffff; padding: 18px; border-radius: 6px; border-left: 3px solid #cbd5e0; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin-top: 15px;">
-        <p style="color: #718096; font-style: italic; margin: 0; font-size: 18px;">
-          Information about upcoming conference presentations and seminar talks will be updated here as they are scheduled.
-        </p>
-      </div>
-    </div>
-  </div>
+    // Add hover animation to talks
+    document.querySelectorAll('.talk').forEach(talk => {
+      talk.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) translateX(8px)';
+      });
+      
+      talk.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) translateX(0)';
+      });
+    });
+
+    // Add staggered animation to research tags
+    document.querySelectorAll('.research-tag').forEach((tag, index) => {
+      tag.addEventListener('mouseenter', function() {
+        setTimeout(() => {
+          this.style.transform = 'translateY(-2px) scale(1.05)';
+        }, index * 50);
+      });
+      
+      tag.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
 </body>
 </html>
