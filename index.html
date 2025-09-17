@@ -12,11 +12,11 @@
     }
 
     body {
-      font-family: 'Georgia', 'Times New Roman', serif;
+      font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
       font-size: 18px;
       color: #2c3e50;
-      background: linear-gradient(135deg, #006233 0%, #C1272D 100%);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -29,7 +29,7 @@
       right: 0;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      border-bottom: 3px solid #C1272D;
+      border-bottom: 3px solid #1a365d;
       z-index: 1000;
       padding: 20px 0;
       transform: translateY(-100%);
@@ -52,10 +52,7 @@
     .logo {
       font-size: 28px;
       font-weight: 700;
-      background: linear-gradient(135deg, #C1272D, #006233);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #1a365d;
       text-decoration: none;
       letter-spacing: 1px;
     }
@@ -66,9 +63,9 @@
     }
 
     .nav-links a {
-      color: #2c3e50;
+      color: #2d3748;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 17px;
       padding: 12px 20px;
       border-radius: 25px;
@@ -84,7 +81,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(193, 39, 45, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(26, 54, 93, 0.1), transparent);
       transition: left 0.6s;
     }
 
@@ -93,10 +90,10 @@
     }
 
     .nav-links a:hover, .nav-links a.active {
-      background: linear-gradient(135deg, #C1272D, #006233);
+      background: #1a365d;
       color: white;
       transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(193, 39, 45, 0.3);
+      box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
     }
 
     /* Section principale - Plein écran */
@@ -120,7 +117,7 @@
       backdrop-filter: blur(20px);
       border-radius: 20px;
       padding: 50px;
-      border: 2px solid rgba(193, 39, 45, 0.1);
+      border: 2px solid rgba(26, 54, 93, 0.1);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
       position: relative;
       overflow: hidden;
@@ -133,7 +130,7 @@
       left: -100%;
       width: 100%;
       height: 4px;
-      background: linear-gradient(90deg, transparent, #C1272D, #006233, transparent);
+      background: linear-gradient(90deg, transparent, #1a365d, #2c5282, transparent);
       animation: scan 4s ease-in-out infinite;
     }
 
@@ -156,11 +153,8 @@
 
     .main-title {
       font-size: 3.5rem;
-      font-weight: 300;
-      background: linear-gradient(135deg, #C1272D, #006233);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 400;
+      color: #1a365d;
       margin-bottom: 15px;
       letter-spacing: 1px;
       line-height: 1.2;
@@ -168,7 +162,7 @@
 
     .main-subtitle {
       font-size: 1.4rem;
-      color: #7f8c8d;
+      color: #718096;
       margin-bottom: 40px;
       font-weight: 300;
       letter-spacing: 0.5px;
@@ -176,17 +170,11 @@
 
     .content-section h2 {
       font-size: 24px;
-      background: linear-gradient(135deg, #C1272D, #006233);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #1a365d;
       margin: 30px 0 20px 0;
       padding-bottom: 10px;
-      border-bottom: 2px solid transparent;
-      background-image: linear-gradient(white, white), linear-gradient(135deg, #C1272D, #006233);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      font-weight: 600;
+      border-bottom: 2px solid #cbd5e0;
+      font-weight: 400;
       letter-spacing: 0.3px;
       position: relative;
       transform: translateY(20px);
@@ -219,31 +207,15 @@
     }
 
     .content-section a {
-      color: #C1272D;
+      color: #2c5282;
       text-decoration: none;
-      font-weight: 600;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .content-section a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #C1272D, #006233);
-      transition: width 0.3s ease;
-    }
-
-    .content-section a:hover::after {
-      width: 100%;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .content-section a:hover {
-      color: #006233;
-      transform: translateY(-1px);
+      color: #1a365d;
+      border-bottom-color: #1a365d;
     }
 
     /* Section photo */
@@ -266,7 +238,7 @@
       border-radius: 50%;
       object-fit: cover;
       border: 6px solid white;
-      box-shadow: 0 15px 40px rgba(193, 39, 45, 0.3);
+      box-shadow: 0 15px 40px rgba(26, 54, 93, 0.3);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       cursor: pointer;
@@ -281,7 +253,7 @@
       right: -6px;
       bottom: -6px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #C1272D, #006233);
+      background: linear-gradient(135deg, #1a365d, #2c5282);
       z-index: -1;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -289,7 +261,7 @@
 
     .profile-photo:hover {
       transform: scale(1.08) rotate(3deg);
-      box-shadow: 0 25px 60px rgba(193, 39, 45, 0.4);
+      box-shadow: 0 25px 60px rgba(26, 54, 93, 0.4);
     }
 
     .profile-photo:hover::before {
@@ -304,11 +276,11 @@
 
     /* Section de contact */
     .contact-info {
-      background: linear-gradient(135deg, rgba(193, 39, 45, 0.05), rgba(0, 98, 51, 0.05));
+      background: #f7fafc;
       padding: 30px;
       border-radius: 15px;
       margin: 30px 0;
-      border: 2px solid rgba(193, 39, 45, 0.1);
+      border: 1px solid #e2e8f0;
       position: relative;
       overflow: hidden;
       transform: translateY(20px);
@@ -325,16 +297,13 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #C1272D, #006233);
+      height: 3px;
+      background: linear-gradient(90deg, #1a365d, #2c5282);
     }
 
     .contact-info strong {
-      background: linear-gradient(135deg, #C1272D, #006233);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
+      color: #1a365d;
+      font-weight: 500;
       display: block;
       margin-bottom: 10px;
       font-size: 16px;
@@ -346,25 +315,20 @@
     }
 
     .contact-info a {
-      color: #C1272D !important;
-      font-weight: 700 !important;
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, rgba(193, 39, 45, 0.1), rgba(0, 98, 51, 0.1));
-      border-radius: 25px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      margin-top: 10px;
+      color: #2c5282 !important;
+      font-weight: 500 !important;
+      padding: 2px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .contact-info a:hover {
-      background: linear-gradient(135deg, #C1272D, #006233);
-      color: white !important;
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(193, 39, 45, 0.3);
+      color: #1a365d !important;
+      border-bottom-color: #1a365d;
+      transform: none;
     }
 
-    /* Geometric background elements avec couleurs Maroc */
+    /* Geometric background elements */
     .geometric-bg {
       position: fixed;
       top: 0;
@@ -378,7 +342,7 @@
     .circle {
       position: absolute;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(193, 39, 45, 0.08), rgba(0, 98, 51, 0.08));
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.08), rgba(44, 82, 130, 0.08));
       animation: float 8s ease-in-out infinite;
     }
 
@@ -388,7 +352,6 @@
       top: 15%;
       right: 10%;
       animation-delay: 0s;
-      background: radial-gradient(circle, rgba(193, 39, 45, 0.1), transparent);
     }
 
     .circle:nth-child(2) {
@@ -397,7 +360,6 @@
       bottom: 25%;
       left: 5%;
       animation-delay: 3s;
-      background: radial-gradient(circle, rgba(0, 98, 51, 0.1), transparent);
     }
 
     .circle:nth-child(3) {
@@ -406,7 +368,6 @@
       top: 60%;
       left: 20%;
       animation-delay: 6s;
-      background: radial-gradient(circle, rgba(193, 39, 45, 0.08), transparent);
     }
 
     @keyframes float {
@@ -508,7 +469,7 @@
   </style>
 </head>
 <body>
-  <!-- Geometric background avec couleurs Maroc -->
+  <!-- Geometric background -->
   <div class="geometric-bg">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -597,17 +558,6 @@
         const speed = (index + 1) * 0.05;
         circle.style.transform = `translateY(${scrolled * speed}px)`;
       });
-    });
-
-    // Add Moroccan flag colors animation to circles
-    const circles = document.querySelectorAll('.circle');
-    circles.forEach((circle, index) => {
-      setInterval(() => {
-        const isRed = Math.random() > 0.5;
-        const color1 = isRed ? 'rgba(193, 39, 45, 0.1)' : 'rgba(0, 98, 51, 0.1)';
-        const color2 = 'transparent';
-        circle.style.background = `radial-gradient(circle, ${color1}, ${color2})`;
-      }, 3000 + index * 1000);
     });
   </script>
 </body>
