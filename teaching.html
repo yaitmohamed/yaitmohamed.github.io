@@ -728,77 +728,77 @@
         <div class="pdf-grid" id="resourceGrid">
           <div class="pdf-cell" data-category="algebra exercises" onclick="window.open('MATH253_S9.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Exercices S9 - Linear Algebra</div>
+            <div class="pdf-title">S1</div>
           </div>   
 
           <div class="pdf-cell" data-category="algebra exercises" onclick="window.open('exomath253.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Complete Exercises (MATH253)</div>
+            <div class="pdf-title">S2 </div>
           </div>            
 
           <div class="pdf-cell" data-category="algebra" onclick="window.open('TD_Algebre_1.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title"></div>
+            <div class="pdf-title">S3 </div>
           </div>
 
           <div class="pdf-cell" data-category="algebra" onclick="window.open('Logique_11.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title"></div>
+            <div class="pdf-title">S4 </div>
           </div>
 
           <div class="pdf-cell" data-category="algebra" onclick="window.open('groupes.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title"></div>
+            <div class="pdf-title">S5</div>
           </div>
 
           <div class="pdf-cell" data-category="analysis exercises" onclick="window.open('Exercices__Analyse_II.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Analysis II Exercises</div>
+            <div class="pdf-title">S6</div>
           </div>
 
           <div class="pdf-cell" data-category="algebra" onclick="window.open('redu.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Endomorphism Reduction</div>
+            <div class="pdf-title">S7 </div>
           </div>
 
           <div class="pdf-cell" data-category="topology" onclick="window.open('topologie.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Topology Problem Sets</div>
+            <div class="pdf-title">S8 </div>
           </div>
 
           <div class="pdf-cell" data-category="exercises" onclick="window.open('Test_1.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Practice Test 1</div>
+            <div class="pdf-title">S9</div>
           </div>
 
           <div class="pdf-cell" data-category="exercises" onclick="window.open('Devoir_1 (1).pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Practice Test 2</div>
+            <div class="pdf-title">S10 </div>
           </div>
 
           <div class="pdf-cell" data-category="exercises" onclick="window.open('Devoir3.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Assignment 3</div>
+            <div class="pdf-title">S11 </div>
           </div>
 
           <div class="pdf-cell" data-category="exercises" onclick="window.open('Test4.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Practice Test 4</div>
+            <div class="pdf-title">S12</div>
           </div>
 
           <div class="pdf-cell" data-category="analysis" onclick="window.open('Série_1_Nombres_réels.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Real Numbers Series</div>
+            <div class="pdf-title">S13 </div>
           </div>
 
           <div class="pdf-cell" data-category="analysis" onclick="window.open('Suites_réelles.pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Real Sequences Series</div>
+            <div class="pdf-title">S14 </div>
           </div>
 
           <div class="pdf-cell" data-category="analysis exercises" onclick="window.open('Devoir_1__Suites_réelles (1).pdf', '_blank')">
             <div class="pdf-icon">PDF</div>
-            <div class="pdf-title">Real Sequences Assignment</div>
+            <div class="pdf-title">S15</div>
           </div>
         </div>
       </div>
@@ -865,36 +865,3 @@
       link.addEventListener('mouseleave', function() {
         if (!this.classList.contains('active')) {
           this.style.transform = 'translateY(0) scale(1)';
-        }
-      });
-    });
-
-    // Subtle parallax effect for geometric shapes
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const circles = document.querySelectorAll('.circle');
-      
-      circles.forEach((circle, index) => {
-        const speed = (index + 1) * 0.05;
-        circle.style.transform = `translateY(${scrolled * speed}px)`;
-      });
-    });
-
-    // Add hover animation to entries
-    document.querySelectorAll('.entry').forEach(entry => {
-      entry.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px) scale(1.01)';
-      });
-      
-      entry.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
-
-    // Initialize when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      setupSearch();
-    });
-  </script>
-</body>
-</html>
