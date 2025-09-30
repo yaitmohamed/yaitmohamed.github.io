@@ -716,8 +716,331 @@
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     
-    // Feuilles qui tombent
-    class Leaf {
+    // Variétés géométriques (Manifolds)
+    class GeometricManifold {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 80 + 60;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+        this.opacity = Math.random() * 0.25 + 0.15;
+        this.phase = Math.random() * Math.PI * 2;
+        this.type = Math.floor(Math.random() * 4);
+        this.color = ['rgba(59, 130, 246,', 'rgba(239, 68, 68,', 'rgba(34, 197, 94,', 'rgba(168, 85, 247,'][Math.floor(Math.random() * 4)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.phase += 0.015;
+        
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        
+        if (this.type === 0) {
+          // Tore (surface de révolution)
+          for (let i = 0; i < 2; i++) {
+            ctx.beginPath();
+            const r = this.size * (0.5 + i * 0.3);
+            for (let t = 0; t <= Math.PI * 2; t += 0.1) {
+              const x = r * Math.cos(t);
+              const y = r * Math.sin(t) + Math.sin(this.phase + t * 3) * 10;
+              if (t === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.stroke();
+          }
+        } else if (this.type === 1) {
+          // Sphère (grille)
+          for (let lat = -Math.PI / 2; lat <= Math.PI / 2; lat += Math.PI / 6) {
+            ctx.beginPath();
+            for (let lon = 0; lon <= Math.PI * 2; lon += 0.1) {
+              const x = this.size * Math.cos(lat) * Math.cos(lon);
+              const y = this.size * Math.sin(lat) + Math.sin(this.phase) * 5;
+              if (lon === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+          for (let lon = 0; lon <= Math.PI * 2; lon += Math.PI / 6) {
+            ctx.beginPath();
+            for (let lat = -Math.PI / 2; lat <= Math.PI / 2; lat += 0.1) {
+              const x = this.size * Math.cos(lat) * Math.cos(lon);
+              const y = this.size * Math.sin(lat) + Math.sin(this.phase) * 5;
+              if (lat === -Math.PI / 2) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        } else if (this.type === 2) {
+          // Hyperboloïde
+          for (let i = -1; i <= 1; i += 0.2) {
+            ctx.beginPath();
+            for (let t = 0; t <= Math.PI * 2; t += 0.1) {
+              const r = this.size * Math.sqrt(1 + i * i) * 0.5;
+              const x = r * Math.cos(t);
+              const y = i * this.size * 0.5 + Math.sin(this.phase + t) * 8;
+              if (t === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        } else {
+          // Klein bottle projection
+          for (let v = 0; v < Math.PI * 2; v += Math.PI / 8) {
+            ctx.beginPath();
+            for (let u = 0; u <= Math.PI * 2; u += 0.1) {
+              const r = this.size * 0.3;
+              const a = this.size * 0.15;
+              const x = (r + a * Math.cos(v)) * Math.cos(u);
+              const y = (r + a * Math.cos(v)) * Math.sin(u) + Math.sin(this.phase + u) * 5;
+              if (u === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+        
+        ctx.restore();
+      }
+    }
+    
+    // Polyèdres platoniciens
+    class PlatonicSolid {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 50 + 40;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+        this.tilt = Math.random() * Math.PI * 2;
+        this.tiltSpeed = (Math.random() - 0.5) * 0.02;
+        this.opacity = Math.random() * 0.3 + 0.2;
+        this.type = Math.floor(Math.random() * 5);
+        this.color = ['rgba(59, 130, 246,', 'rgba(239, 68, 68,', 'rgba(34, 197, 94,', 'rgba(168, 85, 247,'][Math.floor(Math.random() * 4)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.tilt += this.tiltSpeed;
+        
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        
+        const vertices = [];
+        const phi = (1 + Math.sqrt(5)) / 2;
+        
+        if (this.type === 0) {
+          // Tétraèdre
+          vertices.push([1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]);
+        } else if (this.type === 1) {
+          // Cube
+          for (let i = -1; i <= 1; i += 2) {
+            for (let j = -1; j <= 1; j += 2) {
+              for (let k = -1; k <= 1; k += 2) {
+                vertices.push([i, j, k]);
+              }
+            }
+          }
+        } else if (this.type === 2) {
+          // Octaèdre
+          vertices.push([1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]);
+        } else if (this.type === 3) {
+          // Dodécaèdre
+          for (let i = -1; i <= 1; i += 2) {
+            for (let j = -1; j <= 1; j += 2) {
+              vertices.push([0, i / phi, j * phi]);
+              vertices.push([i / phi, j * phi, 0]);
+              vertices.push([i * phi, 0, j / phi]);
+            }
+          }
+        } else {
+          // Icosaèdre
+          for (let i = -1; i <= 1; i += 2) {
+            for (let j = -1; j <= 1; j += 2) {
+              vertices.push([0, i, j * phi]);
+              vertices.push([i, j * phi, 0]);
+              vertices.push([i * phi, 0, j]);
+            }
+          }
+        }
+        
+        // Projection 3D -> 2D avec rotation
+        const projected = vertices.map(([x, y, z]) => {
+          // Rotation autour de l'axe Y
+          const x1 = x * Math.cos(this.tilt) - z * Math.sin(this.tilt);
+          const z1 = x * Math.sin(this.tilt) + z * Math.cos(this.tilt);
+          // Projection perspective simple
+          const scale = this.size / (3 + z1 * 0.3);
+          return [x1 * scale, y * scale];
+        });
+        
+        // Dessiner les arêtes
+        for (let i = 0; i < projected.length; i++) {
+          for (let j = i + 1; j < projected.length; j++) {
+            const dx = vertices[i][0] - vertices[j][0];
+            const dy = vertices[i][1] - vertices[j][1];
+            const dz = vertices[i][2] - vertices[j][2];
+            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            
+            if (dist < 2.5) {
+              ctx.beginPath();
+              ctx.moveTo(projected[i][0], projected[i][1]);
+              ctx.lineTo(projected[j][0], projected[j][1]);
+              ctx.stroke();
+            }
+          }
+        }
+        
+        ctx.restore();
+      }
+    }
+    
+    // Fractales géométriques
+    class GeometricFractal {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 60 + 50;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.015;
+        this.opacity = Math.random() * 0.25 + 0.15;
+        this.depth = 3;
+        this.color = ['rgba(59, 130, 246,', 'rgba(239, 68, 68,', 'rgba(34, 197, 94,', 'rgba(168, 85, 247,'][Math.floor(Math.random() * 4)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      drawSierpinski(x, y, size, depth) {
+        if (depth === 0) {
+          ctx.beginPath();
+          ctx.moveTo(x, y - size);
+          ctx.lineTo(x - size, y + size);
+          ctx.lineTo(x + size, y + size);
+          ctx.closePath();
+          ctx.stroke();
+        } else {
+          const newSize = size / 2;
+          this.drawSierpinski(x, y - newSize, newSize, depth - 1);
+          this.drawSierpinski(x - newSize, y + newSize, newSize, depth - 1);
+          this.drawSierpinski(x + newSize, y + newSize, newSize, depth - 1);
+        }
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 1;
+        
+        this.drawSierpinski(0, 0, this.size, this.depth);
+        
+        ctx.restore();
+      }
+    }
+    
+    // Initialisation
+    const manifolds = [];
+    const solids = [];
+    const fractals = [];
+    
+    for (let i = 0; i < 8; i++) {
+      manifolds.push(new GeometricManifold());
+    }
+    
+    for (let i = 0; i < 12; i++) {
+      solids.push(new PlatonicSolid());
+    }
+    
+    for (let i = 0; i < 6; i++) {
+      fractals.push(new GeometricFractal());
+    }
+    
+    // Animation
+    function animate() {
+      ctx.fillStyle = 'rgba(245, 247, 250, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Dessiner les variétés
+      manifolds.forEach(manifold => {
+        manifold.update();
+        manifold.draw();
+      });
+      
+      // Dessiner les fractales
+      fractals.forEach(fractal => {
+        fractal.update();
+        fractal.draw();
+      });
+      
+      // Dessiner les solides
+      solids.forEach(solid => {
+        solid.update();
+        solid.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Redimensionnement
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    // Interaction souris
+    canvas.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      solids.forEach(solid => {
+        const dx = mouseX - solid.x;
+        const dy = mouseY - solid.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          solid.rotationSpeed += 0.001;
+          solid.tiltSpeed += 0.001;
+        }
+      });
+    });
       constructor() {
         this.x = Math.random() * width;
         this.y = -50;
