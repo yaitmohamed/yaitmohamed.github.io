@@ -20,6 +20,29 @@
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Canvas quantique en arrière-plan */
+    #quantumCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Overlay pour améliorer la lisibilité */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 100%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* Navigation horizontale unique */
@@ -102,6 +125,7 @@
       min-height: 100vh;
       padding: 100px 40px 40px;
       position: relative;
+      z-index: 2;
     }
 
     .container {
@@ -349,53 +373,6 @@
       line-height: 1.4;
     }
 
-    /* Geometric background elements */
-    .geometric-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(26, 54, 93, 0.08), rgba(44, 82, 130, 0.08));
-      animation: float 8s ease-in-out infinite;
-    }
-
-    .circle:nth-child(1) {
-      width: 180px;
-      height: 180px;
-      top: 15%;
-      right: 10%;
-      animation-delay: 0s;
-    }
-
-    .circle:nth-child(2) {
-      width: 220px;
-      height: 220px;
-      bottom: 25%;
-      left: 5%;
-      animation-delay: 3s;
-    }
-
-    .circle:nth-child(3) {
-      width: 120px;
-      height: 120px;
-      top: 60%;
-      right: 30%;
-      animation-delay: 6s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-30px) rotate(180deg); }
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       .nav-content {
@@ -475,12 +452,9 @@
   </style>
 </head>
 <body>
-  <!-- Geometric background -->
-  <div class="geometric-bg">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+  <!-- Canvas pour le champ quantique -->
+  <canvas id="quantumCanvas"></canvas>
+  <div class="overlay"></div>
 
   <!-- Navigation horizontale unique -->
   <nav class="top-nav">
@@ -599,6 +573,393 @@
   </section>
 
   <script>
+    // Configuration du canvas quantique
+    const canvas = document.getElementById('quantumCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Particules quantiques
+    class QuantumParticle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.phase = Math.random() * Math.PI * 2;
+        this.frequency = Math.random() * 0.02 + 0.01;
+        this.color = ['rgba(220, 38, 38,', 'rgba(239, 68, 68,', 'rgba(185, 28, 28,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += this.frequency;
+        this.opacity = 0.3 + Math.sin(this.phase) * 0.3;
+        
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
+        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
+        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
+        gradient.addColorStop(1, `${this.color} 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+    }
+    
+    // Ondes de champ quantique
+    class QuantumWave {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = 0;
+        this.maxRadius = Math.random() * 200 + 100;
+        this.speed = Math.random() * 0.5 + 0.3;
+        this.opacity = 0.4;
+        this.color = ['rgba(22, 163, 74,', 'rgba(34, 197, 94,', 'rgba(21, 128, 61,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.radius += this.speed;
+        this.opacity = 0.4 * (1 - this.radius / this.maxRadius);
+        
+        return this.radius < this.maxRadius;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+    
+    // Formes géométriques variées (triangles, carrés, pentagones, hexagones, octogones, étoiles)
+    class GeometricShape {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 70 + 30;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.015;
+        this.opacity = Math.random() * 0.25 + 0.1;
+        this.type = Math.floor(Math.random() * 6); // 6 types de formes
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.phase = Math.random() * Math.PI * 2;
+        this.color = ['rgba(220, 38, 38,', 'rgba(239, 68, 68,', 'rgba(22, 163, 74,', 'rgba(34, 197, 94,'][Math.floor(Math.random() * 4)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.phase += 0.02;
+        this.opacity = 0.15 + Math.sin(this.phase) * 0.12;
+        
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        if (this.type === 5) {
+          // Étoile à 5 branches
+          for (let i = 0; i < 10; i++) {
+            const angle = (i / 10) * Math.PI * 2 - Math.PI / 2;
+            const radius = i % 2 === 0 ? this.size : this.size * 0.4;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+        } else {
+          // Polygones réguliers (3 à 8 côtés)
+          const sides = this.type + 3;
+          for (let i = 0; i <= sides; i++) {
+            const angle = (i / sides) * Math.PI * 2;
+            const x = Math.cos(angle) * this.size;
+            const y = Math.sin(angle) * this.size;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+        }
+        
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    
+    // Symboles mathématiques et physiques
+    class MathSymbol {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.25;
+        this.opacity = Math.random() * 0.35 + 0.15;
+        this.phase = Math.random() * Math.PI * 2;
+        this.symbols = [
+          // Mathématiques
+          '∫', '∂', '∇', 'Σ', 'Δ', '∞', '≈', '≡', '⊗', '⊕',
+          // Algèbre/Géométrie
+          '∈', '∉', '⊂', '⊃', '∪', '∩', '⊥', '∥', '∠', '○',
+          // Physique quantique
+          'ℏ', 'ψ', 'Ψ', 'φ', 'Φ', 'λ', 'Ω', 'α', 'β', 'γ',
+          // Variables grecques
+          'θ', 'μ', 'ν', 'ξ', 'π', 'ρ', 'σ', 'τ', 'χ', 'ω'
+        ];
+        this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+        this.size = Math.random() * 22 + 20;
+        this.color = ['rgba(220, 38, 38,', 'rgba(239, 68, 68,', 'rgba(22, 163, 74,', 'rgba(34, 197, 94,', 'rgba(185, 28, 28,', 'rgba(21, 128, 61,'][Math.floor(Math.random() * 6)];
+        this.rotation = (Math.random() - 0.5) * 0.3;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.005;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += 0.015;
+        this.rotation += this.rotationSpeed;
+        this.opacity = 0.25 + Math.sin(this.phase) * 0.15;
+        
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.font = `${this.size}px 'Times New Roman', serif`;
+        ctx.fillStyle = `${this.color} ${this.opacity})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(this.symbol, 0, 0);
+        ctx.restore();
+      }
+    }
+    
+    // Variétés algébriques (courbes paramétriques)
+    class AlgebraicCurve {
+      constructor() {
+        this.centerX = Math.random() * width;
+        this.centerY = Math.random() * height;
+        this.a = Math.random() * 50 + 30;
+        this.b = Math.random() * 50 + 30;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.phase = Math.random() * Math.PI * 2;
+        this.phaseSpeed = Math.random() * 0.01 + 0.005;
+        this.opacity = Math.random() * 0.2 + 0.1;
+        this.type = Math.floor(Math.random() * 3); // Lemniscate, rose, épitrochoïde
+        this.color = ['rgba(220, 38, 38,', 'rgba(22, 163, 74,', 'rgba(185, 28, 28,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.centerX += this.vx;
+        this.centerY += this.vy;
+        this.phase += this.phaseSpeed;
+        
+        if (this.centerX < -100 || this.centerX > width + 100) this.vx *= -1;
+        if (this.centerY < -100 || this.centerY > height + 100) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.centerX, this.centerY);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        
+        for (let t = 0; t <= Math.PI * 2; t += 0.05) {
+          let x, y;
+          
+          if (this.type === 0) {
+            // Lemniscate de Bernoulli
+            const denom = 1 + Math.sin(t) ** 2;
+            x = this.a * Math.cos(t) / denom;
+            y = this.a * Math.sin(t) * Math.cos(t) / denom;
+          } else if (this.type === 1) {
+            // Rose curve
+            const k = 3 + Math.floor(this.phase) % 3;
+            const r = this.a * Math.cos(k * t);
+            x = r * Math.cos(t);
+            y = r * Math.sin(t);
+          } else {
+            // Épitrochoïde
+            const R = this.a;
+            const r = this.b;
+            const d = this.a * 0.5;
+            x = (R + r) * Math.cos(t) - d * Math.cos((R + r) / r * t);
+            y = (R + r) * Math.sin(t) - d * Math.sin((R + r) / r * t);
+          }
+          
+          if (t === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    
+    // Initialisation
+    const particles = [];
+    const waves = [];
+    const shapes = [];
+    const symbols = [];
+    const curves = [];
+    const particleCount = 120;
+    const shapeCount = 15;
+    const symbolCount = 25;
+    const curveCount = 5;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new QuantumParticle());
+    }
+    
+    for (let i = 0; i < shapeCount; i++) {
+      shapes.push(new GeometricShape());
+    }
+    
+    for (let i = 0; i < symbolCount; i++) {
+      symbols.push(new MathSymbol());
+    }
+    
+    for (let i = 0; i < curveCount; i++) {
+      curves.push(new AlgebraicCurve());
+    }
+    
+    // Créer des ondes périodiquement
+    setInterval(() => {
+      if (waves.length < 5) {
+        waves.push(new QuantumWave());
+      }
+    }, 2000);
+    
+    // Connexions entre particules (intrication quantique)
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = (1 - distance / 120) * 0.15;
+            ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    // Animation
+    function animate() {
+      ctx.fillStyle = 'rgba(245, 247, 250, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Dessiner les courbes algébriques en arrière-plan
+      curves.forEach(curve => {
+        curve.update();
+        curve.draw();
+      });
+      
+      // Dessiner les formes géométriques
+      shapes.forEach(shape => {
+        shape.update();
+        shape.draw();
+      });
+      
+      // Dessiner les symboles mathématiques
+      symbols.forEach(symbol => {
+        symbol.update();
+        symbol.draw();
+      });
+      
+      // Dessiner les connexions
+      drawConnections();
+      
+      // Mettre à jour et dessiner les particules
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      // Mettre à jour et dessiner les ondes
+      for (let i = waves.length - 1; i >= 0; i--) {
+        if (!waves[i].update()) {
+          waves.splice(i, 1);
+        } else {
+          waves[i].draw();
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Redimensionnement
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    // Interaction avec la souris
+    canvas.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      particles.forEach(particle => {
+        const dx = mouseX - particle.x;
+        const dy = mouseY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          particle.vx += dx * 0.0001;
+          particle.vy += dy * 0.0001;
+        }
+      });
+      
+      // Interaction avec les symboles
+      symbols.forEach(symbol => {
+        const dx = mouseX - symbol.x;
+        const dy = mouseY - symbol.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          symbol.vx += dx * 0.00005;
+          symbol.vy += dy * 0.00005;
+        }
+      });
+    });
+    
     function toggleAbstract(id) {
       const element = document.getElementById(id);
       const toggle = element.previousElementSibling;
@@ -630,17 +991,6 @@
         if (!this.classList.contains('active')) {
           this.style.transform = 'translateY(0) scale(1)';
         }
-      });
-    });
-
-    // Subtle parallax effect for geometric shapes
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const circles = document.querySelectorAll('.circle');
-      
-      circles.forEach((circle, index) => {
-        const speed = (index + 1) * 0.05;
-        circle.style.transform = `translateY(${scrolled * speed}px)`;
       });
     });
   </script>
