@@ -716,69 +716,34 @@
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     
-    // Particules de connaissances
-    class KnowledgeParticle {
+    // Feuilles qui tombent
+    class Leaf {
       constructor() {
         this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 3 + 1.5;
-        this.opacity = Math.random() * 0.6 + 0.3;
-        this.phase = Math.random() * Math.PI * 2;
-        this.frequency = Math.random() * 0.02 + 0.01;
-        this.color = ['rgba(59, 130, 246,', 'rgba(99, 102, 241,', 'rgba(139, 92, 246,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += this.frequency;
-        this.opacity = 0.4 + Math.sin(this.phase) * 0.3;
-        
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
-        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
-        gradient.addColorStop(1, `${this.color} 0)`);
-        
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      }
-    }
-    
-    // Livres flottants
-    class FloatingBook {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.width = 40 + Math.random() * 20;
-        this.height = this.width * 1.4;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
+        this.y = -50;
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = Math.random() * 2 + 1;
+        this.size = Math.random() * 20 + 15;
         this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.opacity = Math.random() * 0.3 + 0.15;
-        this.phase = Math.random() * Math.PI * 2;
-        this.color = ['rgba(59, 130, 246,', 'rgba(99, 102, 241,', 'rgba(139, 92, 246,'][Math.floor(Math.random() * 3)];
+        this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+        this.opacity = Math.random() * 0.6 + 0.4;
+        this.swingPhase = Math.random() * Math.PI * 2;
+        this.swingSpeed = Math.random() * 0.03 + 0.02;
+        this.color = ['rgba(34, 197, 94,', 'rgba(22, 163, 74,', 'rgba(21, 128, 61,', 'rgba(74, 222, 128,'][Math.floor(Math.random() * 4)];
       }
       
       update() {
-        this.x += this.vx;
+        this.swingPhase += this.swingSpeed;
+        this.x += this.vx + Math.sin(this.swingPhase) * 0.5;
         this.y += this.vy;
         this.rotation += this.rotationSpeed;
-        this.phase += 0.015;
-        this.opacity = 0.2 + Math.sin(this.phase) * 0.12;
         
-        if (this.x < -this.width || this.x > width + this.width) this.vx *= -1;
-        if (this.y < -this.height || this.y > height + this.height) this.vy *= -1;
+        if (this.y > height + 50) {
+          this.y = -50;
+          this.x = Math.random() * width;
+        }
+        if (this.x < -50) this.x = width + 50;
+        if (this.x > width + 50) this.x = -50;
       }
       
       draw() {
@@ -786,41 +751,333 @@
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
         
-        // Couverture
         ctx.fillStyle = `${this.color} ${this.opacity})`;
-        ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+        ctx.beginPath();
+        ctx.moveTo(0, -this.size / 2);
+        ctx.bezierCurveTo(
+          this.size / 2, -this.size / 3,
+          this.size / 2, this.size / 3,
+          0, this.size / 2
+        );
+        ctx.bezierCurveTo(
+          -this.size / 2, this.size / 3,
+          -this.size / 2, -this.size / 3,
+          0, -this.size / 2
+        );
+        ctx.fill();
         
-        // Pages
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.8})`;
-        ctx.fillRect(-this.width / 2 + 2, -this.height / 2, this.width - 4, this.height);
-        
-        // Lignes de texte
-        ctx.strokeStyle = `${this.color} ${this.opacity * 0.6})`;
+        ctx.strokeStyle = `${this.color} ${this.opacity * 0.8})`;
         ctx.lineWidth = 1;
-        for (let i = 0; i < 5; i++) {
-          const y = -this.height / 4 + i * 8;
-          ctx.beginPath();
-          ctx.moveTo(-this.width / 3, y);
-          ctx.lineTo(this.width / 3, y);
-          ctx.stroke();
-        }
+        ctx.beginPath();
+        ctx.moveTo(0, -this.size / 2);
+        ctx.lineTo(0, this.size / 2);
+        ctx.stroke();
         
         ctx.restore();
       }
     }
     
-    // Formules mathématiques
-    class MathFormula {
+    // Oiseaux volants
+    class Bird {
+      constructor() {
+        this.x = -100;
+        this.y = Math.random() * height * 0.5 + 50;
+        this.speed = Math.random() * 1.5 + 1;
+        this.wingPhase = Math.random() * Math.PI * 2;
+        this.wingSpeed = Math.random() * 0.15 + 0.1;
+        this.size = Math.random() * 15 + 10;
+        this.opacity = Math.random() * 0.4 + 0.3;
+        this.yOffset = (Math.random() - 0.5) * 0.5;
+      }
+      
+      update() {
+        this.x += this.speed;
+        this.y += this.yOffset;
+        this.wingPhase += this.wingSpeed;
+        
+        if (this.x > width + 100) {
+          this.x = -100;
+          this.y = Math.random() * height * 0.5 + 50;
+        }
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        
+        const wingAngle = Math.sin(this.wingPhase) * 0.5;
+        
+        ctx.strokeStyle = `rgba(71, 85, 105, ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        
+        // Aile gauche
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(-this.size, -this.size * wingAngle, -this.size * 1.5, -this.size * 0.3);
+        ctx.stroke();
+        
+        // Aile droite
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(this.size, -this.size * wingAngle, this.size * 1.5, -this.size * 0.3);
+        ctx.stroke();
+        
+        // Corps
+        ctx.fillStyle = `rgba(71, 85, 105, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, 3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.restore();
+      }
+    }
+    
+    // Papillons
+    class Butterfly {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.opacity = Math.random() * 0.35 + 0.15;
-        this.phase = Math.random() * Math.PI * 2;
-        this.formulas = [
-          'f(x)=ax²+bx+c', 'd/dx', '∫ƒ(x)dx', 'lim x→∞', 'Σ', '√x',
-          'sin(θ)', 'cos(θ)', 'e^x', 'log(x)', 'x^n', 'dy/dx',
-          'A⁻¹', 'det(A)', '|x|', 'x!', 'P(A∩B)', 'E[X]'
-        ];
-        this.formula = this.formulas[Math.floor(Math.random() * this.formulas.length)];
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = (Math.random() - 0.5) * 1;
+        this.size = Math.random() * 12 + 8;
+        this.wingPhase = Math.random() * Math.PI * 2;
+        this.wingSpeed = Math.random() * 0.2 + 0.15;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.color = ['rgba(236, 72, 153,', 'rgba(244, 114, 182,', 'rgba(251, 207, 232,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy + Math.sin(this.wingPhase) * 0.3;
+        this.wingPhase += this.wingSpeed;
+        
+        if (this.x < -50 || this.x > width + 50) this.vx *= -1;
+        if (this.y < -50 || this.y > height + 50) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        
+        const wingOpen = Math.abs(Math.sin(this.wingPhase)) * 0.8 + 0.2;
+        
+        // Aile gauche
+        ctx.fillStyle = `${this.color} ${this.opacity})`;
+        ctx.beginPath();
+        ctx.ellipse(-this.size * 0.3, 0, this.size * wingOpen, this.size * 0.8, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Aile droite
+        ctx.beginPath();
+        ctx.ellipse(this.size * 0.3, 0, this.size * wingOpen, this.size * 0.8, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Corps
+        ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
+        ctx.fillRect(-2, -this.size * 0.6, 4, this.size * 1.2);
+        
+        // Antennes
+        ctx.strokeStyle = `rgba(59, 130, 246, ${this.opacity})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(-1, -this.size * 0.6);
+        ctx.lineTo(-3, -this.size * 0.8);
+        ctx.moveTo(1, -this.size * 0.6);
+        ctx.lineTo(3, -this.size * 0.8);
+        ctx.stroke();
+        
+        ctx.restore();
+      }
+    }
+    
+    // Fleurs qui poussent
+    class Flower {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = height + 50;
+        this.targetY = height - Math.random() * 100 - 50;
+        this.growthSpeed = 0.5;
+        this.size = Math.random() * 15 + 10;
+        this.petalCount = Math.floor(Math.random() * 3) + 5;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+        this.opacity = Math.random() * 0.4 + 0.3;
+        this.swayPhase = Math.random() * Math.PI * 2;
+        this.swaySpeed = Math.random() * 0.02 + 0.01;
+        this.color = ['rgba(239, 68, 68,', 'rgba(251, 146, 60,', 'rgba(234, 179, 8,', 'rgba(168, 85, 247,'][Math.floor(Math.random() * 4)];
+        this.grown = false;
+      }
+      
+      update() {
+        if (!this.grown) {
+          this.y -= this.growthSpeed;
+          if (this.y <= this.targetY) {
+            this.y = this.targetY;
+            this.grown = true;
+          }
+        }
+        this.rotation += this.rotationSpeed;
+        this.swayPhase += this.swaySpeed;
+      }
+      
+      draw() {
+        const sway = Math.sin(this.swayPhase) * 5;
+        
+        ctx.save();
+        ctx.translate(this.x + sway, this.y);
+        
+        // Tige
+        ctx.strokeStyle = `rgba(34, 197, 94, ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-sway / 2, height - this.y);
+        ctx.stroke();
+        
+        // Pétales
+        ctx.rotate(this.rotation);
+        for (let i = 0; i < this.petalCount; i++) {
+          const angle = (i / this.petalCount) * Math.PI * 2;
+          ctx.save();
+          ctx.rotate(angle);
+          ctx.fillStyle = `${this.color} ${this.opacity})`;
+          ctx.beginPath();
+          ctx.ellipse(this.size * 0.6, 0, this.size * 0.4, this.size * 0.6, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+        
+        // Centre
+        ctx.fillStyle = `rgba(234, 179, 8, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.restore();
+      }
+    }
+    
+    // Nuages
+    class Cloud {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height * 0.3;
+        this.vx = Math.random() * 0.3 + 0.1;
+        this.size = Math.random() * 60 + 40;
+        this.opacity = Math.random() * 0.3 + 0.2;
+      }
+      
+      update() {
+        this.x += this.vx;
+        if (this.x > width + this.size) {
+          this.x = -this.size;
+          this.y = Math.random() * height * 0.3;
+        }
+      }
+      
+      draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+        ctx.arc(this.x + this.size * 0.4, this.y, this.size * 0.4, 0, Math.PI * 2);
+        ctx.arc(this.x + this.size * 0.8, this.y, this.size * 0.3, 0, Math.PI * 2);
+        ctx.arc(this.x - this.size * 0.3, this.y, this.size * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    // Initialisation
+    const leaves = [];
+    const birds = [];
+    const butterflies = [];
+    const flowers = [];
+    const clouds = [];
+    
+    for (let i = 0; i < 30; i++) {
+      leaves.push(new Leaf());
+      leaves[i].y = Math.random() * height;
+    }
+    
+    for (let i = 0; i < 5; i++) {
+      birds.push(new Bird());
+      birds[i].x = Math.random() * width;
+    }
+    
+    for (let i = 0; i < 8; i++) {
+      butterflies.push(new Butterfly());
+    }
+    
+    for (let i = 0; i < 15; i++) {
+      flowers.push(new Flower());
+      flowers[i].y = flowers[i].targetY;
+      flowers[i].grown = true;
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      clouds.push(new Cloud());
+    }
+    
+    // Animation
+    function animate() {
+      ctx.fillStyle = 'rgba(245, 247, 250, 0.2)';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Dessiner les nuages en arrière-plan
+      clouds.forEach(cloud => {
+        cloud.update();
+        cloud.draw();
+      });
+      
+      // Dessiner les fleurs
+      flowers.forEach(flower => {
+        flower.update();
+        flower.draw();
+      });
+      
+      // Dessiner les feuilles
+      leaves.forEach(leaf => {
+        leaf.update();
+        leaf.draw();
+      });
+      
+      // Dessiner les papillons
+      butterflies.forEach(butterfly => {
+        butterfly.update();
+        butterfly.draw();
+      });
+      
+      // Dessiner les oiseaux
+      birds.forEach(bird => {
+        bird.update();
+        bird.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Redimensionnement
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    // Interaction souris - les papillons s'éloignent
+    canvas.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      butterflies.forEach(butterfly => {
+        const dx = butterfly.x - mouseX;
+        const dy = butterfly.y - mouseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          butterfly.vx += dx * 0.001;
+          butterfly.vy += dy * 0.001;
+        }
+      });
+    });
