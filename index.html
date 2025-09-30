@@ -19,6 +19,29 @@
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Canvas quantique en arrière-plan */
+    #quantumCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Overlay pour améliorer la lisibilité */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 100%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* Navigation horizontale unique */
@@ -104,6 +127,7 @@
       justify-content: center;
       padding: 100px 40px 40px;
       position: relative;
+      z-index: 2;
     }
 
     .container {
@@ -260,7 +284,7 @@
     }
 
     .profile-photo:hover {
-      transform: scale(1.08) rotate(3deg);
+      transform: scale(1.08);
       box-shadow: 0 25px 60px rgba(26, 54, 93, 0.4);
     }
 
@@ -326,53 +350,6 @@
       color: #1a365d !important;
       border-bottom-color: #1a365d;
       transform: none;
-    }
-
-    /* Geometric background elements */
-    .geometric-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(26, 54, 93, 0.08), rgba(44, 82, 130, 0.08));
-      animation: float 8s ease-in-out infinite;
-    }
-
-    .circle:nth-child(1) {
-      width: 180px;
-      height: 180px;
-      top: 15%;
-      right: 10%;
-      animation-delay: 0s;
-    }
-
-    .circle:nth-child(2) {
-      width: 220px;
-      height: 220px;
-      bottom: 25%;
-      left: 5%;
-      animation-delay: 3s;
-    }
-
-    .circle:nth-child(3) {
-      width: 120px;
-      height: 120px;
-      top: 60%;
-      left: 20%;
-      animation-delay: 6s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-30px) rotate(180deg); }
     }
 
     /* Responsive Design */
@@ -462,19 +439,15 @@
       }
     }
 
-    /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <!-- Geometric background -->
-  <div class="geometric-bg">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+  <!-- Canvas pour le champ quantique -->
+  <canvas id="quantumCanvas"></canvas>
+  <div class="overlay"></div>
 
   <!-- Navigation horizontale unique -->
   <nav class="top-nav">
@@ -525,6 +498,284 @@
   </section>
 
   <script>
+    // Configuration du canvas quantique
+    const canvas = document.getElementById('quantumCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Particules quantiques
+    class QuantumParticle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.phase = Math.random() * Math.PI * 2;
+        this.frequency = Math.random() * 0.02 + 0.01;
+        this.color = ['rgba(26, 54, 93,', 'rgba(44, 82, 130,', 'rgba(107, 70, 193,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += this.frequency;
+        
+        // Effet quantique: fluctuation d'opacité
+        this.opacity = 0.3 + Math.sin(this.phase) * 0.3;
+        
+        // Bordures
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
+        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
+        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
+        gradient.addColorStop(1, `${this.color} 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+    }
+    
+    // Ondes de champ quantique
+    class QuantumWave {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = 0;
+        this.maxRadius = Math.random() * 200 + 100;
+        this.speed = Math.random() * 0.5 + 0.3;
+        this.opacity = 0.4;
+        this.color = ['rgba(26, 54, 93,', 'rgba(44, 82, 130,', 'rgba(107, 70, 193,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.radius += this.speed;
+        this.opacity = 0.4 * (1 - this.radius / this.maxRadius);
+        
+        return this.radius < this.maxRadius;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+    
+    // Formes géométriques mathématiques
+    class GeometricShape {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 60 + 40;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+        this.opacity = Math.random() * 0.2 + 0.1;
+        this.type = Math.floor(Math.random() * 4); // 0: triangle, 1: carré, 2: pentagone, 3: hexagone
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.phase = Math.random() * Math.PI * 2;
+        this.color = ['rgba(26, 54, 93,', 'rgba(44, 82, 130,', 'rgba(107, 70, 193,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.phase += 0.02;
+        
+        // Oscillation d'opacité
+        this.opacity = 0.15 + Math.sin(this.phase) * 0.1;
+        
+        // Bordures avec rebond
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        const sides = this.type + 3; // 3 à 6 côtés
+        for (let i = 0; i <= sides; i++) {
+          const angle = (i / sides) * Math.PI * 2;
+          const x = Math.cos(angle) * this.size;
+          const y = Math.sin(angle) * this.size;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    
+    // Équations mathématiques flottantes
+    class MathEquation {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.3 + 0.2;
+        this.phase = Math.random() * Math.PI * 2;
+        this.equations = ['ψ', '∇', '∫', '∂', 'Σ', '∞', 'π', 'θ', 'λ', 'Ω', 'Δ', '∈'];
+        this.symbol = this.equations[Math.floor(Math.random() * this.equations.length)];
+        this.size = Math.random() * 20 + 25;
+        this.color = ['rgba(26, 54, 93,', 'rgba(44, 82, 130,', 'rgba(107, 70, 193,'][Math.floor(Math.random() * 3)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += 0.02;
+        
+        // Oscillation
+        this.opacity = 0.25 + Math.sin(this.phase) * 0.15;
+        
+        // Bordures
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.font = `${this.size}px 'Times New Roman', serif`;
+        ctx.fillStyle = `${this.color} ${this.opacity})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(this.symbol, this.x, this.y);
+      }
+    }
+    
+    // Initialisation
+    const particles = [];
+    const waves = [];
+    const shapes = [];
+    const equations = [];
+    const particleCount = 150;
+    const shapeCount = 12;
+    const equationCount = 15;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new QuantumParticle());
+    }
+    
+    for (let i = 0; i < shapeCount; i++) {
+      shapes.push(new GeometricShape());
+    }
+    
+    for (let i = 0; i < equationCount; i++) {
+      equations.push(new MathEquation());
+    }
+    
+    // Créer des ondes périodiquement
+    setInterval(() => {
+      if (waves.length < 5) {
+        waves.push(new QuantumWave());
+      }
+    }, 2000);
+    
+    // Connexions entre particules (intrication quantique)
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = (1 - distance / 120) * 0.15;
+            ctx.strokeStyle = `rgba(26, 54, 93, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    // Animation
+    function animate() {
+      ctx.fillStyle = 'rgba(245, 247, 250, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Dessiner les formes géométriques en arrière-plan
+      shapes.forEach(shape => {
+        shape.update();
+        shape.draw();
+      });
+      
+      // Dessiner les équations mathématiques
+      equations.forEach(eq => {
+        eq.update();
+        eq.draw();
+      });
+      
+      // Dessiner les connexions
+      drawConnections();
+      
+      // Mettre à jour et dessiner les particules
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      // Mettre à jour et dessiner les ondes
+      for (let i = waves.length - 1; i >= 0; i--) {
+        if (!waves[i].update()) {
+          waves.splice(i, 1);
+        } else {
+          waves[i].draw();
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Redimensionnement
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    // Interaction avec la souris
+    canvas.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      particles.forEach(particle => {
+        const dx = mouseX - particle.x;
+        const dy = mouseY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          particle.vx += dx * 0.0001;
+          particle.vy += dy * 0.0001;
+        }
+      });
+    });
+    
     // Navigation active highlighting
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('mouseenter', function() {
@@ -543,21 +794,10 @@
     // Interactive profile photo
     const profilePhoto = document.querySelector('.profile-photo');
     profilePhoto.addEventListener('click', function() {
-      this.style.transform = 'scale(1.15) rotate(10deg)';
+      this.style.transform = 'scale(1.15)';
       setTimeout(() => {
-        this.style.transform = 'scale(1) rotate(0deg)';
+        this.style.transform = 'scale(1)';
       }, 400);
-    });
-
-    // Subtle parallax effect for geometric shapes
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const circles = document.querySelectorAll('.circle');
-      
-      circles.forEach((circle, index) => {
-        const speed = (index + 1) * 0.05;
-        circle.style.transform = `translateY(${scrolled * speed}px)`;
-      });
     });
   </script>
 </body>
