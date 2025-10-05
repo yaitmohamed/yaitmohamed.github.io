@@ -14,47 +14,143 @@
     body {
       font-family: 'Georgia', 'Palatino', 'Times New Roman', serif;
       line-height: 1.7;
+      font-size: 16px;
       color: #222;
       background: #ffffff;
-      font-size: 16px;
-      position: relative;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    #backgroundCanvas {
+    #quantumCanvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.3;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    .nav-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: #0066cc;
+    }
+
+    .nav-links a.active {
+      color: #000;
+      border-bottom-color: #000;
+    }
+
+    .main-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 40px;
+      position: relative;
+      z-index: 2;
     }
 
     .container {
       max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 2px;
+      padding: 50px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.95);
     }
 
-    header {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 30px;
-      margin-bottom: 40px;
+    .header-section {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 30px;
+      gap: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e5e5e5;
+      margin-bottom: 40px;
     }
 
     .header-text {
       flex: 1;
     }
 
-    .header-photo {
+    .main-title {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #000;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .main-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 0;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .photo-section {
+      text-align: center;
       flex-shrink: 0;
     }
 
@@ -63,128 +159,105 @@
       height: 180px;
       object-fit: cover;
       border: 1px solid #ddd;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: #000;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
+    .profile-photo:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: #555;
-      font-weight: 300;
-      margin-bottom: 25px;
-    }
-
-    nav {
-      margin-top: 20px;
-    }
-
-    nav a {
-      display: inline-block;
-      margin-right: 25px;
-      color: #0066cc;
-      text-decoration: none;
-      font-size: 0.95rem;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    nav a:hover {
-      border-bottom-color: #0066cc;
-    }
-
-    nav a.active {
-      color: #000;
-      border-bottom-color: #000;
-    }
-
-    .main-content {
-      margin-bottom: 50px;
-    }
-
-    .text-section h2 {
+    .content-section h2 {
       font-size: 1.3rem;
-      font-weight: 400;
       color: #000;
       margin: 35px 0 15px 0;
-      border-bottom: 1px solid #e5e5e5;
       padding-bottom: 8px;
+      border-bottom: 1px solid #e5e5e5;
+      font-weight: 400;
+      letter-spacing: 0.3px;
     }
 
-    .text-section h2:first-child {
+    .content-section h2:first-child {
       margin-top: 0;
     }
 
-    .text-section p {
-      margin-bottom: 15px;
-      text-align: justify;
+    .content-section p {
+      margin: 0 0 15px 0;
       color: #333;
+      line-height: 1.7;
+      text-align: justify;
+      font-size: 16px;
     }
 
-    .text-section a {
+    .content-section a {
       color: #0066cc;
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s ease;
     }
 
-    .text-section a:hover {
+    .content-section a:hover {
       border-bottom-color: #0066cc;
     }
 
-    .contact-box {
+    .contact-info {
       background: #f9f9f9;
-      border: 1px solid #e5e5e5;
       padding: 20px;
-      margin-top: 30px;
       border-radius: 2px;
+      margin: 30px 0;
+      border: 1px solid #e5e5e5;
     }
 
-    .contact-box h3 {
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-bottom: 12px;
+    .contact-info strong {
       color: #000;
-    }
-
-    .contact-box p {
-      margin: 8px 0;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 8px;
       font-size: 0.95rem;
-      color: #444;
     }
 
-    .contact-box a {
-      color: #0066cc;
-      text-decoration: none;
+    .contact-info p {
+      font-size: 16px;
+      margin: 8px 0;
     }
 
-    .contact-box a:hover {
-      text-decoration: underline;
+    .contact-info a {
+      color: #0066cc !important;
+      font-weight: 400 !important;
+      border-bottom: 1px solid transparent;
     }
 
-    footer {
-      border-top: 1px solid #ddd;
-      padding-top: 20px;
-      margin-top: 50px;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
+    .contact-info a:hover {
+      border-bottom-color: #0066cc;
     }
 
     @media (max-width: 768px) {
-      header {
+      .nav-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-section {
+        padding: 100px 15px 40px;
+      }
+
+      .container {
+        padding: 35px 25px;
+      }
+
+      .header-section {
         flex-direction: column;
         align-items: center;
         text-align: center;
       }
 
-      .header-photo {
+      .photo-section {
         order: -1;
       }
 
@@ -193,13 +266,20 @@
         height: 150px;
       }
 
-      h1 {
+      .main-title {
         font-size: 1.8rem;
       }
 
-      nav a {
-        display: block;
-        margin: 8px 0;
+      .main-subtitle {
+        font-size: 1rem;
+      }
+
+      .content-section h2 {
+        font-size: 1.2rem;
+      }
+
+      .content-section p {
+        text-align: left;
       }
     }
 
@@ -209,42 +289,50 @@
   </style>
 </head>
 <body>
-  <canvas id="backgroundCanvas"></canvas>
-  
-  <div class="container">
-    <header>
-      <div class="header-text">
-        <h1>Yassine Ait Mohamed</h1>
-        <div class="subtitle">
-          PhD Student, Department of Mathematics<br>
-          Université de Sherbrooke
-        </div>
-        <nav>
-          <a href="index.html" class="active">Home</a>
-          <a href="research.html">Research</a>
-          <a href="talks.html">Talks</a>
-          <a href="cv.html">CV</a>
-          <a href="teaching.html">Teaching</a>
-        </nav>
-      </div>
-      <div class="header-photo">
-        <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
-      </div>
-    </header>
+  <canvas id="quantumCanvas"></canvas>
+  <div class="overlay"></div>
 
-    <div class="main-content">
-      <div class="text-section">
+  <nav class="top-nav">
+    <div class="nav-content">
+      <a href="#" class="logo">YAM</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="research.html">Research</a>
+        <a href="talks.html">Talks</a>
+        <a href="cv.html">CV</a>
+        <a href="teaching.html">Teaching</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="main-section">
+    <div class="container">
+      <div class="header-section">
+        <div class="header-text">
+          <h1 class="main-title">Yassine Ait Mohamed</h1>
+          <div class="main-subtitle">
+            PhD Student - Department of Mathematics<br>
+            Université de Sherbrooke
+          </div>
+        </div>
+        
+        <div class="photo-section">
+          <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
+        </div>
+      </div>
+
+      <div class="content-section">
         <h2>Introduction</h2>
         <p>
-          I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>.
+          I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. 
         </p>
 
         <p>
-          Before that, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.
+         Before that, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.
         </p>
 
-        <div class="contact-box">
-          <h3>Contact Information</h3>
+        <h2>Contact Information</h2>
+        <div class="contact-info">
           <p>
             <strong>Email:</strong><br>
             <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
@@ -252,83 +340,167 @@
         </div>
       </div>
     </div>
-
-    <footer>
-      &copy; 2025 Yassine Ait Mohamed
-    </footer>
-  </div>
+  </section>
 
   <script>
-    const canvas = document.getElementById('backgroundCanvas');
+    const canvas = document.getElementById('quantumCanvas');
     const ctx = canvas.getContext('2d');
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
     
-    class MathParticle {
+    class QuantumParticle {
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.opacity = Math.random() * 0.3 + 0.1;
+        this.radius = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.phase = Math.random() * Math.PI * 2;
+        this.frequency = Math.random() * 0.02 + 0.01;
+        this.color = ['rgba(0, 102, 204,', 'rgba(34, 34, 34,', 'rgba(85, 85, 85,'][Math.floor(Math.random() * 3)];
       }
       
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        this.phase += this.frequency;
+        this.opacity = 0.3 + Math.sin(this.phase) * 0.3;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
       }
       
       draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 102, 204, ${this.opacity})`;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
+        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
+        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
+        gradient.addColorStop(1, `${this.color} 0)`);
+        ctx.fillStyle = gradient;
         ctx.fill();
       }
     }
     
-    class MathSymbol {
+    class QuantumWave {
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = 0;
+        this.maxRadius = Math.random() * 200 + 100;
+        this.speed = Math.random() * 0.5 + 0.3;
+        this.opacity = 0.4;
+        this.color = ['rgba(0, 102, 204,', 'rgba(34, 34, 34,'][Math.floor(Math.random() * 2)];
+      }
+      
+      update() {
+        this.radius += this.speed;
+        this.opacity = 0.4 * (1 - this.radius / this.maxRadius);
+        return this.radius < this.maxRadius;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    
+    class GeometricShape {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 60 + 40;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+        this.opacity = Math.random() * 0.2 + 0.1;
+        this.type = Math.floor(Math.random() * 4);
         this.vx = (Math.random() - 0.5) * 0.3;
         this.vy = (Math.random() - 0.5) * 0.3;
-        this.symbols = ['∫', '∂', 'Σ', '∞', 'π', 'θ', 'λ', '∇', 'Δ', '∈', 'ℝ', '∀'];
-        this.symbol = this.symbols[Math.floor(Math.random() * this.symbols.length)];
-        this.size = Math.random() * 20 + 15;
-        this.opacity = Math.random() * 0.15 + 0.05;
+        this.phase = Math.random() * Math.PI * 2;
+        this.color = ['rgba(0, 102, 204,', 'rgba(34, 34, 34,'][Math.floor(Math.random() * 2)];
       }
       
       update() {
         this.x += this.vx;
         this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.phase += 0.02;
+        this.opacity = 0.15 + Math.sin(this.phase) * 0.1;
+        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
+        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.strokeStyle = `${this.color} ${this.opacity})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
         
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        const sides = this.type + 3;
+        for (let i = 0; i <= sides; i++) {
+          const angle = (i / sides) * Math.PI * 2;
+          const x = Math.cos(angle) * this.size;
+          const y = Math.sin(angle) * this.size;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    
+    class MathEquation {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.3 + 0.2;
+        this.phase = Math.random() * Math.PI * 2;
+        this.equations = ['ψ', '∇', '∫', '∂', 'Σ', '∞', 'π', 'θ', 'λ', 'Ω', 'Δ', '∈', 'ℝ', '∀'];
+        this.symbol = this.equations[Math.floor(Math.random() * this.equations.length)];
+        this.size = Math.random() * 20 + 20;
+        this.color = ['rgba(0, 102, 204,', 'rgba(34, 34, 34,'][Math.floor(Math.random() * 2)];
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.phase += 0.02;
+        this.opacity = 0.25 + Math.sin(this.phase) * 0.15;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
       }
       
       draw() {
         ctx.font = `${this.size}px Georgia`;
-        ctx.fillStyle = `rgba(34, 34, 34, ${this.opacity})`;
+        ctx.fillStyle = `${this.color} ${this.opacity})`;
         ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText(this.symbol, this.x, this.y);
       }
     }
     
     const particles = [];
-    const symbols = [];
+    const waves = [];
+    const shapes = [];
+    const equations = [];
     
-    for (let i = 0; i < 100; i++) {
-      particles.push(new MathParticle());
-    }
+    for (let i = 0; i < 150; i++) particles.push(new QuantumParticle());
+    for (let i = 0; i < 12; i++) shapes.push(new GeometricShape());
+    for (let i = 0; i < 15; i++) equations.push(new MathEquation());
     
-    for (let i = 0; i < 12; i++) {
-      symbols.push(new MathSymbol());
-    }
+    setInterval(() => {
+      if (waves.length < 5) waves.push(new QuantumWave());
+    }, 2000);
     
     function drawConnections() {
       for (let i = 0; i < particles.length; i++) {
@@ -337,11 +509,11 @@
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
+          if (distance < 120) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const opacity = (1 - distance / 100) * 0.1;
+            const opacity = (1 - distance / 120) * 0.15;
             ctx.strokeStyle = `rgba(0, 102, 204, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
@@ -351,7 +523,18 @@
     }
     
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+      
+      shapes.forEach(shape => {
+        shape.update();
+        shape.draw();
+      });
+      
+      equations.forEach(eq => {
+        eq.update();
+        eq.draw();
+      });
       
       drawConnections();
       
@@ -360,10 +543,13 @@
         particle.draw();
       });
       
-      symbols.forEach(symbol => {
-        symbol.update();
-        symbol.draw();
-      });
+      for (let i = waves.length - 1; i >= 0; i--) {
+        if (!waves[i].update()) {
+          waves.splice(i, 1);
+        } else {
+          waves[i].draw();
+        }
+      }
       
       requestAnimationFrame(animate);
     }
@@ -371,8 +557,32 @@
     animate();
     
     window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+    
+    canvas.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      particles.forEach(particle => {
+        const dx = mouseX - particle.x;
+        const dy = mouseY - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          particle.vx += dx * 0.0001;
+          particle.vy += dy * 0.0001;
+        }
+      });
+    });
+
+    const profilePhoto = document.querySelector('.profile-photo');
+    profilePhoto.addEventListener('click', function() {
+      this.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1)';
+      }, 300);
     });
   </script>
 </body>
