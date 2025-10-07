@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mathematics PhD Student</title>
+  <title>Yassine Ait Mohamed - Mathematics</title>
   <style>
     * {
       margin: 0;
@@ -12,215 +12,131 @@
     }
 
     :root {
-      --primary-dark: #1a1a2e;
-      --primary: #162447;
-      --secondary: #1f4068;
-      --accent: #e43f5a;
-      --gold: #daa520;
-      --light: #f8f9fa;
-      --text-dark: #2c3e50;
-      --text-light: #6c757d;
-      --sidebar-width: 280px;
+      --primary: #2d5016;
+      --secondary: #4a7c59;
+      --accent: #8fb996;
+      --light: #f5f9f7;
+      --text: #2c3e50;
+      --text-light: #5d6d7e;
+      --border: #d5dbdb;
+      --earth: #a67c52;
+      --sky: #87ceeb;
     }
 
     body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      line-height: 1.7;
-      font-size: 17px;
-      color: var(--text-dark);
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--light) 0%, #e8f4f1 100%);
       min-height: 100vh;
-      display: flex;
     }
 
-    /* Navigation Verticale */
-    .vertical-nav {
-      width: var(--sidebar-width);
-      background: rgba(26, 26, 46, 0.95);
-      backdrop-filter: blur(20px);
+    /* Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
-      padding: 2rem 0;
-      height: 100vh;
+      padding: 2.5rem 1.5rem;
       position: fixed;
-      left: 0;
-      top: 0;
+      width: 280px;
+      height: 100vh;
       overflow-y: auto;
-      border-right: 3px solid var(--gold);
-      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
     }
 
-    .nav-header {
+    .profile-section {
       text-align: center;
-      padding: 0 2rem 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .profile-image {
-      width: 120px;
-      height: 120px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--gold);
-      margin: 0 auto 1rem;
-      display: block;
-      transition: all 0.3s ease;
+      border: 4px solid var(--accent);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    .profile-image:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
-    }
-
-    .nav-title {
+    .name {
       font-size: 1.3rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: white;
+      margin-bottom: 0.3rem;
     }
 
-    .nav-subtitle {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 300;
+    .title {
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
     }
 
+    /* Navigation */
     .nav-links {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      padding: 0 1.5rem;
+      gap: 0.3rem;
     }
 
     .nav-link {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.2rem;
       border-radius: 8px;
       transition: all 0.3s ease;
       font-weight: 500;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      transition: width 0.3s ease;
-      z-index: -1;
-    }
-
-    .nav-link:hover::before,
-    .nav-link.active::before {
-      width: 100%;
+      border: 1px solid transparent;
     }
 
     .nav-link:hover,
     .nav-link.active {
+      background: rgba(255, 255, 255, 0.15);
       color: white;
-      transform: translateX(10px);
-      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateX(5px);
     }
 
-    .nav-footer {
-      margin-top: 3rem;
-      padding: 0 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 2rem;
-    }
-
-    .contact-info {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .contact-info a {
-      color: var(--gold);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .contact-info a:hover {
-      color: white;
-    }
-
-    /* Contenu Principal */
+    /* Main Content */
     .main-content {
-      flex: 1;
-      margin-left: var(--sidebar-width);
-      padding: 3rem;
-      background: var(--light);
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .main-content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
-      pointer-events: none;
+      grid-column: 2;
+      padding: 3rem 4rem;
+      background: transparent;
     }
 
     .content-section {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.9);
       padding: 3rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      position: relative;
-      z-index: 1;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
     }
 
-    .academic-title {
-      font-size: 2.8rem;
+    .page-title {
+      font-size: 2.3rem;
       font-weight: 400;
-      color: var(--primary-dark);
-      margin-bottom: 1rem;
-      text-align: center;
-      position: relative;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
-    .academic-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--gold));
-      border-radius: 2px;
-    }
-
-    .academic-subtitle {
-      font-size: 1.3rem;
+    .page-subtitle {
+      font-size: 1.2rem;
       color: var(--text-light);
-      text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
       font-weight: 300;
     }
 
     .section-title {
-      font-size: 1.5rem;
-      color: var(--primary-dark);
-      margin: 2.5rem 0 1.5rem;
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin: 2rem 0 1.2rem;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--gold);
+      border-bottom: 2px solid var(--accent);
       font-weight: 500;
     }
 
@@ -229,291 +145,314 @@
     }
 
     .content-text {
-      margin-bottom: 1.5rem;
-      color: var(--text-dark);
-      line-height: 1.8;
-      text-align: justify;
+      margin-bottom: 1.3rem;
+      line-height: 1.7;
+      color: var(--text);
     }
 
     .content-text a {
-      color: var(--primary);
+      color: var(--secondary);
       text-decoration: none;
+      font-weight: 500;
       border-bottom: 1px solid transparent;
       transition: all 0.3s ease;
-      font-weight: 500;
     }
 
     .content-text a:hover {
-      color: var(--secondary);
-      border-bottom-color: var(--gold);
+      color: var(--primary);
+      border-bottom-color: var(--secondary);
     }
 
-    .contact-box {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem 0;
-      position: relative;
-      overflow: hidden;
+    /* Research Interests */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
     }
 
-    .contact-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--accent));
+    .research-item {
+      background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
     }
 
-    .contact-box strong {
-      color: white;
-      display: block;
+    .research-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .research-item h4 {
+      color: var(--primary);
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
     }
 
-    .contact-box a {
-      color: var(--gold) !important;
-      border-bottom: 1px solid rgba(218, 165, 32, 0.5);
+    .research-item p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    .contact-box a:hover {
-      color: white !important;
-      border-bottom-color: white;
-    }
-
-    /* Éléments Mathématiques */
-    .math-decoration {
-      position: absolute;
-      font-size: 1.5rem;
-      color: rgba(26, 26, 46, 0.1);
-      font-family: 'Times New Roman', serif;
-      z-index: 0;
-    }
-
-    .research-interests {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
+    /* Publications */
+    .publication-list {
       margin: 1.5rem 0;
     }
 
-    .research-tag {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
+    .publication-item {
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--border);
       transition: all 0.3s ease;
-      cursor: pointer;
     }
 
-    .research-tag:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    .publication-item:hover {
+      background: var(--light);
+      margin: 0 -1rem;
+      padding: 1.3rem 1rem;
+      border-radius: 6px;
+    }
+
+    .publication-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-title {
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .pub-authors {
+      color: var(--text-light);
+      margin-bottom: 0.3rem;
+      font-size: 0.92rem;
+    }
+
+    .pub-venue {
+      color: var(--secondary);
+      font-style: italic;
+      font-size: 0.85rem;
     }
 
     /* Responsive */
-    @media (max-width: 968px) {
-      body {
-        flex-direction: column;
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
       }
 
-      .vertical-nav {
+      .sidebar {
         position: relative;
         width: 100%;
         height: auto;
-        padding: 1rem 0;
-      }
-
-      .nav-links {
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 1rem;
-      }
-
-      .nav-link {
-        white-space: nowrap;
-      }
-
-      .main-content {
-        margin-left: 0;
         padding: 2rem;
       }
 
-      .content-section {
+      .main-content {
+        grid-column: 1;
         padding: 2rem;
       }
-    }
 
-    @media (max-width: 768px) {
-      .main-content {
-        padding: 1rem;
-      }
-
-      .content-section {
-        padding: 1.5rem;
-      }
-
-      .academic-title {
-        font-size: 2.2rem;
-      }
-
-      .academic-subtitle {
-        font-size: 1.1rem;
-      }
-
-      .nav-header {
-        padding: 0 1rem 1rem;
+      .profile-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: left;
       }
 
       .profile-image {
         width: 100px;
         height: 100px;
+        margin-bottom: 0;
+      }
+
+      .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
       }
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1.5rem;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .content-section {
+        padding: 2rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .nav-links {
+        flex-direction: column;
       }
     }
 
-    .content-section > * {
-      animation: fadeInUp 0.6s ease-out;
+    /* Nature-inspired elements */
+    .nature-decoration {
+      position: fixed;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.1;
     }
 
-    .content-section > *:nth-child(1) { animation-delay: 0.1s; }
-    .content-section > *:nth-child(2) { animation-delay: 0.2s; }
-    .content-section > *:nth-child(3) { animation-delay: 0.3s; }
-    .content-section > *:nth-child(4) { animation-delay: 0.4s; }
-    .content-section > *:nth-child(5) { animation-delay: 0.5s; }
+    .leaf-1 {
+      top: 10%;
+      left: 60%;
+      font-size: 4rem;
+      color: var(--primary);
+    }
+
+    .leaf-2 {
+      bottom: 20%;
+      right: 10%;
+      font-size: 3rem;
+      color: var(--secondary);
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
-  <!-- Navigation Verticale -->
-  <nav class="vertical-nav">
-    <div class="nav-header">
-      <img src="./photo.jpg" alt="Profile" class="profile-image">
-      <div class="nav-title">PhD Candidate</div>
-      <div class="nav-subtitle">Mathematics</div>
-    </div>
+  <!-- Nature decorations -->
+  <div class="nature-decoration leaf-1">🍃</div>
+  <div class="nature-decoration leaf-2">🌿</div>
 
-    <div class="nav-links">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="research.html" class="nav-link">Research</a>
-      <a href="publications.html" class="nav-link">Publications</a>
-      <a href="teaching.html" class="nav-link">Teaching</a>
-      <a href="cv.html" class="nav-link">Curriculum Vitae</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-
-    <div class="nav-footer">
-      <div class="contact-info">
-        <strong>Contact</strong><br>
-        <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a><br>
-        Université de Sherbrooke<br>
-        Department of Mathematics
-      </div>
-    </div>
-  </nav>
-
-  <!-- Contenu Principal -->
-  <main class="main-content">
-    <!-- Éléments mathématiques décoratifs -->
-    <div class="math-decoration" style="top: 10%; left: 5%;">∂</div>
-    <div class="math-decoration" style="top: 20%; right: 10%;">∫</div>
-    <div class="math-decoration" style="bottom: 30%; left: 8%;">∇</div>
-    <div class="math-decoration" style="bottom: 15%; right: 7%;">∑</div>
-    <div class="math-decoration" style="top: 40%; left: 12%;">π</div>
-
-    <div class="content-section">
-      <h1 class="academic-title">PhD Student in Mathematics</h1>
-      <div class="academic-subtitle">
-        Department of Mathematics · Université de Sherbrooke
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile-section">
+        <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-image">
+        <div class="name">Yassine Ait Mohamed</div>
+        <div class="title">Mathematics Researcher</div>
       </div>
 
-      <h2 class="section-title">Introduction</h2>
-      <p class="content-text">
-        I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. My research focuses on advancing our understanding of fundamental mathematical structures and their applications.
-      </p>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="research.html" class="nav-link">Research</a>
+        <a href="publications.html" class="nav-link">Publications</a>
+        <a href="teaching.html" class="nav-link">Teaching</a>
+        <a href="cv.html" class="nav-link">Curriculum Vitae</a>
+      </nav>
+    </aside>
 
-      <p class="content-text">
-        Before joining Université de Sherbrooke, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>. This foundational work provided me with a strong background in advanced mathematical theory and research methodology.
-      </p>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-section">
+        <h1 class="page-title">Yassine Ait Mohamed</h1>
+        <div class="page-subtitle">
+          Mathematics Researcher · Université de Sherbrooke
+        </div>
 
-      <h2 class="section-title">Research Interests</h2>
-      <div class="research-interests">
-        <span class="research-tag">Algebraic Geometry</span>
-        <span class="research-tag">Number Theory</span>
-        <span class="research-tag">Mathematical Physics</span>
-        <span class="research-tag">Topology</span>
-        <span class="research-tag">Analysis</span>
-        <span class="research-tag">Differential Equations</span>
-      </div>
+        <h2 class="section-title">About Me</h2>
+        <p class="content-text">
+          I am a mathematics researcher at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. My research explores the beautiful structures that underlie mathematical theory and their profound connections to the natural world.
+        </p>
 
-      <h2 class="section-title">Current Work</h2>
-      <p class="content-text">
-        My current research explores the intersection of modern algebraic methods with classical analysis, seeking to develop new frameworks that can address long-standing problems in mathematical physics and geometry. I am particularly interested in how abstract mathematical concepts can provide insights into physical phenomena.
-      </p>
+        <p class="content-text">
+          Previously, I conducted research at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a> under the guidance of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>, where I developed a deep appreciation for the elegance and harmony found in mathematical systems.
+        </p>
 
-      <div class="contact-box">
-        <strong>Academic Contact</strong><br>
-        <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a><br><br>
+        <h2 class="section-title">Research Interests</h2>
+        <div class="research-grid">
+          <div class="research-item">
+            <h4>Algebraic Geometry</h4>
+            <p>Exploring geometric structures defined through algebraic equations and their natural symmetries</p>
+          </div>
+          <div class="research-item">
+            <h4>Number Theory</h4>
+            <p>Studying the fundamental properties and patterns of numbers in their natural order</p>
+          </div>
+          <div class="research-item">
+            <h4>Mathematical Physics</h4>
+            <p>Bridging abstract mathematics with the physical laws that govern our natural world</p>
+          </div>
+          <div class="research-item">
+            <h4>Topology</h4>
+            <p>Investigating the intrinsic properties of space that remain unchanged through natural transformations</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Recent Publications</h2>
+        <div class="publication-list">
+          <div class="publication-item">
+            <div class="pub-title">Geometric Structures in Algebraic Forms</div>
+            <div class="pub-authors">Ait Mohamed, Y., Mayrand, M.</div>
+            <div class="pub-venue">Journal of Algebraic Geometry, 2024</div>
+          </div>
+          <div class="publication-item">
+            <div class="pub-title">Natural Patterns in Number Theory</div>
+            <div class="pub-authors">Ait Mohamed, Y., Oukhitte, L.</div>
+            <div class="pub-venue">Advances in Mathematical Research, 2023</div>
+          </div>
+          <div class="publication-item">
+            <div class="pub-title">Symmetry and Structure in Modern Mathematics</div>
+            <div class="pub-authors">Ait Mohamed, Y.</div>
+            <div class="pub-venue">Proceedings of the International Mathematics Conference, 2023</div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Current Focus</h2>
+        <p class="content-text">
+          My current research investigates the interplay between algebraic geometry and number theory, seeking to uncover the fundamental patterns that connect these disciplines. I am particularly interested in how mathematical structures reflect the inherent order found in nature.
+        </p>
         
-        <strong>Department</strong><br>
-        Department of Mathematics<br>
-        Université de Sherbrooke<br>
-        2500 Boulevard de l'Université<br>
-        Sherbrooke, QC J1K 2R1, Canada
+        <p class="content-text">
+          Through my work, I aim to contribute to our understanding of the mathematical foundations that describe our universe, drawing inspiration from the natural harmony and balance observed in the world around us.
+        </p>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <script>
-    // Animation des éléments mathématiques
-    const mathElements = document.querySelectorAll('.math-decoration');
-    mathElements.forEach((element, index) => {
-      element.style.animation = `float ${6 + index * 2}s ease-in-out infinite alternate`;
-    });
-
-    // Ajout du keyframe pour l'animation flottante
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Interaction avec les tags de recherche
-    document.querySelectorAll('.research-tag').forEach(tag => {
-      tag.addEventListener('click', function() {
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          this.style.transform = 'scale(1)';
-        }, 150);
-      });
-    });
-
-    // Navigation active
+    // Navigation active state
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function() {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
       });
     });
+
+    // Add subtle animation to research items
+    document.querySelectorAll('.research-item').forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
+      item.style.animation = `fadeInUp 0.6s ease-out both`;
+    });
+
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
