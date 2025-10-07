@@ -11,197 +11,174 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --primary-dark: #1a1a2e;
+      --primary: #162447;
+      --secondary: #1f4068;
+      --accent: #e43f5a;
+      --light: #f4f4f8;
+      --text-dark: #2c3e50;
+      --text-light: #718096;
+      --gold: #B8860B;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     body {
-      font-family: 'Times New Roman', Times, serif;
-      line-height: 1.6;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.7;
       font-size: 18px;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #fdfcfb 0%, #f7f4f0 100%);
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
 
-    #quantumCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .top-nav {
+    /* Header Navigation */
+    .academic-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
-      border-bottom: 3px solid #1a1a1a;
+      border-bottom: 2px solid var(--primary);
       z-index: 1000;
-      padding: 20px 0;
+      padding: 1rem 0;
       transform: translateY(-100%);
-      animation: slideDown 0.8s ease-out 0.5s both;
+      animation: slideDown 0.8s ease-out 0.3s both;
     }
 
     @keyframes slideDown {
       to { transform: translateY(0); }
     }
 
-    .nav-content {
+    .nav-container {
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 40px;
+      padding: 0 2rem;
     }
 
-    .logo {
-      font-size: 28px;
+    .academic-brand {
+      font-size: 1.8rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: var(--primary-dark);
       text-decoration: none;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      font-family: 'Georgia', serif;
     }
 
-    .nav-links {
+    .academic-nav {
       display: flex;
-      gap: 35px;
+      gap: 2rem;
     }
 
-    .nav-links a {
-      color: #2d3748;
+    .academic-nav a {
+      color: var(--text-dark);
       text-decoration: none;
       font-weight: 500;
-      font-size: 17px;
-      padding: 12px 20px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: var(--transition);
       position: relative;
-      overflow: hidden;
     }
 
-    .nav-links a::before {
+    .academic-nav a::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(26, 26, 26, 0.08), transparent);
-      transition: left 0.6s;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+      transform: translateX(-50%);
     }
 
-    .nav-links a:hover::before {
-      left: 100%;
+    .academic-nav a:hover::after,
+    .academic-nav a.active::after {
+      width: 80%;
     }
 
-    .nav-links a:hover, .nav-links a.active {
-      background: #1a1a1a;
-      color: white;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(26, 26, 26, 0.35);
+    .academic-nav a:hover,
+    .academic-nav a.active {
+      color: var(--primary);
     }
 
-    .main-section {
+    /* Main Content */
+    .academic-main {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 40px 40px;
+      padding: 120px 2rem 2rem;
       position: relative;
-      z-index: 2;
     }
 
-    .container {
+    .academic-container {
       max-width: 1100px;
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 60px;
+      grid-template-columns: 1fr 300px;
+      gap: 4rem;
       align-items: start;
+    }
+
+    /* Content Section */
+    .academic-content {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 50px;
-      border: 2px solid rgba(26, 26, 26, 0.15);
-      box-shadow: 0 20px 60px rgba(50, 50, 50, 0.12);
-      position: relative;
-      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      animation: fadeInUp 0.8s ease-out 0.5s both;
     }
 
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #1a1a1a, #B8860B, transparent);
-      animation: scan 4s ease-in-out infinite;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @keyframes scan {
-      0% { left: -100%; }
-      100% { left: 100%; }
+    .academic-title {
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+      font-family: 'Georgia', serif;
+    }
+
+    .academic-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5rem;
     }
 
     .content-section {
-      color: #2d3748;
-      animation: fadeInLeft 0.8s ease-out 0.4s both;
-      padding-top: 20px;
-    }
-
-    @keyframes fadeInLeft {
-      from { transform: translateX(-50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .main-title {
-      font-size: 3.5rem;
-      font-weight: 400;
-      color: #1a1a1a;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-      line-height: 1.2;
-    }
-
-    .main-subtitle {
-      font-size: 1.4rem;
-      color: #718096;
-      margin-bottom: 40px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
+      margin-bottom: 2.5rem;
     }
 
     .content-section h2 {
-      font-size: 24px;
-      color: #1a1a1a;
-      margin: 30px 0 20px 0;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e8ddd0;
-      font-weight: 400;
-      letter-spacing: 0.3px;
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+      font-weight: 500;
       position: relative;
-      transform: translateY(20px);
-      animation: headingReveal 0.8s ease-out 0.6s both;
-    }
-
-    @keyframes headingReveal {
-      to { transform: translateY(0); }
     }
 
     .content-section h2:first-child {
@@ -209,225 +186,276 @@
     }
 
     .content-section p {
-      margin: 0 0 20px 0;
-      color: #4a5568;
+      margin: 0 0 1.2rem 0;
+      color: var(--text-dark);
       line-height: 1.7;
       text-align: justify;
-      font-size: 18px;
-      transform: translateY(20px);
-      animation: textReveal 0.6s ease-out calc(0.8s + var(--p-delay)) both;
-    }
-
-    .content-section p:nth-of-type(1) { --p-delay: 0s; }
-    .content-section p:nth-of-type(2) { --p-delay: 0.1s; }
-
-    @keyframes textReveal {
-      to { transform: translateY(0); }
+      font-size: 1.1rem;
     }
 
     .content-section a {
-      color: #1a1a1a;
+      color: var(--primary);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
+      transition: var(--transition);
+      font-weight: 500;
     }
 
     .content-section a:hover {
-      color: #000000;
-      border-bottom-color: #B8860B;
+      color: var(--secondary);
+      border-bottom-color: var(--primary);
     }
 
-    .photo-section {
-      text-align: center;
-      animation: fadeInRight 0.8s ease-out 0.5s both;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* Contact Info */
+    .academic-contact {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .academic-contact h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .academic-contact p {
+      margin: 1rem 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .academic-contact a {
+      color: white !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .academic-contact a:hover {
+      border-bottom-color: white;
+    }
+
+    /* Sidebar */
+    .academic-sidebar {
+      animation: fadeInRight 0.8s ease-out 0.7s both;
     }
 
     @keyframes fadeInRight {
-      from { transform: translateX(50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .profile-photo {
-      width: 250px;
-      height: 250px;
+    .academic-profile {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      border: 6px solid white;
-      box-shadow: 0 15px 40px rgba(26, 26, 26, 0.25);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      cursor: pointer;
-      margin-bottom: 30px;
+      border: 4px solid var(--primary);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
     }
 
-    .profile-photo::before {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: -6px;
-      right: -6px;
-      bottom: -6px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1a1a1a, #B8860B);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     }
 
-    .profile-photo:hover {
-      transform: scale(1.08);
-      box-shadow: 0 25px 60px rgba(26, 26, 26, 0.35);
+    .academic-info {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     }
 
-    .profile-photo:hover::before {
-      opacity: 1;
-      animation: rotate 3s linear infinite;
+    .info-item {
+      margin-bottom: 1.5rem;
     }
 
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .info-item:last-child {
+      margin-bottom: 0;
     }
 
-    .contact-info {
-      background: #faf8f5;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 30px 0;
-      border: 1px solid #e8ddd0;
-      position: relative;
-      overflow: hidden;
-      transform: translateY(20px);
-      animation: contactReveal 0.8s ease-out 1s both;
+    .info-item h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
-    @keyframes contactReveal {
-      to { transform: translateY(0); }
+    .info-item p {
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
-    .contact-info::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #1a1a1a, #B8860B);
+    /* Research Interests */
+    .research-interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
 
-    .contact-info strong {
-      color: #1a1a1a;
+    .research-tag {
+      background: var(--light);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      border: 1px solid #e2e8f0;
+      transition: var(--transition);
+    }
+
+    .research-tag:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Publications Preview */
+    .publications-preview {
+      margin-top: 2rem;
+    }
+
+    .pub-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-title {
       font-weight: 500;
-      display: block;
-      margin-bottom: 10px;
-      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
     }
 
-    .contact-info p {
-      font-size: 18px;
-      margin: 15px 0;
+    .pub-authors {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
     }
 
-    .contact-info a {
-      color: #1a1a1a !important;
-      font-weight: 500 !important;
-      padding: 2px 0;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
+    .pub-venue {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      font-style: italic;
     }
 
-    .contact-info a:hover {
-      color: #000000 !important;
-      border-bottom-color: #B8860B;
-      transform: none;
+    /* Responsive Design */
+    @media (max-width: 968px) {
+      .academic-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .academic-sidebar {
+        order: -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      
+      .academic-profile {
+        margin-bottom: 0;
+      }
     }
 
     @media (max-width: 768px) {
-      .nav-content {
-        padding: 0 20px;
+      .nav-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 1rem;
+        padding: 0 1rem;
       }
-
-      .nav-links {
-        gap: 15px;
+      
+      .academic-nav {
+        gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
       }
-
-      .main-section {
-        padding: 120px 20px 40px;
+      
+      .academic-main {
+        padding: 140px 1rem 1rem;
       }
-
-      .container {
+      
+      .academic-content {
+        padding: 2rem;
+      }
+      
+      .academic-title {
+        font-size: 2.2rem;
+      }
+      
+      .academic-sidebar {
         grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 30px;
-        border-radius: 15px;
-      }
-
-      .photo-section {
-        order: -1;
-      }
-
-      .profile-photo {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 20px;
-      }
-
-      .main-title {
-        font-size: 2.5rem;
-        text-align: center;
-      }
-
-      .main-subtitle {
-        text-align: center;
-        font-size: 1.2rem;
-      }
-
-      .content-section h2 {
-        font-size: 22px;
-      }
-
-      .nav-links a {
-        padding: 10px 15px;
-        font-size: 15px;
-      }
-
-      .logo {
-        font-size: 24px;
       }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 30px 20px;
+      .academic-content {
+        padding: 1.5rem;
       }
-
-      .profile-photo {
+      
+      .academic-title {
+        font-size: 1.8rem;
+      }
+      
+      .academic-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .profile-image {
         width: 150px;
         height: 150px;
       }
+    }
 
-      .main-title {
-        font-size: 2rem;
+    /* Mathematical Background */
+    .math-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .math-symbol {
+      position: absolute;
+      font-size: 2rem;
+      color: var(--primary);
+      font-family: 'Times New Roman', serif;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
       }
-
-      .content-section h2 {
-        font-size: 20px;
-      }
-
-      body {
-        font-size: 16px;
-      }
-
-      .nav-links a {
-        padding: 8px 12px;
-        font-size: 14px;
+      100% {
+        transform: translateY(-100px) rotate(360deg);
       }
     }
 
@@ -437,311 +465,156 @@
   </style>
 </head>
 <body>
-  <canvas id="quantumCanvas"></canvas>
-  <div class="overlay"></div>
+  <!-- Mathematical Background -->
+  <div class="math-background" id="mathBackground"></div>
 
-  <nav class="top-nav">
-    <div class="nav-content">
-      <a href="#" class="logo">YAM</a>
-      <div class="nav-links">
+  <!-- Header -->
+  <header class="academic-header">
+    <div class="nav-container">
+      <a href="#" class="academic-brand">Yassine Ait Mohamed</a>
+      <nav class="academic-nav">
         <a href="index.html" class="active">Home</a>
         <a href="research.html">Research</a>
-        <a href="talks.html">Talks</a>
-        <a href="cv.html">CV</a>
+        <a href="publications.html">Publications</a>
         <a href="teaching.html">Teaching</a>
-      </div>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <section class="main-section">
-    <div class="container">
-      <div class="content-section">
-        <h1 class="main-title">Yassine Ait Mohamed</h1>
-        <div class="main-subtitle">
-          PhD Student - Department of Mathematics<br>
+  <!-- Main Content -->
+  <main class="academic-main">
+    <div class="academic-container">
+      <!-- Content Section -->
+      <div class="academic-content">
+        <h1 class="academic-title">Yassine Ait Mohamed</h1>
+        <div class="academic-subtitle">
+          PhD Candidate in Mathematics<br>
           Université de Sherbrooke
         </div>
 
-        <h2>Introduction</h2>
-        <p>
-          I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. 
-        </p>
+        <div class="content-section">
+          <h2>About Me</h2>
+          <p>
+            I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. My research focuses on [Your Research Area].
+          </p>
 
-        <p>
-         Before that, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.
-        </p>
+          <p>
+            Before joining Université de Sherbrooke, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.
+          </p>
+        </div>
 
-        <h2>Contact Information</h2>
-        <div class="contact-info">
+        <div class="content-section">
+          <h2>Research Interests</h2>
+          <p>
+            My research interests lie at the intersection of [Your Field 1], [Your Field 2], and [Your Field 3]. I am particularly interested in [Specific Research Topics].
+          </p>
+          
+          <div class="research-interests">
+            <span class="research-tag">Algebraic Geometry</span>
+            <span class="research-tag">Number Theory</span>
+            <span class="research-tag">Mathematical Physics</span>
+            <span class="research-tag">Topology</span>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2>Recent Publications</h2>
+          <div class="publications-preview">
+            <div class="pub-item">
+              <div class="pub-title">Title of Your Recent Paper</div>
+              <div class="pub-authors">Ait Mohamed, Y., Mayrand, M.</div>
+              <div class="pub-venue">Journal of Mathematics, 2024</div>
+            </div>
+            <div class="pub-item">
+              <div class="pub-title">Another Significant Publication</div>
+              <div class="pub-authors">Ait Mohamed, Y., Oukhitte, L.</div>
+              <div class="pub-venue">Advances in Mathematics, 2023</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="academic-contact">
+          <h3>Contact Information</h3>
           <p>
             <strong>Email:</strong><br>
             <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
           </p>
+          <p>
+            <strong>Office:</strong><br>
+            Department of Mathematics<br>
+            Université de Sherbrooke<br>
+            Québec, Canada
+          </p>
         </div>
       </div>
-      
-      <div class="photo-section">
-        <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-photo">
-      </div>
+
+      <!-- Sidebar -->
+      <aside class="academic-sidebar">
+        <div class="academic-profile">
+          <img src="./photo.jpg" alt="Yassine Ait Mohamed" class="profile-image">
+          <h3>Yassine Ait Mohamed</h3>
+          <p>PhD Candidate in Mathematics</p>
+        </div>
+
+        <div class="academic-info">
+          <div class="info-item">
+            <h4>Education</h4>
+            <p>PhD in Mathematics<br>Université de Sherbrooke<br>2023-Present</p>
+            <p>Previous Studies<br>University of Sidi Mohamed Ben Abdellah</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Advisors</h4>
+            <p>Prof. Maxence Mayrand (Current)<br>Prof. Lahcen Oukhitte (Previous)</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Department</h4>
+            <p>Department of Mathematics<br>Faculty of Science<br>Université de Sherbrooke</p>
+          </div>
+        </div>
+      </aside>
     </div>
-  </section>
+  </main>
 
   <script>
-    const canvas = document.getElementById('quantumCanvas');
-    const ctx = canvas.getContext('2d');
+    // Create mathematical background symbols
+    const mathBackground = document.getElementById('mathBackground');
+    const symbols = ['∀', '∃', '∈', '∉', '⊂', '⊃', '∪', '∩', '∞', '∂', '∫', '∇', '∆', 'π', 'σ', 'μ', 'λ', 'ψ', 'φ', 'ω', '∑', '∏'];
     
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    
-    class QuantumParticle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.3;
-        this.phase = Math.random() * Math.PI * 2;
-        this.frequency = Math.random() * 0.02 + 0.01;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += this.frequency;
-        this.opacity = 0.3 + Math.sin(this.phase) * 0.3;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
-        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
-        gradient.addColorStop(1, `${this.color} 0)`);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      }
+    for (let i = 0; i < 25; i++) {
+      const symbol = document.createElement('div');
+      symbol.className = 'math-symbol';
+      symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      symbol.style.left = Math.random() * 100 + 'vw';
+      symbol.style.animationDelay = Math.random() * 20 + 's';
+      symbol.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+      mathBackground.appendChild(symbol);
     }
-    
-    class QuantumWave {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = 0;
-        this.maxRadius = Math.random() * 200 + 100;
-        this.speed = Math.random() * 0.5 + 0.3;
-        this.opacity = 0.4;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.radius += this.speed;
-        this.opacity = 0.4 * (1 - this.radius / this.maxRadius);
-        return this.radius < this.maxRadius;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `${this.color} ${this.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    }
-    
-    class GeometricShape {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 60 + 40;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.opacity = Math.random() * 0.2 + 0.1;
-        this.type = Math.floor(Math.random() * 4);
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.phase = Math.random() * Math.PI * 2;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.rotation += this.rotationSpeed;
-        this.phase += 0.02;
-        this.opacity = 0.15 + Math.sin(this.phase) * 0.1;
-        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
-        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.strokeStyle = `${this.color} ${this.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        
-        const sides = this.type + 3;
-        for (let i = 0; i <= sides; i++) {
-          const angle = (i / sides) * Math.PI * 2;
-          const x = Math.cos(angle) * this.size;
-          const y = Math.sin(angle) * this.size;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        
-        ctx.closePath();
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-    
-    class MathEquation {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.opacity = Math.random() * 0.3 + 0.2;
-        this.phase = Math.random() * Math.PI * 2;
-        this.equations = ['ψ', '∇', '∫', '∂', 'Σ', '∞', 'π', 'θ', 'λ', 'Ω', 'Δ', '∈'];
-        this.symbol = this.equations[Math.floor(Math.random() * this.equations.length)];
-        this.size = Math.random() * 20 + 25;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += 0.02;
-        this.opacity = 0.25 + Math.sin(this.phase) * 0.15;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.font = `${this.size}px 'Times New Roman', serif`;
-        ctx.fillStyle = `${this.color} ${this.opacity})`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(this.symbol, this.x, this.y);
-      }
-    }
-    
-    const particles = [];
-    const waves = [];
-    const shapes = [];
-    const equations = [];
-    
-    for (let i = 0; i < 150; i++) particles.push(new QuantumParticle());
-    for (let i = 0; i < 12; i++) shapes.push(new GeometricShape());
-    for (let i = 0; i < 15; i++) equations.push(new MathEquation());
-    
-    setInterval(() => {
-      if (waves.length < 5) waves.push(new QuantumWave());
-    }, 2000);
-    
-    function drawConnections() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            const opacity = (1 - distance / 120) * 0.15;
-            ctx.strokeStyle = `rgba(26, 26, 26, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-    
-    function animate() {
-      ctx.fillStyle = 'rgba(245, 247, 250, 0.15)';
-      ctx.fillRect(0, 0, width, height);
-      
-      shapes.forEach(shape => {
-        shape.update();
-        shape.draw();
-      });
-      
-      equations.forEach(eq => {
-        eq.update();
-        eq.draw();
-      });
-      
-      drawConnections();
-      
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      
-      for (let i = waves.length - 1; i >= 0; i--) {
-        if (!waves[i].update()) {
-          waves.splice(i, 1);
-        } else {
-          waves[i].draw();
-        }
-      }
-      
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
-    
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-    
-    canvas.addEventListener('mousemove', (e) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      particles.forEach(particle => {
-        const dx = mouseX - particle.x;
-        const dy = mouseY - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 150) {
-          particle.vx += dx * 0.0001;
-          particle.vy += dy * 0.0001;
-        }
-      });
-    });
-    
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('active')) {
-          this.style.transform = 'translateY(-3px) scale(1.05)';
-        }
-      });
-      
-      link.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('active')) {
-          this.style.transform = 'translateY(0) scale(1)';
-        }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
     });
 
-    const profilePhoto = document.querySelector('.profile-photo');
-    profilePhoto.addEventListener('click', function() {
-      this.style.transform = 'scale(1.15)';
-      setTimeout(() => {
+    // Add hover effect to profile image
+    const profileImage = document.querySelector('.profile-image');
+    if (profileImage) {
+      profileImage.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.08)';
+      });
+      
+      profileImage.addEventListener('mouseleave', function() {
         this.style.transform = 'scale(1)';
-      }, 400);
-    });
+      });
+    }
   </script>
 </body>
 </html>
