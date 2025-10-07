@@ -11,736 +11,508 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --primary-dark: #1a1a2e;
+      --primary: #162447;
+      --secondary: #1f4068;
+      --accent: #e43f5a;
+      --gold: #daa520;
+      --light: #f8f9fa;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --sidebar-width: 280px;
+    }
+
     body {
-      font-family: 'Times New Roman', Times, serif;
-      line-height: 1.6;
-      font-size: 18px;
-      color: #2c3e50;
-      background: linear-gradient(135deg, #fdfcfb 0%, #f7f4f0 100%);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.7;
+      font-size: 17px;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    #quantumCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .top-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 3px solid #1a1a1a;
-      z-index: 1000;
-      padding: 20px 0;
-      transform: translateY(-100%);
-      animation: slideDown 0.8s ease-out 0.5s both;
-    }
-
-    @keyframes slideDown {
-      to { transform: translateY(0); }
-    }
-
-    .nav-content {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 40px;
     }
 
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-      color: #1a1a1a;
-      text-decoration: none;
-      letter-spacing: 1px;
+    /* Navigation Verticale */
+    .vertical-nav {
+      width: var(--sidebar-width);
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(20px);
+      color: white;
+      padding: 2rem 0;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      overflow-y: auto;
+      border-right: 3px solid var(--gold);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-header {
+      text-align: center;
+      padding: 0 2rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      margin: 0 auto 1rem;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+    }
+
+    .nav-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .nav-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 300;
     }
 
     .nav-links {
       display: flex;
-      gap: 35px;
-    }
-
-    .nav-links a {
-      color: #2d3748;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 12px 20px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(26, 26, 26, 0.08), transparent);
-      transition: left 0.6s;
-    }
-
-    .nav-links a:hover::before {
-      left: 100%;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      background: #1a1a1a;
-      color: white;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(26, 26, 26, 0.35);
-    }
-
-    .main-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 40px 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .container {
-      max-width: 1100px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 60px;
-      align-items: start;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 50px;
-      border: 2px solid rgba(26, 26, 26, 0.15);
-      box-shadow: 0 20px 60px rgba(50, 50, 50, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #1a1a1a, #B8860B, transparent);
-      animation: scan 4s ease-in-out infinite;
-    }
-
-    @keyframes scan {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    .content-section {
-      color: #2d3748;
-      animation: fadeInLeft 0.8s ease-out 0.4s both;
-      padding-top: 20px;
-    }
-
-    @keyframes fadeInLeft {
-      from { transform: translateX(-50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .main-title {
-      font-size: 3.5rem;
-      font-weight: 400;
-      color: #1a1a1a;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-      line-height: 1.2;
-    }
-
-    .main-subtitle {
-      font-size: 1.4rem;
-      color: #718096;
-      margin-bottom: 40px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
-
-    .content-section h2 {
-      font-size: 24px;
-      color: #1a1a1a;
-      margin: 30px 0 20px 0;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e8ddd0;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      position: relative;
-      transform: translateY(20px);
-      animation: headingReveal 0.8s ease-out 0.6s both;
-    }
-
-    @keyframes headingReveal {
-      to { transform: translateY(0); }
-    }
-
-    .content-section h2:first-child {
-      margin-top: 0;
-    }
-
-    .content-section p {
-      margin: 0 0 20px 0;
-      color: #4a5568;
-      line-height: 1.7;
-      text-align: justify;
-      font-size: 18px;
-      transform: translateY(20px);
-      animation: textReveal 0.6s ease-out calc(0.8s + var(--p-delay)) both;
-    }
-
-    .content-section p:nth-of-type(1) { --p-delay: 0s; }
-    .content-section p:nth-of-type(2) { --p-delay: 0.1s; }
-
-    @keyframes textReveal {
-      to { transform: translateY(0); }
-    }
-
-    .content-section a {
-      color: #1a1a1a;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .content-section a:hover {
-      color: #000000;
-      border-bottom-color: #B8860B;
-    }
-
-    .photo-section {
-      text-align: center;
-      animation: fadeInRight 0.8s ease-out 0.5s both;
-      display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 0.5rem;
+      padding: 0 1.5rem;
     }
 
-    @keyframes fadeInRight {
-      from { transform: translateX(50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .profile-photo {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 6px solid white;
-      box-shadow: 0 15px 40px rgba(26, 26, 26, 0.25);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
       position: relative;
-      cursor: pointer;
-      margin-bottom: 30px;
+      overflow: hidden;
     }
 
-    .profile-photo::before {
+    .nav-link::before {
       content: '';
       position: absolute;
-      top: -6px;
-      left: -6px;
-      right: -6px;
-      bottom: -6px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1a1a1a, #B8860B);
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transition: width 0.3s ease;
       z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
-    .profile-photo:hover {
-      transform: scale(1.08);
-      box-shadow: 0 25px 60px rgba(26, 26, 26, 0.35);
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 100%;
     }
 
-    .profile-photo:hover::before {
-      opacity: 1;
-      animation: rotate 3s linear infinite;
+    .nav-link:hover,
+    .nav-link.active {
+      color: white;
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .nav-footer {
+      margin-top: 3rem;
+      padding: 0 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
     }
 
     .contact-info {
-      background: #faf8f5;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 30px 0;
-      border: 1px solid #e8ddd0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-info a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: white;
+    }
+
+    /* Contenu Principal */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 3rem;
+      background: var(--light);
+      min-height: 100vh;
       position: relative;
       overflow: hidden;
-      transform: translateY(20px);
-      animation: contactReveal 0.8s ease-out 1s both;
     }
 
-    @keyframes contactReveal {
-      to { transform: translateY(0); }
+    .main-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+      pointer-events: none;
     }
 
-    .contact-info::before {
+    .content-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .academic-title {
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .academic-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--gold));
+      border-radius: 2px;
+    }
+
+    .academic-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+      font-weight: 500;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .content-text {
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .content-text a {
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .content-text a:hover {
+      color: var(--secondary);
+      border-bottom-color: var(--gold);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #1a1a1a, #B8860B);
+      background: linear-gradient(90deg, var(--gold), var(--accent));
     }
 
-    .contact-info strong {
-      color: #1a1a1a;
-      font-weight: 500;
+    .contact-box strong {
+      color: white;
       display: block;
-      margin-bottom: 10px;
-      font-size: 16px;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
     }
 
-    .contact-info p {
-      font-size: 18px;
-      margin: 15px 0;
+    .contact-box a {
+      color: var(--gold) !important;
+      border-bottom: 1px solid rgba(218, 165, 32, 0.5);
     }
 
-    .contact-info a {
-      color: #1a1a1a !important;
-      font-weight: 500 !important;
-      padding: 2px 0;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s ease;
+    .contact-box a:hover {
+      color: white !important;
+      border-bottom-color: white;
     }
 
-    .contact-info a:hover {
-      color: #000000 !important;
-      border-bottom-color: #B8860B;
-      transform: none;
+    /* Éléments Mathématiques */
+    .math-decoration {
+      position: absolute;
+      font-size: 1.5rem;
+      color: rgba(26, 26, 46, 0.1);
+      font-family: 'Times New Roman', serif;
+      z-index: 0;
     }
 
-    @media (max-width: 768px) {
-      .nav-content {
-        padding: 0 20px;
+    .research-interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .research-tag {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .research-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      body {
         flex-direction: column;
-        gap: 15px;
+      }
+
+      .vertical-nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 1rem 0;
       }
 
       .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 1rem;
       }
 
-      .main-section {
-        padding: 120px 20px 40px;
+      .nav-link {
+        white-space: nowrap;
       }
 
-      .container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 30px;
-        border-radius: 15px;
+      .main-content {
+        margin-left: 0;
+        padding: 2rem;
       }
 
-      .photo-section {
-        order: -1;
-      }
-
-      .profile-photo {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 20px;
-      }
-
-      .main-title {
-        font-size: 2.5rem;
-        text-align: center;
-      }
-
-      .main-subtitle {
-        text-align: center;
-        font-size: 1.2rem;
-      }
-
-      .content-section h2 {
-        font-size: 22px;
-      }
-
-      .nav-links a {
-        padding: 10px 15px;
-        font-size: 15px;
-      }
-
-      .logo {
-        font-size: 24px;
+      .content-section {
+        padding: 2rem;
       }
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 30px 20px;
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1rem;
       }
 
-      .profile-photo {
-        width: 150px;
-        height: 150px;
+      .content-section {
+        padding: 1.5rem;
       }
 
-      .main-title {
-        font-size: 2rem;
+      .academic-title {
+        font-size: 2.2rem;
       }
 
-      .content-section h2 {
-        font-size: 20px;
+      .academic-subtitle {
+        font-size: 1.1rem;
       }
 
-      body {
-        font-size: 16px;
+      .nav-header {
+        padding: 0 1rem 1rem;
       }
 
-      .nav-links a {
-        padding: 8px 12px;
-        font-size: 14px;
+      .profile-image {
+        width: 100px;
+        height: 100px;
       }
     }
 
-    html {
-      scroll-behavior: smooth;
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
+    .content-section > * {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .content-section > *:nth-child(1) { animation-delay: 0.1s; }
+    .content-section > *:nth-child(2) { animation-delay: 0.2s; }
+    .content-section > *:nth-child(3) { animation-delay: 0.3s; }
+    .content-section > *:nth-child(4) { animation-delay: 0.4s; }
+    .content-section > *:nth-child(5) { animation-delay: 0.5s; }
   </style>
 </head>
 <body>
-  <canvas id="quantumCanvas"></canvas>
-  <div class="overlay"></div>
+  <!-- Navigation Verticale -->
+  <nav class="vertical-nav">
+    <div class="nav-header">
+      <img src="./photo.jpg" alt="Profile" class="profile-image">
+      <div class="nav-title">PhD Candidate</div>
+      <div class="nav-subtitle">Mathematics</div>
+    </div>
 
-  <nav class="top-nav">
-    <div class="nav-content">
-      <a href="#" class="logo">YAM</a>
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="research.html">Research</a>
-        <a href="talks.html">Talks</a>
-        <a href="cv.html">CV</a>
-        <a href="teaching.html">Teaching</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="research.html" class="nav-link">Research</a>
+      <a href="publications.html" class="nav-link">Publications</a>
+      <a href="teaching.html" class="nav-link">Teaching</a>
+      <a href="cv.html" class="nav-link">Curriculum Vitae</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-footer">
+      <div class="contact-info">
+        <strong>Contact</strong><br>
+        <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a><br>
+        Université de Sherbrooke<br>
+        Department of Mathematics
       </div>
     </div>
   </nav>
 
-  <section class="main-section">
-    <div class="container">
-      <div class="content-section">
-        <h1 class="main-title">PhD Student in Mathematics</h1>
-        <div class="main-subtitle">
-          Department of Mathematics<br>
-          Université de Sherbrooke
-        </div>
+  <!-- Contenu Principal -->
+  <main class="main-content">
+    <!-- Éléments mathématiques décoratifs -->
+    <div class="math-decoration" style="top: 10%; left: 5%;">∂</div>
+    <div class="math-decoration" style="top: 20%; right: 10%;">∫</div>
+    <div class="math-decoration" style="bottom: 30%; left: 8%;">∇</div>
+    <div class="math-decoration" style="bottom: 15%; right: 7%;">∑</div>
+    <div class="math-decoration" style="top: 40%; left: 12%;">π</div>
 
-        <h2>Introduction</h2>
-        <p>
-          I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. 
-        </p>
-
-        <p>
-         Before that, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>.
-        </p>
-
-        <h2>Contact Information</h2>
-        <div class="contact-info">
-          <p>
-            <strong>Email:</strong><br>
-            <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a>
-          </p>
-        </div>
+    <div class="content-section">
+      <h1 class="academic-title">PhD Student in Mathematics</h1>
+      <div class="academic-subtitle">
+        Department of Mathematics · Université de Sherbrooke
       </div>
-      
-      <div class="photo-section">
-        <img src="./photo.jpg" alt="Profile Photo" class="profile-photo">
+
+      <h2 class="section-title">Introduction</h2>
+      <p class="content-text">
+        I am a PhD student in Mathematics at the <a href="https://www.usherbrooke.ca/mathematiques/" target="_blank">Université de Sherbrooke</a>, where I work under the supervision of <a href="https://maxencemayrand.github.io/" target="_blank">Maxence Mayrand</a>. My research focuses on advancing our understanding of fundamental mathematical structures and their applications.
+      </p>
+
+      <p class="content-text">
+        Before joining Université de Sherbrooke, I was a doctoral student at the <a href="https://www.usmba.ac.ma/" target="_blank">University of Sidi Mohamed Ben Abdellah</a>, where I worked under the supervision of <a href="https://www.researchgate.net/profile/L-Oukhtite-2/research" target="_blank">Lahcen Oukhitte</a>. This foundational work provided me with a strong background in advanced mathematical theory and research methodology.
+      </p>
+
+      <h2 class="section-title">Research Interests</h2>
+      <div class="research-interests">
+        <span class="research-tag">Algebraic Geometry</span>
+        <span class="research-tag">Number Theory</span>
+        <span class="research-tag">Mathematical Physics</span>
+        <span class="research-tag">Topology</span>
+        <span class="research-tag">Analysis</span>
+        <span class="research-tag">Differential Equations</span>
+      </div>
+
+      <h2 class="section-title">Current Work</h2>
+      <p class="content-text">
+        My current research explores the intersection of modern algebraic methods with classical analysis, seeking to develop new frameworks that can address long-standing problems in mathematical physics and geometry. I am particularly interested in how abstract mathematical concepts can provide insights into physical phenomena.
+      </p>
+
+      <div class="contact-box">
+        <strong>Academic Contact</strong><br>
+        <a href="mailto:yassine.ait.mohamed@usherbrooke.ca">yassine.ait.mohamed@usherbrooke.ca</a><br><br>
+        
+        <strong>Department</strong><br>
+        Department of Mathematics<br>
+        Université de Sherbrooke<br>
+        2500 Boulevard de l'Université<br>
+        Sherbrooke, QC J1K 2R1, Canada
       </div>
     </div>
-  </section>
+  </main>
 
   <script>
-    const canvas = document.getElementById('quantumCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    
-    class QuantumParticle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.3;
-        this.phase = Math.random() * Math.PI * 2;
-        this.frequency = Math.random() * 0.02 + 0.01;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += this.frequency;
-        this.opacity = 0.3 + Math.sin(this.phase) * 0.3;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-        gradient.addColorStop(0, `${this.color} ${this.opacity})`);
-        gradient.addColorStop(0.5, `${this.color} ${this.opacity * 0.5})`);
-        gradient.addColorStop(1, `${this.color} 0)`);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      }
-    }
-    
-    class QuantumWave {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = 0;
-        this.maxRadius = Math.random() * 200 + 100;
-        this.speed = Math.random() * 0.5 + 0.3;
-        this.opacity = 0.4;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.radius += this.speed;
-        this.opacity = 0.4 * (1 - this.radius / this.maxRadius);
-        return this.radius < this.maxRadius;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `${this.color} ${this.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    }
-    
-    class GeometricShape {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 60 + 40;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.opacity = Math.random() * 0.2 + 0.1;
-        this.type = Math.floor(Math.random() * 4);
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.phase = Math.random() * Math.PI * 2;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.rotation += this.rotationSpeed;
-        this.phase += 0.02;
-        this.opacity = 0.15 + Math.sin(this.phase) * 0.1;
-        if (this.x < -this.size || this.x > width + this.size) this.vx *= -1;
-        if (this.y < -this.size || this.y > height + this.size) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.strokeStyle = `${this.color} ${this.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        
-        const sides = this.type + 3;
-        for (let i = 0; i <= sides; i++) {
-          const angle = (i / sides) * Math.PI * 2;
-          const x = Math.cos(angle) * this.size;
-          const y = Math.sin(angle) * this.size;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        
-        ctx.closePath();
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-    
-    class MathEquation {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.opacity = Math.random() * 0.3 + 0.2;
-        this.phase = Math.random() * Math.PI * 2;
-        this.equations = ['ψ', '∇', '∫', '∂', 'Σ', '∞', 'π', 'θ', 'λ', 'Ω', 'Δ', '∈'];
-        this.symbol = this.equations[Math.floor(Math.random() * this.equations.length)];
-        this.size = Math.random() * 20 + 25;
-        this.color = ['rgba(26, 26, 26,', 'rgba(50, 50, 50,', 'rgba(184, 134, 11,'][Math.floor(Math.random() * 3)];
-      }
-      
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.phase += 0.02;
-        this.opacity = 0.25 + Math.sin(this.phase) * 0.15;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      
-      draw() {
-        ctx.font = `${this.size}px 'Times New Roman', serif`;
-        ctx.fillStyle = `${this.color} ${this.opacity})`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(this.symbol, this.x, this.y);
-      }
-    }
-    
-    const particles = [];
-    const waves = [];
-    const shapes = [];
-    const equations = [];
-    
-    for (let i = 0; i < 150; i++) particles.push(new QuantumParticle());
-    for (let i = 0; i < 12; i++) shapes.push(new GeometricShape());
-    for (let i = 0; i < 15; i++) equations.push(new MathEquation());
-    
-    setInterval(() => {
-      if (waves.length < 5) waves.push(new QuantumWave());
-    }, 2000);
-    
-    function drawConnections() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            const opacity = (1 - distance / 120) * 0.15;
-            ctx.strokeStyle = `rgba(26, 26, 26, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-    
-    function animate() {
-      ctx.fillStyle = 'rgba(245, 247, 250, 0.15)';
-      ctx.fillRect(0, 0, width, height);
-      
-      shapes.forEach(shape => {
-        shape.update();
-        shape.draw();
-      });
-      
-      equations.forEach(eq => {
-        eq.update();
-        eq.draw();
-      });
-      
-      drawConnections();
-      
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      
-      for (let i = waves.length - 1; i >= 0; i--) {
-        if (!waves[i].update()) {
-          waves.splice(i, 1);
-        } else {
-          waves[i].draw();
-        }
-      }
-      
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
-    
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+    // Animation des éléments mathématiques
+    const mathElements = document.querySelectorAll('.math-decoration');
+    mathElements.forEach((element, index) => {
+      element.style.animation = `float ${6 + index * 2}s ease-in-out infinite alternate`;
     });
-    
-    canvas.addEventListener('mousemove', (e) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      particles.forEach(particle => {
-        const dx = mouseX - particle.x;
-        const dy = mouseY - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 150) {
-          particle.vx += dx * 0.0001;
-          particle.vy += dy * 0.0001;
-        }
-      });
-    });
-    
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('active')) {
-          this.style.transform = 'translateY(-3px) scale(1.05)';
-        }
-      });
-      
-      link.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('active')) {
-          this.style.transform = 'translateY(0) scale(1)';
-        }
+
+    // Ajout du keyframe pour l'animation flottante
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Interaction avec les tags de recherche
+    document.querySelectorAll('.research-tag').forEach(tag => {
+      tag.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+        }, 150);
       });
     });
 
-    const profilePhoto = document.querySelector('.profile-photo');
-    profilePhoto.addEventListener('click', function() {
-      this.style.transform = 'scale(1.15)';
-      setTimeout(() => {
-        this.style.transform = 'scale(1)';
-      }, 400);
+    // Navigation active
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
     });
   </script>
 </body>
